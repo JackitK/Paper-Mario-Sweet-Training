@@ -1,0 +1,69 @@
+
+
+@ $Script_UseItem
+{
+    0:  SetConst  *VarA  00000089
+   10:  ExecWait  $Script_802A12E0
+   1C:  Call  InitTargetIterator ( )
+   28:  Call  GetOwnerTarget    ( *Var0 *Var1 )
+   3C:  If  *Var0  ==  .Actor:Player % 0
+   4C:  	ExecWait  $Script_802A1824
+   58:  	Call  GetActorPos   ( .Actor:Player *Var0 *Var1 *Var2 )
+   74:  	Add   *Var1  00000019
+   84:  	Add   *Var2  00000005
+   94:  	Call  802D7520      ( *Var0 *Var1 *Var2 0000000A )
+   B0:  	Call  GetActorPos   ( .Actor:Player *Var0 *Var1 *Var2 )
+   CC:  	Add   *Var1  00000014
+   DC:  	Call  SetAnimation  ( .Actor:Player 00000000 00010032 )
+   F4:  	Wait  30`
+  100:  	Call  SetAnimation  ( .Actor:Player 00000000 00010002 )
+  118:  	Call  GetActorPos   ( .Actor:Player *Var0 *Var1 *Var2 )
+  134:  	Add   *Var2  00000005
+  144:  	Call  802D75D8      ( *Var0 *Var1 *Var2 0000000A )
+  160:  	Call  $Function_802A123C    ( 00000000 )
+  170:  	Wait  20`
+  17C:  Else
+  184:  	Call  GetActorPos   ( .Actor:Partner *Var0 *Var1 *Var2 )
+  1A0:  	Add   *Var1  00000019
+  1B0:  	Add   *Var2  00000005
+  1C0:  	Call  802D7520      ( *Var0 *Var1 *Var2 00000005 )
+  1DC:  	Call  GetActorPos   ( .Actor:Partner *Var0 *Var1 *Var2 )
+  1F8:  	Add   *Var1  00000014
+  208:  	Wait  30`
+  214:  	Call  GetActorPos   ( .Actor:Partner *Var0 *Var1 *Var2 )
+  230:  	Add   *Var2  00000005
+  240:  	Call  802D75D8      ( *Var0 *Var1 *Var2 00000005 )
+  25C:  	Call  $Function_802A123C    ( 00000100 )
+  26C:  	Wait  20`
+  278:  EndIf
+        %Add function that turn's Chai's Tea into Dizzy Tea
+        ExecWait   $DizzyTea
+        %Resume normal function
+  280:  ExecWait  $Script_802A1710
+  28C:  Return
+  294:  End
+}
+
+#new:Script $ChaiTea
+{
+
+    %Play static animation over Chai
+    Call  SetAnimation  ( .Actor:Partner 00000000 00010002 )
+   40:  Call  GetActorPos   ( .Actor:Partner *Var0 *Var1 *Var2 )
+   5C:  Set   *Var3  00000014
+   6C:  Call  MultiplyByActorScale  ( *Var3 )
+   7C:  Add   *Var1  *Var3
+   8C:  SetF  *Var3  *Fixed[1.0]
+   9C:  Call  MultiplyByActorScale  ( *Var3 )
+   AC:  Call  PlayEffect    ( ~FX:RadialFlowOut:ThickLines *Var0 *Var1 *Var2 *Var3 0000001E 00000000 00000000 00000000 00000000 00000000 00000000 00000000 )
+   F0:  Call  PlaySound     ( 00000379 )
+
+    %Have the item set Chai's Tea variable to Dizzy and have the partner function carry the work from there.
+        %(0 = Sleep, 1 = Dizzy, 2 = Paralyize, 3 = Stop)
+        Set *GB_ChaiTea 1
+        %SetVar
+        % Display a custom message to confirm that Chai's Tea has been changed.
+    Return
+    End
+}
+

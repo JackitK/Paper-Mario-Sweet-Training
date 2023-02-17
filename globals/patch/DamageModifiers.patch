@@ -1,0 +1,121 @@
+%Copied from Dark Star...basically only changes I'm making is removing functions that don't tie to my mod and reducing damage
+%for certain effects like attacking a spike foe and poison (at least as long as it doesn't break sleep.)
+% 3 damage is way too much passive damage for a mod you start at level one and likely will only get around 1-3 level ups
+% Plus I was never the biggest fan of that feature anyways.... -JackitK
+
+%function
+%1A0224 --> 80271944
+
+% Contact Hazard: Explosion
+%function + 238
+@Function 1A045C
+{
+ADDIU	A0, R0, 5 % changed it from 6 to 5 because I'm "slightly" merciful, not sure if they'll even be any enemies to make use of this anyways. -JackitK
+}
+
+% Contact Hazard: Fire
+%4 damage is a lot but I'll leave this alone for now, and reconsider if I make any fire enemies. -JackitK
+%function + 2AC
+@Function 1A04D0
+{
+ADDIU	A0, R0, 4 % changed from 1 to 4 in Dark Star...
+}
+
+% Contact Hazard: Spikes (Top)
+%function + 384
+@Function 1A05A8
+{
+ADDIU	A0, R0, 1 % changed from Dark Star's 3 back to 1 damage -JackitK
+}
+
+
+%function
+%1A0034 --> 80271754
+
+% Contact Hazard: Spikes (Front)
+%function + 190
+@Function 1A01C4
+{
+ADDIU	A0, R0, 1 % changed from Dark Star's 3 back to 1 damage -JackitK
+}
+
+% Double damage from environmental hazards: fire walls, spiky thwomps
+%Not sure where the doubling happens so I'm not gonna mess with it, 
+%besides I'm cool with double enivornmental damage and I doubt the mod will have anywhere with double damage. -JackitK
+@Function 837E4 % 800EA334
+{
+SLL		A0, A0, 1		
+LUI		V1, 8011
+LB		V0, F292 (V1)
+}
+
+@Function 8380C % 800EA35C
+{
+SB		V0, F292 (V1)
+}
+
+% Poison Damage
+%Decided to make this two damage. Was gonna make it back to 1 damage but since the player can use moves to poison a foe,
+%I want to give reason for the status to be valuable and Mario is going to start with more HP so this shouldn't be too annoying early game.
+%Just high enough to be a threat if ignore by Mario and enough on enemies to stack up to a decent amount of passive damage with the defualt 3 turns it lasts.
+@Function 170DE0
+{
+ADDIU	A0, R0, 2 %Last number of the pam I believe determines damage
+}
+
+@Function 1A5E04 % 80277524 make enemies that lack a "checkplayerhit" be able to hit through repel gel
+{
+ADDU    V1, R0, R0
+}
+
+%for mario moves?
+@Function 1A0338 % 80271A58
+{
+ADDU V1, R0, R0
+}
+
+%Again something I don't think I'll implement in this mod, but cool enough that I want to keep it in case I find an
+%excuse to use it. -JackitK
+
+%Make partner moves have the capability to pierce invis (if there is no check)
+%1ACC08 --> 8027E328
+@Function 1ACD10
+{
+	ADDU    V1, R0, R0
+}
+% 108:  LB        V1, 218 (S3)
+
+%This appears to be the part of the code where Shadeblade applied a lot of damage reduction effects.  However, since a lot of it
+%call badges that exist in Dark Star and not this mod and I don't think I'll need any of it, I think I'll take it out for now.
+
+
+%Hook tied to status updates to Mario...
+/%
+@Hook 1A641C
+{
+%Paralysis modifier (+1 defense)
+LB        T3, 210 (S3)				%status ID
+LI        V0, 5
+BNE		  T3, V0, .noparalyze		%5 = paralyze
+NOP
+BEQ		  S0, R0, .noparalyze		%negative damage is bad
+NOP
+ADDI	  S0, S0, FFFF
+.noparalyze
+}
+%/
+
+
+%Taking this out for now, only cause I don't plan to implement these effects into the mod, but it was a nice read
+%and worth adding back in if I do anything more advance. -JackitK
+
+%Extra clarity: attacks against mario that activate last stand, perfect stand, etc generate different colored effects
+
+%Last stand: red / dark red
+%Perfect stand: blue / white
+%Flower shield: yellow / white
+%Stellar shield: purple / yellow
+%Dark shield: black / red
+
+%Last chance: red shockwave
+

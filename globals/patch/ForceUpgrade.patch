@@ -1,0 +1,46 @@
+%Thanks to Rain for setting me up with the script to do this...
+#export .upgradeParnter 0
+#export .setPartnerLevel 1
+
+#export:Function $upgradePartner {
+    PUSH s0, s1, s2, ra
+
+    ADDU s0, a0, r0
+    LW s1, 000C (s0)
+    JAL ~Func:get_variable
+    LW a1, 0000 (s1) %get partnerID
+
+    LI s2, 8010F2A4
+    SLL v0, v0, 3 %multiply by 8 (size of partner struct)
+    ADDU s2, s2, v0 %now points to specified partner struct start
+
+    ADDU a0, s0, r0
+    JAL ~Func:get_variable
+    LW a1, 0008 (s1) %get mode
+
+    BEQ v0, r0, .upgradePartnerMode
+    NOP
+
+    %otherwise, set partner value directly
+    ADDU a0, s0, r0
+    JAL ~Func:get_variable
+    LW a1, 0004 (s1) %get value to set partner level to
+
+    BEQ r0, r0, .exit
+    SB v0, 0001 (s2)
+
+
+    .upgradePartnerMode
+    LBU t0, 0001 (s2) %load partner upgrade value
+    ADDIU t0, t0, 1
+    SB t0, 0001 (s2) %store new partner upgrade value
+
+    .exit
+    POP s0, s1, s2, ra
+    JR RA
+    ORI v0, r0, 2
+}
+
+%Call $upgradePartner (partnerID, level, mode)
+%mode 0 upgrades current partner level by +1
+%mode 1 sets the partner level directly to the parameter value of level

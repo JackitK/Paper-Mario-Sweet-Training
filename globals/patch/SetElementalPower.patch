@@ -1,0 +1,62 @@
+/%Functions to set and retrieve elemental property as a set variable from 0-4
+	0 Cosmic
+	1 Fire
+	2 Water
+	3 Ice
+	4 Electric
+(Code must be set in the function that reads the element variable that translates it into the proper elemental property via swtich statement)
+%/
+%Call $ScrApi_SetElementVariable when a move changes the element
+%Call $ScrApi_GetElementVariable when a move is checking which element the attack should call
+
+%Create a custom 
+
+%Thanks to Rain for setting me up with the inital scripts
+#export .scrApi_Done2 2
+#export .scrApi_Done1 1
+#export .scrApi_Block 0
+
+#export:Data $elementVariable { 0 }
+
+#export:Function $ScrApi_SetElementVariable {
+    PUSH ra
+
+    LW a1, 000C (a0) %load script ptr to args
+    JAL ~Func:get_variable
+    LW a1, 0000 (a1) %get variable
+    SAW v0, $elementVariable
+
+    POP ra
+    JR RA
+    ORI v0, r0, .scrApi_Done2
+}
+
+#export:Function $ScrApi_GetElementVariable {
+    PUSH ra
+
+    LW a1, 000C (a0) %load script ptr to args
+    LW a1, 0000 (a1) %get variable
+    LAW a2, $elementVariable
+    JAL ~Func:set_variable
+    NOP
+
+    POP ra
+    JR RA
+    ORI v0, r0, .scrApi_Done2
+}
+
+/%
+%Should work but doesn't
+#export:Function $SwapElement {
+%Swap the current element based on the current existing one Cosmic->Fire->Water->Ice->Electric
+          %(Call the Element Variable, add 1 (swapping to 0 if it goes over 4)
+          Call $ScrApi_GetElementVariable ( *Var0 )
+          AddF *Var0 1`
+          If *Var0 > 4`
+          Set *Var0 0`
+          EndIf
+     %Set the element variable to it's new value
+     Call $ScrApi_SetElementVariable ( *Var0 )
+        
+}
+%/

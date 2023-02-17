@@ -1,0 +1,32 @@
+%Example call
+%Call $SetPartnerBool (9) %Bow id
+%Call $SetActivePartner (9) %bow
+
+#export:Function $SetActivePartner {
+    PUSH ra
+
+    LW t0, 000C (a0)
+    JAL ~Func:get_variable
+    LW a1, 0000 (t0)
+    SAB v0, 8010F2A2
+
+    POP ra
+    JR RA
+    ORI v0, r0, 2
+}
+
+#export:Function $SetPartnerBool {
+    PUSH ra
+    LW t0, 000C (a0)
+    JAL ~Func:get_variable
+    LW a1, 0000 (t0)
+
+    SLL v1, v0, 3
+    LI t0, 8010F2A4
+    ADDU t0, t0, v1
+    ORI t1, r0, 1
+    SB t1, 0000 (t0)
+    POP ra
+    JR RA
+    ORI v0, r0, 2
+}

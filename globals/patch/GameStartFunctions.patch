@@ -1,0 +1,659 @@
+% -----Used regardless of starting point------
+
+#export:Function $GiveBootsAndHammer {
+	LIO t0, 8010F290
+	ORI t1, r0, 0202
+	SH t1, 0000 (t0)
+	JR RA
+	ORI v0, r0, 0002
+}
+
+%This lets me have Action Commands without the Lucky Star.
+#export:Function $GiveActionCommands {
+	ORI t0, r0, 1
+	SAB t0, 8010F29A
+	JR RA
+	ORI v0, r0, 2
+}
+
+
+%--- Scripts to read the filename and determine how to build the mod based on said name (Moved from kmr_20 for easier tracking) ----
+
+%Determine a build of starting stats, items, and badges, based on file name...
+#export:Script $Script_FileNameChecks
+{
+	Call     $GetFileName()
+	% Check for "Danger" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_Danger *Var3 )
+	If *Var3 == 0` 
+		Call ShowMessageAtScreenPos     	( 002F0400 000000A0 00000028 )
+		Set *GB_FileCodeMode 1`
+		Return
+	EndIf
+	% Check for "Cheater" in the file name (No change, just a joke option)
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_Cheater *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F0401 000000A0 00000028 )
+		Return
+	EndIf
+	% Check for "TeaTime" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_TeaTime *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F0402 000000A0 00000028 )
+		Set *GB_FileCodeMode 2`
+		Return
+	EndIf
+	% Check for "NotSuper" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_NotSuper *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F0404 000000A0 00000028 )
+		Set *GB_FileCodeMode 3`
+		Return
+	EndIf
+	% Check for "Mercy" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_Mercy *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F0405 000000A0 00000028 )
+		Set *GB_FileCodeMode 4`
+		Return
+	EndIf
+	% Check for "Master" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_Master *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F040A 000000A0 00000028 )
+		Set *GB_FileCodeMode 5`
+		Return
+	EndIf
+	% Check for "FoxOnly" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_FoxOnly *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F0406 000000A0 00000028 )
+		Set *GB_FileCodeMode 6`
+		Return
+	EndIf
+	% Check for "Berserk" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_Berserk *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F0408 000000A0 00000028 )
+		Set *GB_FileCodeMode 7`
+		Return
+	EndIf
+	% Check for "AllSinks" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_AllSinks *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F0409 000000A0 00000028 )
+		Set *GB_FileCodeMode 8`
+		Return
+	EndIf
+	% Check for "MegaHard" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_MegaHard *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F0403 000000A0 00000028 )
+		Set *GB_FileCodeMode 9`
+		Return
+	EndIf
+	% Check for "SuperTea" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_SuperTea *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F0407 000000A0 00000028 )
+		Set *GB_FileCodeMode 10`
+		Return
+	EndIf
+    % Check for "FinalDes" in the file name
+	Call 	$API_StrCmp ( $CopiedFileName $FileCode_FinalDes *Var3 )
+	If *Var3 == 0`
+		Call ShowMessageAtScreenPos     	( 002F040B 000000A0 00000028 )
+		Set *GB_FileCodeMode 11`
+		Return
+	EndIf
+	Return
+	End
+}
+
+
+%----Starting functions for the "main Sweet Expedition" adventure (Put these back when I'm ready to atually resume the main project)
+/%
+%Only thing I wish I could do that this code doesn't is start me with a little more HP, FP, and BP,
+	%But worst case scenario I think I can work around this.
+	#export: $GivePlayerStartingEquipment { %As it stands this should set boots to lv 2, hp & fp 20, and bp 6
+		LIO t0, 8010F290
+		ORI t1, r0, 2 % boots/hammer value
+		ORI t2, r0, A % hp/fp values
+		ORI t3, r0, 9 % bp value
+		SB t1, 0000 (t0) % set boots
+		SB t1, 0001 (t0) % set hammer
+		SB t2, 0002 (t0) % set hp
+		SB t2, 0003 (t0) % max hp
+		SB t2, 0004 (t0) % true max hp
+		SB t2, 0005 (t0) % set fp
+		SB t2, 0006 (t0) % max fp
+		SB t2, 0007 (t0) % true max fp
+		SB t3, 0008 (t0) % max BP
+		SB t1, 000A (t0) % set AC
+		JR RA
+		ORI v0, r0, 2 % script will not continue unless your func returns 2
+	}
+
+%/
+
+
+%---Starting functions and code for Dojo Demo----
+
+%Only thing I wish I could do that this code doesn't is start me with a little more HP, FP, and BP,
+	%But worst case scenario I think I can work around this.
+	#export:Function $StartingStatsDojo { %As it stands this should set boots to lv 2, hp & fp 15, and bp 15
+		LIO t0, 8010F290
+		ORI t1, r0, 2 % boots/hammer value
+		ORI t2, r0, F % hp/fp values
+		ORI t3, r0, F % bp value
+		SB t1, 0000 (t0) % set boots
+		SB t1, 0001 (t0) % set hammer
+		SB t2, 0002 (t0) % set hp
+		SB t2, 0003 (t0) % max hp
+		SB t2, 0004 (t0) % true max hp
+		SB t2, 0005 (t0) % set fp
+		SB t2, 0006 (t0) % max fp
+		SB t2, 0007 (t0) % true max fp
+		SB t3, 0008 (t0) % max BP
+		SB t1, 000A (t0) % set AC
+		JR RA
+		ORI v0, r0, 2 % script will not continue unless your func returns 2
+	}
+
+    % Give slightly more BP than a normal run to allow for a little more badge expermentation...
+    #export:Function $StartingStatsBerserker { %As it stands this should set boots to lv 2, hp & fp 15, and bp 12
+		LIO t0, 8010F290
+		ORI t1, r0, 2 % boots/hammer value
+		ORI t2, r0, F % hp/fp values
+		ORI t3, r0, F % bp value 
+		SB t1, 0000 (t0) % set boots
+		SB t1, 0001 (t0) % set hammer
+		SB t2, 0002 (t0) % set hp
+		SB t2, 0003 (t0) % max hp
+		SB t2, 0004 (t0) % true max hp
+		SB t2, 0005 (t0) % set fp
+		SB t2, 0006 (t0) % max fp
+		SB t2, 0007 (t0) % true max fp
+		SB t3, 0008 (t0) % max BP
+		SB t1, 000A (t0) % set AC
+		JR RA
+		ORI v0, r0, 2 % script will not continue unless your func returns 2
+	}
+
+    #export:Function $StartingStatsDangerRun { %As it stands this should set boots to lv 2, hp & fp 5, and bp 21
+		LIO t0, 8010F290
+		ORI t1, r0, 2 % boots/hammer value
+		ORI t2, r0, 5 % hp/fp values (5 each)
+		ORI t3, r0, 15 % bp value (21; 15 base plus an extra 6 for FP pluses)
+		SB t1, 0000 (t0) % set boots
+		SB t1, 0001 (t0) % set hammer
+		SB t2, 0002 (t0) % set hp
+		SB t2, 0003 (t0) % max hp
+		SB t2, 0004 (t0) % true max hp
+		SB t2, 0005 (t0) % set fp
+		SB t2, 0006 (t0) % max fp
+		SB t2, 0007 (t0) % true max fp
+		SB t3, 0008 (t0) % max BP
+		SB t1, 000A (t0) % set AC
+		JR RA
+		ORI v0, r0, 2 % script will not continue unless your func returns 2
+	}
+
+    #export:Function $StartingStatsWeaken { %As it stands this should set boots to lv 2, hp & fp 15, and bp 12
+		LIO t0, 8010F290
+		ORI t1, r0, 1 % boots/hammer value (Normal rank for boots and hammer)
+		ORI t2, r0, F % hp/fp values (15 each)
+		ORI t3, r0, C % bp value (12 BP)
+		SB t1, 0000 (t0) % set boots
+		SB t1, 0001 (t0) % set hammer
+		SB t2, 0002 (t0) % set hp
+		SB t2, 0003 (t0) % max hp
+		SB t2, 0004 (t0) % true max hp
+		SB t2, 0005 (t0) % set fp
+		SB t2, 0006 (t0) % max fp
+		SB t2, 0007 (t0) % true max fp
+		SB t3, 0008 (t0) % max BP
+		SB t1, 000A (t0) % set AC
+		JR RA
+		ORI v0, r0, 2 % script will not continue unless your func returns 2
+	}
+
+    % Same as danger mode but also weaken Mario's jump and hammer...
+    % I wasn't going to do this because it's overkill... but then again, the whole point of the mode is overkill... let's see how I feel after people try it
+    #export:Function $StartingStatsKitchenSink { %As it stands this should set boots to lv 2, hp & fp 5, and bp 12
+		LIO t0, 8010F290
+		ORI t1, r0, 1 % boots/hammer value
+		ORI t2, r0, 5 % hp/fp values (5 each)
+		ORI t3, r0, C % bp value (12 BP, FP isn't even needed for this mode TBH so I should not reserve BP for it.)
+		SB t1, 0000 (t0) % set boots
+		SB t1, 0001 (t0) % set hammer
+		SB t2, 0002 (t0) % set hp
+		SB t2, 0003 (t0) % max hp
+		SB t2, 0004 (t0) % true max hp
+		SB t2, 0005 (t0) % set fp
+		SB t2, 0006 (t0) % max fp
+		SB t2, 0007 (t0) % true max fp
+		SB t3, 0008 (t0) % max BP
+		SB t1, 000A (t0) % set AC
+		JR RA
+		ORI v0, r0, 2 % script will not continue unless your func returns 2
+	}
+
+    %
+    #export:Function $StartingStatsStronger { %As it stands this should set boots to lv 2, hp & fp 30, and bp 18
+		LIO t0, 8010F290
+		ORI t1, r0, 2 % boots/hammer value
+		ORI t2, r0, 1E % hp/fp values (30 each)
+		ORI t3, r0, 12 % bp value (18 BP)
+		SB t1, 0000 (t0) % set boots
+		SB t1, 0001 (t0) % set hammer
+		SB t2, 0002 (t0) % set hp
+		SB t2, 0003 (t0) % max hp
+		SB t2, 0004 (t0) % true max hp
+		SB t2, 0005 (t0) % set fp
+		SB t2, 0006 (t0) % max fp
+		SB t2, 0007 (t0) % true max fp
+		SB t3, 0008 (t0) % max BP
+		SB t1, 000A (t0) % set AC
+		JR RA
+		ORI v0, r0, 2 % script will not continue unless your func returns 2
+	}
+
+    %Start with a little extra BP to make up for lack of items
+    #export:Function $StartingStatsNoItems { %As it stands this should set boots to hp & fp 20, and bp 18
+		LIO t0, 8010F290
+		ORI t1, r0, 2 % boots/hammer value
+		ORI t2, r0, 14 % hp/fp values (20 each)
+		ORI t3, r0, 12 % bp value (18 BP)
+		SB t1, 0000 (t0) % set boots
+		SB t1, 0001 (t0) % set hammer
+		SB t2, 0002 (t0) % set hp
+		SB t2, 0003 (t0) % max hp
+		SB t2, 0004 (t0) % true max hp
+		SB t2, 0005 (t0) % set fp
+		SB t2, 0006 (t0) % max fp
+		SB t2, 0007 (t0) % true max fp
+		SB t3, 0008 (t0) % max BP
+		SB t1, 000A (t0) % set AC
+		JR RA
+		ORI v0, r0, 2 % script will not continue unless your func returns 2
+	}
+
+% ------- Scripts tied to giving Mario badges and items based on game mode -------
+
+%Give Mario some starting badges
+#export:Script $GiveBadgesDojo {
+	%Add Items
+    Call AddItem ( .Item:TastyTonic 00000001 )
+    Call AddItem ( .Item:VoltShroom 00000001 )
+	Call AddItem ( .Item:DeluxeFeast 00000001 )
+	Call AddItem ( .Item:ApplePie 00000001 )
+    Call AddItem ( .Item:JamminJelly 00000001 )
+	Call AddItem ( .Item:LifeShroom 00000001 )
+
+	%Add Badges
+    Call AddBadge(.Item:PowerSmash1 00000001)
+	Call AddBadge(.Item:SuperSmash 00000001)
+    Call AddBadge(.Item:DodgeMaster 00000001)
+    Call AddBadge(.Item:QuickChange 00000001)
+    Call AddBadge(.Item:SuperJump 00000001)
+    Call AddBadge(.Item:DDownPound 00000001)
+    Call AddBadge(.Item:DoubleDip 00000001)
+    Call AddBadge(.Item:Peekaboo 00000001)
+    Call AddBadge(.Item:DamageDodgeA 00000001)
+    Call AddBadge(.Item:HappyHeartA 00000001)
+    Call AddBadge(.Item:HappyFlowerA 00000001)
+    Call AddBadge(.Item:HammerThrow 00000001)
+	Call AddBadge(.Item:QuakeHammer 00000001)
+	Call AddBadge(.Item:PUpDDown 00000001)
+	Call AddBadge(.Item:PDownDUp 00000001)
+	
+	%Add Effect Badges
+	Call AddBadge ( .Item:AttackFXA 00000001 )
+	Call AddBadge ( .Item:AttackFXB 00000001 )
+	Call AddBadge ( .Item:AttackFXD 00000001 )
+	Call AddBadge ( .Item:AttackFXE 00000001 )
+	Call AddBadge ( .Item:AttackFXF 00000001 )
+	Return
+	End
+}
+
+
+#export:Script $GiveBadgesDojoDanger {
+	%Add Items
+    Call AddItem ( .Item:TastyTonic 00000001 )
+    Call AddItem ( .Item:VoltShroom 00000001 )
+	Call AddItem ( .Item:DeluxeFeast 00000001 )
+	Call AddItem ( .Item:CocoaBean 00000001 )
+    Call AddItem ( .Item:JamminJelly 00000001 )
+	Call AddItem ( .Item:LifeShroom 00000001 )
+
+	%Add Badges
+    Call AddBadge(.Item:SuperSmash 00000001)
+    Call AddBadge(.Item:DodgeMaster 00000001)
+    Call AddBadge(.Item:QuickChange 00000001)
+    Call AddBadge(.Item:SuperJump 00000001)
+    Call AddBadge(.Item:PowerSmash1 00000001)
+    Call AddBadge(.Item:DDownPound 00000001)
+    Call AddBadge(.Item:DoubleDip 00000001)
+    Call AddBadge(.Item:Peekaboo 00000001)
+    Call AddBadge(.Item:DamageDodgeA 00000001)
+    Call AddBadge(.Item:HappyFlowerA 00000001)
+    Call AddBadge(.Item:HammerThrow 00000001)
+	Call AddBadge(.Item:QuakeHammer 00000001)
+	Call AddBadge(.Item:PUpDDown 00000001)
+	Call AddBadge(.Item:PDownDUp 00000001)
+	% Test if these badges are too good to keep
+	Call AddBadge(.Item:AllorNothing 00000001) % Test to see if this is too broken
+	Call AddBadge(.Item:FlowerSaverA 00000001) % Test to see if this is too broken
+	Call AddBadge(.Item:FlowerSaverA 00000001)
+    Call AddBadge(.Item:HappyFlowerB 00000001)
+
+    %Add Danger Badges
+    Call AddBadge(.Item:PowerRush 00000001)
+    Call AddBadge(.Item:LastStand 00000001)
+    Call AddBadge(.Item:MegaRush 00000001)
+
+    %FP Plus to offset lower FP due to the code
+    Call AddBadge(.Item:FPPlusA 00000001)
+    Call AddBadge(.Item:FPPlusB 00000001)
+	
+	%Add Effect Badges
+	Call AddBadge ( .Item:AttackFXA 00000001 )
+	Call AddBadge ( .Item:AttackFXB 00000001 )
+	Call AddBadge ( .Item:AttackFXD 00000001 )
+	Call AddBadge ( .Item:AttackFXE 00000001 )
+	Call AddBadge ( .Item:AttackFXF 00000001 )
+    
+	Return
+	End
+}
+
+%Give Mario some starting badges
+#export:Script $GiveBadgesTeaTime {
+	%Add Items
+    Call AddItem ( .Item:TastyTonic 00000001 )
+    Call AddItem ( .Item:TastyTonic 00000001 )
+    Call AddItem ( .Item:VoltShroom 00000001 )
+	Call AddItem ( .Item:VoltShroom 00000001 )
+    Call AddItem ( .Item:PleaseComeBack 00000001 )
+
+    %Add Badges
+    Call AddBadge(.Item:PowerSmash1 00000001)
+	Call AddBadge(.Item:SuperSmash 00000001)
+    Call AddBadge(.Item:DodgeMaster 00000001)
+    Call AddBadge(.Item:QuickChange 00000001)
+    Call AddBadge(.Item:SuperJump 00000001)
+    Call AddBadge(.Item:DDownPound 00000001)
+    Call AddBadge(.Item:DoubleDip 00000001)
+    Call AddBadge(.Item:Peekaboo 00000001)
+    Call AddBadge(.Item:DamageDodgeA 00000001)
+    Call AddBadge(.Item:HappyHeartA 00000001)
+    Call AddBadge(.Item:HappyFlowerA 00000001)
+    Call AddBadge(.Item:HammerThrow 00000001)
+	Call AddBadge(.Item:QuakeHammer 00000001)
+	Call AddBadge(.Item:PUpDDown 00000001)
+	Call AddBadge(.Item:PDownDUp 00000001)
+	Call AddBadge(.Item:FlowerSaverA 00000001) % Test to see if this is too broken
+
+	%Add Effect Badges
+	Call AddBadge ( .Item:AttackFXA 00000001 )
+	Call AddBadge ( .Item:AttackFXB 00000001 )
+	Call AddBadge ( .Item:AttackFXD 00000001 )
+	Call AddBadge ( .Item:AttackFXE 00000001 )
+	Call AddBadge ( .Item:AttackFXF 00000001 )
+	Return
+	End
+}
+
+
+%A harder Tea Time mode with less Tea
+#export:Script $GiveBadgesSuperTea {
+	%Add Items
+    Call AddItem ( .Item:TastyTonic 00000001 )
+    Call AddItem ( .Item:TastyTonic 00000001 )
+	Call AddItem ( .Item:VoltShroom 00000001 )
+	Call AddItem ( .Item:PleaseComeBack 00000001 )
+
+	%Add Badges
+    %Add Badges
+    Call AddBadge(.Item:PowerSmash1 00000001)
+	Call AddBadge(.Item:SuperSmash 00000001)
+    Call AddBadge(.Item:DodgeMaster 00000001)
+    Call AddBadge(.Item:QuickChange 00000001)
+    Call AddBadge(.Item:SuperJump 00000001)
+    Call AddBadge(.Item:DDownPound 00000001)
+    Call AddBadge(.Item:DoubleDip 00000001)
+    Call AddBadge(.Item:Peekaboo 00000001)
+    Call AddBadge(.Item:DamageDodgeA 00000001)
+    Call AddBadge(.Item:HappyHeartA 00000001)
+    Call AddBadge(.Item:HappyFlowerA 00000001)
+    Call AddBadge(.Item:HammerThrow 00000001)
+	Call AddBadge(.Item:QuakeHammer 00000001)
+	Call AddBadge(.Item:PUpDDown 00000001)
+	Call AddBadge(.Item:PDownDUp 00000001)
+	Call AddBadge(.Item:FlowerSaverA 00000001) % Test to see if this is too broken
+
+	%Add Effect Badges
+	Call AddBadge ( .Item:AttackFXA 00000001 )
+	Call AddBadge ( .Item:AttackFXB 00000001 )
+	Call AddBadge ( .Item:AttackFXD 00000001 )
+	Call AddBadge ( .Item:AttackFXE 00000001 )
+	Call AddBadge ( .Item:AttackFXF 00000001 )
+	Return
+	End
+}
+
+#export:Script $GiveBadgesEasyMode {
+	%Add Items
+    Call AddItem ( .Item:TastyTonic 00000001 )
+    Call AddItem ( .Item:TastyTonic 00000001 )
+    Call AddItem ( .Item:VoltShroom 00000001 )
+    Call AddItem ( .Item:VoltShroom 00000001 )
+    Call AddItem ( .Item:PleaseComeBack 00000001 )
+    Call AddItem ( .Item:PleaseComeBack 00000001 )
+	Call AddItem ( .Item:DeluxeFeast 00000001 )
+    Call AddItem ( .Item:DeluxeFeast 00000001 )
+	Call AddItem ( .Item:LifeShroom 00000001 )
+    Call AddItem ( .Item:LifeShroom 00000001 )
+
+	%Add Badges
+	Call AddBadge(.Item:ZapTap 00000001)
+	Call AddBadge(.Item:QuakeHammer 00000001)
+    Call AddBadge(.Item:SuperSmash 00000001)
+    Call AddBadge(.Item:DodgeMaster 00000001)
+    Call AddBadge(.Item:QuickChange 00000001)
+    Call AddBadge(.Item:SuperJump 00000001)
+    Call AddBadge(.Item:PowerSmash1 00000001)
+    Call AddBadge(.Item:DDownPound 00000001)
+    Call AddBadge(.Item:DoubleDip 00000001)
+    Call AddBadge(.Item:Peekaboo 00000001)
+    Call AddBadge(.Item:DamageDodgeA 00000001)
+    Call AddBadge(.Item:HappyFlowerA 00000001)
+    Call AddBadge(.Item:HappyHeartA 00000001)
+	Call AddBadge(.Item:CrazyHeart 00000001)
+    Call AddBadge(.Item:HammerThrow 00000001)
+    Call AddBadge(.Item:PowerRush 00000001)
+    Call AddBadge(.Item:LastStand 00000001)
+    Call AddBadge(.Item:MegaRush 00000001)
+	Call AddBadge(.Item:PUpDDown 00000001)
+	Call AddBadge(.Item:PDownDUp 00000001)
+	Call AddBadge(.Item:AllorNothing 00000001) % Test to see if this is too broken
+	Call AddBadge(.Item:FlowerSaverA 00000001) % Test to see if this is too broken
+
+	%Add Effect Badges
+	Call AddBadge ( .Item:AttackFXA 00000001 )
+	Call AddBadge ( .Item:AttackFXB 00000001 )
+	Call AddBadge ( .Item:AttackFXD 00000001 )
+	Call AddBadge ( .Item:AttackFXE 00000001 )
+	Call AddBadge ( .Item:AttackFXF 00000001 )
+	Return
+	End
+}
+
+#export:Script $GiveBadgesChallengeMode {
+	%Add Items
+	Call AddItem ( .Item:SuperShroom 00000001 )
+    Call AddItem ( .Item:MapleSyrup 00000001 )
+    Call AddItem ( .Item:ShroomCake 00000001 )
+
+    %Add Badges
+    Call AddBadge(.Item:PowerSmash1 00000001)
+	Call AddBadge(.Item:SuperSmash 00000001)
+    Call AddBadge(.Item:DodgeMaster 00000001)
+    Call AddBadge(.Item:QuickChange 00000001)
+    Call AddBadge(.Item:SuperJump 00000001)
+    Call AddBadge(.Item:DDownPound 00000001)
+    Call AddBadge(.Item:DoubleDip 00000001)
+    Call AddBadge(.Item:Peekaboo 00000001)
+    Call AddBadge(.Item:DamageDodgeA 00000001)
+    Call AddBadge(.Item:HappyHeartA 00000001)
+    Call AddBadge(.Item:HappyFlowerA 00000001)
+    Call AddBadge(.Item:HammerThrow 00000001)
+	Call AddBadge(.Item:QuakeHammer 00000001)
+	Call AddBadge(.Item:PUpDDown 00000001)
+	Call AddBadge(.Item:PDownDUp 00000001)
+	Call AddBadge(.Item:AllorNothing 00000001) % Test to see if this is too broken
+	Call AddBadge(.Item:FlowerSaverA 00000001) % Test to see if this is too broken
+    %Add Danger Badges
+    Call AddBadge(.Item:PowerRush 00000001)
+    Call AddBadge(.Item:LastStand 00000001)
+    Call AddBadge(.Item:MegaRush 00000001)
+
+	%Add Effect Badges
+	Call AddBadge ( .Item:AttackFXA 00000001 )
+	Call AddBadge ( .Item:AttackFXB 00000001 )
+	Call AddBadge ( .Item:AttackFXD 00000001 )
+	Call AddBadge ( .Item:AttackFXE 00000001 )
+	Call AddBadge ( .Item:AttackFXF 00000001 )
+	Return
+	End
+}
+
+#export:Script $GiveBadgesNoItems {
+	%Add Items
+    %Psyche! there are no items!
+
+	%Add Badges
+    Call AddBadge(.Item:SuperSmash 00000001)
+    Call AddBadge(.Item:DodgeMaster 00000001)
+    Call AddBadge(.Item:QuickChange 00000001)
+    Call AddBadge(.Item:SuperJump 00000001)
+    Call AddBadge(.Item:PowerSmash1 00000001)
+    Call AddBadge(.Item:DDownPound 00000001)
+    Call AddBadge(.Item:Peekaboo 00000001)
+    Call AddBadge(.Item:DamageDodgeA 00000001)
+    Call AddBadge(.Item:HappyHeartA 00000001)
+    Call AddBadge(.Item:HappyFlowerA 00000001)
+    Call AddBadge(.Item:HammerThrow 00000001)
+    Call AddBadge(.Item:HPDrain 00000001)
+	Call AddBadge(.Item:AllorNothing 00000001) % Test to see if this is too broken
+	Call AddBadge(.Item:FlowerSaverA 00000001) % Test to see if this is too broken
+	Call AddBadge(.Item:HappyHeartB 00000001)
+    Call AddBadge(.Item:HappyFlowerB 00000001)
+	Call AddBadge(.Item:PUpDDown 00000001)
+	Call AddBadge(.Item:PDownDUp 00000001)
+    %Add Danger badges to make up for lack of items
+    Call AddBadge(.Item:PowerRush 00000001)
+    Call AddBadge(.Item:LastStand 00000001)
+    Call AddBadge(.Item:MegaRush 00000001)
+    %Status badges for extra customization
+    Call AddBadge(.Item:FPPlusA 00000001)
+    Call AddBadge(.Item:HPPlusA 00000001)
+	Call AddBadge(.Item:FPPlusB 00000001)
+    Call AddBadge(.Item:HPPlusB 00000001)
+	
+	%Add Effect Badges
+	Call AddBadge ( .Item:AttackFXA 00000001 )
+	Call AddBadge ( .Item:AttackFXB 00000001 )
+	Call AddBadge ( .Item:AttackFXD 00000001 )
+	Call AddBadge ( .Item:AttackFXE 00000001 )
+	Call AddBadge ( .Item:AttackFXF 00000001 )
+	Return
+	End
+}
+
+#export:Script $GiveBadgesBerserker{
+	%Can't use items in Berserker mode (And I can't force players to equip the badge) 
+        %so might as well only give items that are used automatically...
+    Call AddItem ( .Item:LifeShroom 00000001 )
+    Call AddItem ( .Item:LifeShroom 00000001 ) % Two chances, one per master is fair?? Especially since since enemies aren't on hard.
+
+    %Don't forget Berserker badge, it's the name sake of the game mode after all...
+    Call AddBadge (.Item:Berserker 00000001)
+
+	% Same with badges, giving anything that isn't automatically only encourages not using Berserker in the Berserker mode
+    Call AddBadge(.Item:QuickChange 00000001)
+    Call AddBadge(.Item:Peekaboo 00000001)
+    Call AddBadge(.Item:DamageDodgeA 00000001)
+    Call AddBadge(.Item:HappyHeartA 00000001)
+    Call AddBadge(.Item:HappyFlowerA 00000001)
+    Call AddBadge(.Item:HPDrain 00000001)
+	Call AddBadge(.Item:PUpDDown 00000001)
+	Call AddBadge(.Item:PDownDUp 00000001)
+	Call AddBadge(.Item:AllorNothing 00000001) % Test to see if this is too broken
+	Call AddBadge(.Item:FlowerSaverA 00000001)
+	Call AddBadge(.Item:HappyHeartB 00000001)
+    Call AddBadge(.Item:HappyFlowerB 00000001)
+
+    %Alow danger Last Stand and Power Rush to reward players around proper timing of healing 
+    % (Also because Master 3 is slightly too hard as is, basically requiring both Life Shrooms, 
+    %Danger use and slightly more BP should make the fight more managable without making it too easy...
+	Call AddBadge(.Item:MegaRush 00000001) %(On the fence about Power Rush so Mega Rush would be too much power for this mode)
+    Call AddBadge(.Item:LastStand 00000001)
+    Call AddBadge(.Item:PowerRush 00000001) 
+     
+
+    %Status badges for extra customization
+    Call AddBadge(.Item:FPPlusA 00000001)
+    Call AddBadge(.Item:HPPlusA 00000001)
+
+    %Add Effect Badges
+	Call AddBadge ( .Item:AttackFXA 00000001 )
+	Call AddBadge ( .Item:AttackFXB 00000001 )
+	Call AddBadge ( .Item:AttackFXD 00000001 )
+	Call AddBadge ( .Item:AttackFXE 00000001 )
+	Call AddBadge ( .Item:AttackFXF 00000001 )
+
+	Return
+	End
+}
+
+% I severly underestamated the power of Last Stand.  
+%I either need to make enemies stronger specifically for danager modes or advertise it as a joke mode instead of a challenge mode.
+% Between Last Stand and Rush's chill attack people are lucky to do even 1 hp of damage to Mario in a turn, let alone enough to out pace auto healing...
+#export:Script $GiveBadgesKitchenSinkMode{
+	%No Items
+
+	% Same with badges, giving anything that isn't automatically only encourages not using Berserker in the Berserker mode
+    Call AddBadge (.Item:Berserker 00000001)
+    Call AddBadge(.Item:QuickChange 00000001)
+    Call AddBadge(.Item:Peekaboo 00000001)
+    %Call AddBadge(.Item:DamageDodgeA 00000001)
+	Call AddBadge(.Item:PUpDDown 00000001)
+	Call AddBadge(.Item:PDownDUp 00000001)
+	Call AddBadge(.Item:AllorNothing 00000001)
+	Call AddBadge(.Item:FlowerSaverA 00000001)
+    Call AddBadge(.Item:HappyFlowerB 00000001)
+
+    %Add Danger badges to make up for lack of items
+    Call AddBadge(.Item:LastStand 00000001)
+    Call AddBadge(.Item:MegaRush 00000001)
+    Call AddBadge(.Item:PowerRush 00000001) 
+
+    %Status badges for extra customization
+    Call AddBadge(.Item:FPPlusA 00000001)
+    Call AddBadge(.Item:FPPlusB 00000001)
+
+    %Add Effect Badges: Fine, if you're crazy enough to actually play this mode you can have the questionably sounding badge)
+		%I was going to start a in-joke where I hide the badge as cryptically as I could...
+	Call AddBadge ( .Item:AttackFXA 00000001 )
+	Call AddBadge ( .Item:AttackFXB 00000001 )
+	Call AddBadge ( .Item:AttackFXC 00000001 ) % If you're crazy enough to play this mode you've earn the right to use this one in my mod.....
+	Call AddBadge ( .Item:AttackFXD 00000001 )
+	Call AddBadge ( .Item:AttackFXE 00000001 )
+	Call AddBadge ( .Item:AttackFXF 00000001 )
+
+	Return
+	End
+}

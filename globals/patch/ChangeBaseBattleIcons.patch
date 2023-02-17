@@ -1,0 +1,48 @@
+%%Importing These Globals from Dark Star for nicer visual effects
+
+
+%change icons default behavior
+
+%Item icon = 16C
+%41A718 --> 802A5988
+%9CC:  LI        V0, 155					%Item icon
+
+/%
+@Function 41B0E4	%802A6354
+{
+	LI		V0, 16C
+}
+%/
+
+%Hammer icons = 166, 167, 168
+%191FC4 --> 802636E4
+%   74:  LI        V1, 155
+%   78:  SH        V1, 1AE (S4)			%Store (hammer) icon
+
+%8010F291 = hammer level
+
+@Hook 192038	%80263758
+{
+	LAB		V1, 8010F291
+	ADDI	V1, V1, 166
+	J		80263760
+	SH      V1, 1AE (S4)
+}
+
+
+
+
+%Jump icons = 169, 16A, 16B
+%191D98 --> 802634B8
+%   74:  LI        V1, 155
+%   78:  SH        V1, 1AE (S4)		%store jump icon
+
+%8010F290 = jump level
+
+@Hook 191E0C	%8026352C
+{
+	LAB		V1, 8010F290
+	ADDI	V1, V1, 169	
+	J		80263534
+	SH      V1, 1AE (S4)
+}
