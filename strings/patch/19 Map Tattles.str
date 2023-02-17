@@ -1,0 +1,509 @@
+
+#message:19:0EB
+{
+	[Style Tattle]
+	[EnableCDownNext]So this is that Glace Island[BR]
+	Kolorado wouldn't stop rattling on[BR]
+	about. [Pause 10]Reminds you of LavaLava[BR]
+	Island a bit,[Pause 15] doesn't it?[BR]
+	[Wait][Next]
+	One thing's for sure, the aroma in[BR]
+	the air is heavenly. Just take in the[BR]
+	delicious smells of the island...[BR]
+	[Wait][Next]
+	You really think it's coming from[BR]
+	that so-called [BR]
+	"Legendary Treasure"?[BR]
+	[Wait][Next]
+	Well, even if this ends up being a [BR]
+	wild goose chase, it sure is nice for [BR]
+	us to be on an adventure again! [BR]
+	[Wait][Next]
+	We gotta have Kooper to get us in [BR]
+	these exhibitions more often, [BR]
+	don't you say old boy?[BR]
+	[Wait][Next]
+	Shoot! [Pause 5] I think I've been stuck on [BR]
+	that whale with Kolorado too long.[BR]
+	He's rubbing off on me. [Pause 10] [BR]
+	Let's go Mario![BR]
+	[Wait][End]
+}
+
+#message:19:0EC
+{
+	[Style Tattle]
+	[EnableCDownNext]
+	Everything here looks delicious.[BR]
+	Even the coconuts look like I can[BR]
+	eat them right from the shell...[BR]
+	[Wait][Next]
+	Wait,[Pause 10] are they even coconuts?[BR]
+	Hey, why don't you wack one down[BR]
+	from one of these trees and see?[BR]
+	[Wait][Next]
+	You did bring your hammer with you,[Pause 5][BR]
+	right?[Pause 5] Give one of these trees[BR]
+	a good wack with [B] and see.[BR]
+	[Wait][Next]
+	I can't wait to give whatever comes[BR]
+	out a taste![Wait][End]
+}
+
+#message:19:0ED
+{
+	[Style Tattle]
+	[EnableCDownNext]Looks like Yoshis live on this island[BR]
+	too.[Pause 5] They really seem to like[BR]
+	tropical areas, don't they?[BR]
+	[Wait][Next]
+	Then again, I'm sure being home to[BR]
+	some of the best food in the world[BR]
+	would also be an attractive feature[BR]
+	for Yoshis to come here.[BR]
+	[Wait][Next]
+	If it's anything like the LavaLava [BR]
+	Island, there should be a village[BR]
+	elder somewhere in town who can[BR]
+	share some wisdom with us.[BR]
+	[Wait][Next]
+	Who knows? They may even have a[BR]
+	lead regarding this [BR]
+	"Legenary Treasure" Kolorado[BR]
+	keeps talking about.[Wait][End]
+}
+
+#message:19:0EE
+{
+	[Style Tattle]
+	[EnableCDownNext]They really got the tropical [BR]
+	paradise theme down for this place.[BR]
+	Don't you think Mario?[BR]
+	[Wait][Next]
+	We got a nice Toad House to rest our[BR]
+	weary feet between adventures.[BR]
+	They even have a nice souvenir shop[BR]
+	right next door.[BR]
+	[Wait][Next]
+	Plus there's "The Grand Chocolate [BR]
+	Volcano" to our east.[Pause 10] ...[Pause 5][BR]
+	or so they say...[Pause 5][BR]
+	[Wait][Next]
+	Between you and me, I think it's[BR]
+	just some big tourist trap. I bet [BR]
+	there isn't even any chocolate and [BR]
+	that it's just an ordinary volcano.[BR]
+	[Wait][Next]
+	The Mint Marshlands are also nearby.[BR]
+	Call it a hunch,[Pause 10] or deja vu,[Pause 10][BR]
+	but I bet some kids are gonna get[BR]
+	lost that we gotta rescue.[BR]
+	[Wait][Next]
+	Plus it seems to be the type of area[BR]
+	you'd find some hidden treasure, or[BR]
+	something else sweet.[BR]
+	[Wait][Next]
+	By the way Mario, I know we're on[BR]
+	an adventure and not a vacation...[Pause 5][BR]
+	But we should check the shop while[BR]
+	we're here...[BR]
+	[Wait][Next]
+	Not every day you're on a food [BR]
+	themed island. Maybe we can even [BR]
+	find some items that will help us [BR]
+	on our expedition.[BR]
+	[Wait][Next]
+	Besides, didn't Kolorado gave us[BR]
+	an allowance card or something?[BR]
+	We should redeem it ASAP.[Wait][End]
+}
+
+#message:19:0EF
+{
+	[Style Tattle]
+	[EnableCDownNext]The "Grand Chocolate Volcano"[BR] 
+	is right over there...[BR]
+	[Wait][Next]
+	Yeah, looks just like an old boring[BR]
+	volcano to me.[BR]
+	[Wait][Next]
+	Now that I say it out loud, it feels[BR]
+	odd to call any volcano "boring".[BR]
+	[Wait][Next]
+	When you're seasoned adventurers[BR]
+	like us, your expecations get set[BR]
+	pretty high, I guess.[BR]
+	[Wait][Next]
+	What do think Mario? With how many [BR]
+	lava worlds you've been to, what would[BR]
+	you have to see to really shock you?[Wait][End]
+}
+
+#message:19:0F0
+{
+	[Style Tattle]
+	[EnableCDownNext]Sometimes crossing bridges is[BR]
+	the only way to reach certain[BR]
+	islands.[BR]
+	[Wait][Next]
+	It seems like a pain, but what[BR]
+	are you gonna do?[Wait][End]
+}
+
+#message:19:0F1
+{
+	[Style Tattle]
+	[EnableCDownNext]This is where we saved Chai[BR]
+	when she was up in that tree.[BR]
+	[Wait][Next]
+	How did she even get up there [BR]
+	anyways?[BR]
+	[Wait][Next]
+	I'd ask her, but she already[BR]
+	seem pretty embarassed as is[BR]
+	from that moment...[BR]
+	[Wait][Next]
+	I'm gonna just assume it was the[BR]
+	adrenaline of trying to get away.[BR]
+	[Wait][Next]
+	Hopefully she has a similar drive[BR]
+	to help us out of trouble that she[BR]
+	does running away from it.[BR]
+	[Wait][Next]
+	Is that too rude of me?[BR]
+	[Pause 15]Maybe keep that between[BR]
+	you and me Mario, just in case.[Wait][End]
+}
+
+#message:19:0F2
+{
+	[Style Tattle]
+	[EnableCDownNext]For a land of sweets, there sure is[BR]
+	a lot of water around these parts...[BR]
+	[Wait][Next]
+	I don't know,[Pause 5] I get just because [BR]
+	it's an island named after sugar[BR]
+	doesn't mean it's gonna be made[BR]
+	out of it...[BR]
+	[Wait][Next]
+	...but I was expecting to at least[BR]
+	find a bush made out of candy[BR]
+	or something by now...[BR]
+	[Wait][Next]
+	Anyways, [Pause 5] I guess we'll have[BR]
+	to find another way around.[Wait][End]
+}
+
+#message:19:0F3
+{
+	[Style Tattle]
+	[EnableCDownNext]These are the Mint Marshlands...[Pause 5][BR]
+	Some say it got the name because[BR]
+	the bushes here taste just like[BR]
+	chocolate mint...[BR]
+	[Wait][Next]
+	M. Bushes love to ambush people in[BR]
+	these parts though...[Pause 10] [BR]
+	So I would advise against biting [BR]
+	random bush leaves.[BR]
+	[Wait][Next]
+	Wow![Pause 5] I see how it got[BR]
+	the Marshland part of the name.[Pause 10][BR]
+	The place is completly flooded.[BR]
+	Would be really helpful if we could[BR]
+	find someone that could help us cross[BR]
+	it all. Like how Sushie helped us out[BR]
+	back at the Jade Jungle...[BR]
+	[Wait][Next]
+	Well, I guess we just got to[BR]
+	explore where we can for now.[BR]
+	[Wait][End]
+}
+
+#message:19:0F4
+{
+	[Style Tattle]
+	[Style Tattle]
+	[EnableCDownNext]
+	So [Pause 5]much [Pause 5]water...[Pause 5][BR]
+	I really wish I kept up that those[BR]
+	swimming lessons so I could help[BR]
+	out more.[BR]
+	[Wait][Next]
+	There aren't too many Goombas that[BR]
+	can swim, you know? Goompa is[BR]
+	the only one I know who can.[BR]
+	[Wait][Next]
+	Every time I try to give it a shot,[BR]
+	I just get dizzy. At least I don't[BR]
+	have to worry about that in battle.[BR]
+	[Wait][Next]
+	By the way Mario? Did you know you[BR]
+	can actually use items while you're[BR]
+	dizzy?[BR]
+	[Wait][Next]
+	Attacks miss when someone is dizzy,[BR]
+	but all other actions you or your[BR]
+	foe do should work just fine.[BR]
+	[Wait][Next]
+	Just something to keep in mind if[BR]
+	you're in a bind during battle.[Wait][End]
+}
+
+#message:19:0F5
+{
+	[Style Tattle]
+	[EnableCDownNext]Oh hey, it's a Spinning Flower.[BR]
+	You remember these Mario?[BR]
+	[Wait][Next]
+	If you you spin ontop of one by[BR]
+	pressing [Z], it'll shoot you[BR]
+	up into the air.[BR]
+	[Wait][Next]
+	It makes my head spin just[BR]
+	thinking about it, but it[BR]
+	could be useful for reaching[BR]
+	high places.[Wait][End]
+}
+
+#message:19:0F6
+{
+	[Style Tattle]
+	[EnableCDownNext]For a jungle, there sure aren't[BR]
+	many trees around.[BR]
+	[Wait][Next]
+	It gets brutally hot here[BR]
+	whenever the sun shines directly[BR]
+	on me.[Wait][End]
+}
+
+#message:19:0F7
+{
+	[Style Tattle]
+	[EnableCDownNext]This was the part of the[BR]
+	marshlands we found Rush at.[BR]
+	[Wait][Next]
+	She certainly is a handful,[BR]
+	going this deep into them...[Pause 10][BR]
+	Still,[Pause 5] you gotta give her props[BR]
+	for getting this far alone.[BR]
+	[Wait][Next]
+	Imagine if we had someone this[BR]
+	tough fighting alongside us[BR]
+	when we were taking the Star[BR]
+	Rod back from Bowser.[BR]
+	[Wait][Next]
+	We should study up on Rush's[BR]
+	abilities. Assuring we make[BR]
+	the most out of them.[Wait][End]
+}
+
+#message:19:0F8
+{
+	[Style Tattle]
+	[EnableCDownNext]There's a big Raven's statue.[BR]
+	[Wait][Next]
+	You gotta figure... A big statue[BR]
+	this deep in the jungle...[BR]
+	I bet it's important.[Wait][End]
+}
+
+#message:19:0F9
+{
+	[Style Tattle]
+	[EnableCDownNext]Gees![Pause 5] It's so dark down[BR]
+	here. We don't even have Watt[BR]
+	to light it up for us.[BR]
+	[Wait][Next]
+	This island is full of Sparkies,[BR]
+	right? Surely one of them could[BR]
+	help us...[BR]
+	[Wait][Next]
+	...though, why are we looking for[BR]
+	Sugar Sparkies in here then?[BR]
+	[Wait][Next]
+	They could just light up the[BR]
+	way out themselves... right?[Wait][End]
+}
+
+#message:19:0FA
+{
+	[Style Tattle]
+	[EnableCDownNext]Ooh...it's darker in here.[BR]
+	[Pause 5]The trees are much thicker and[BR]
+	that bizarre ivy seems to be[BR]
+	growing everywhere.[Wait][End]
+}
+
+#message:19:0FB
+{
+	[Style Tattle]
+	[EnableCDownNext]Some of these blocks[BR]
+	are floating really weirdly...[BR]
+	[Wait][Next]
+	They're too low to jump into,[Pause 5][BR]
+	too high to hammer...[Pause 10][BR]
+	[Wait][Next]
+	If only we had a way to get on[BR]
+	the same level as it to hit it.[Wait][End]
+}
+
+#message:19:0FC
+{
+	[Style Tattle]
+	[EnableCDownNext]Looks like some of the ivy is[BR]
+	hanging off the trees here.[BR]
+	[Pause 10]I wonder what would happen if[BR]
+	you pulled on it?[Wait][End]
+}
+
+#message:19:0FD
+{
+	[Style Tattle]
+	[EnableCDownNext]What part of the jungles are[BR]
+	we in?[BR]
+	[Pause 5]I'm thinking we're as deep as[BR]
+	we could possibly get.[BR]
+	[Wait][Next]
+	I think I hear something.[BR]
+	[Pause 10]From just ahead, I can almost[BR]
+	hear mysterious voices...[BR]
+	[Wait][Next]
+	You think it's that big monster Chai[BR]
+	was talking about?[BR]
+	[Wait][Next]
+	I think we should prepare ourselves[BR]
+	for battle...[Pause 5] just in case.[Wait][End]
+}
+
+#message:19:0FE
+{
+	[Style Tattle]
+	[EnableCDownNext]Wow! [Pause 5] This tree is huge![BR]
+	[Wait][Next]
+	It lies at the very heart[BR]
+	of Glace Island.[Pause 10][BR]
+	I hear that it serves as the home of[BR]
+	the guardian of this entire island![BR]
+	[Wait][Next]
+	You think there's any truth[BR]
+	to all of that? [Pause 10][BR]
+	Well,[Pause 5] I guess there's only[BR]
+	one way to find out![BR]
+	[Wait][Next]
+	...[Pause 5]No, I'm not scared...[Pause 10][BR]
+	Come-on Mario![BR]
+	Let's go![Wait][End]
+}
+
+%Make an alt Tattle for this after meeting Master Custard if I can figure out how.
+
+#message:19:0FF
+{
+	[Style Tattle]
+	[EnableCDownNext]It's so spacious in here![BR]
+	[Pause 10]I can't believe we're inside a[BR]
+	tree right now.[Wait][End]
+}
+
+#message:19:100
+{
+	[Style Tattle]
+	[EnableCDownNext]Whoa! We're way up high![BR]
+	[Pause 5]The jungle floor looks so tiny[BR]
+	from here! [BR]
+	[Wait][Next]
+	Gulp! Have I mentioned before[BR]
+	that I hate heights?[Wait][End]
+}
+
+#message:19:101
+{
+	[Style Tattle]
+	[EnableCDownNext]I can't get over how huge the[BR]
+	inside of this tree is! It's[BR]
+	enormous! It's mammoth![BR]
+	[Wait][Next]
+	And another thing, it's giant![Wait][End]
+}
+
+#message:19:102
+{
+	[Style Tattle]
+	[EnableCDownNext]This appears to be the nest of[BR]
+	the guardian of all of Glace Island...[BR]
+	[Wait][Next]
+	Do you think we're even worthy[BR]
+	of being here Mario?[Wait][End]
+}
+
+#message:19:103
+{
+	[Style Tattle]
+	[EnableCDownNext]This is definitely the entrance[BR]
+	to the volcano.[BR]
+	[Pause 5]What do you say we explore[BR]
+	deeper inside?[BR]
+	[Wait][Next]
+	The scenery around here is[BR]
+	unlike anything I've ever seen.[BR]
+	I wish we had time to inspect it![Wait][End]
+}
+
+%Map name and descriptions...
+
+%Mint Marshlands/Jade Jungle
+#message:1D:12B
+{
+	Mint Marshlands[End]
+}
+
+%pre-Master Custard
+#message:1D:12C
+{
+	The marshlands of Glace Island[BR]
+	with a thick jungle within.[BR]
+	The sweets of the island have[BR]
+	magical properties. The aroma[BR]
+	gives life to the plants,[BR]
+	and attracted exotic monsters.[End]
+}
+
+%post-Master Custard
+#message:1D:12D
+{
+	Marshlands that house the sweetest[BR]
+	treasure of all the land.[BR]
+	The very heart of the jungles is home[BR]
+	to Master Custard.[BR]
+	He is known as the guardian of the[BR]
+	entire island as well as its treasure.[End]
+}
+
+
+%Glace Island/Yoshi Village name and description...
+#message:1D:12E
+{
+	Glace Island Center[End]
+}
+
+
+#message:1D:12F
+{
+	The central hub of Glace Island.[BR]
+	Home to Yoshi and Sugar Sparkies.[BR]
+	The town is built to best serve[BR]
+	the needs of it's many tourists.[BR]
+	Complete with a souvenir shop that[BR]
+	features some local delicacies.[End]
+}
+
+#message:1D:130
+{
+	The central hub of Glace Island.[BR]
+	Home to Yoshi and Sugar Sparkies.[BR]
+	The town is built to best serve[BR]
+	the needs of it's many tourists.[BR]
+	Complete with a souvenir shop that[BR]
+	features some local delicacies.[End]
+}

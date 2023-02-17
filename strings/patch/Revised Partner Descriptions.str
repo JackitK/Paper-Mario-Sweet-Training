@@ -1,0 +1,477 @@
+%Partner names and moves
+#message:2B:000
+{
+	Headbonk[End]
+}
+
+#message:2B:001
+{
+	Tattle[End]
+}
+
+#message:2B:002
+{
+	Invigorate[End]
+
+}
+
+#message:2B:003
+{
+	Nuclear Bonk[End]
+}
+
+#message:2B:004
+{
+	Snooker Shot[End]
+}
+
+#message:2B:005
+{
+	Spin Shot[End]
+}
+#message:2B:006
+{
+	Pierce Shell[End]
+}
+#message:2B:007
+{
+	Storm Shell[End]
+
+}
+#message:2B:014
+{
+	Glaze Dash[End]
+
+}
+#message:2B:015
+{
+	Gumball Gush[End]
+
+}
+#message:2B:016
+{
+	Flavor Swap[End]
+
+}
+#message:2B:017
+{
+	Triple Zest[End]
+
+}
+#message:2B:018
+{
+	Hearty Flop[End]
+
+}
+
+%Partner descriptions
+#message:28:000
+{
+	Press [C-DOWN] to have him tell you[BR]
+	about everything nearby.[End]
+}
+
+#message:28:001
+{
+	He can describe enemies.[BR]
+	His specialty is headbonking.[End]
+}
+
+#message:28:002
+{
+	Headbonk an enemy.[End]
+}
+
+#message:28:003
+{
+	Learn about a foe, revealing[BR]
+	HP in the process. (Unlimited)[End]
+}
+
+#message:28:004
+{
+	Raise Mario's morale to boost[BR]
+	attack for a short time.[End]
+}
+
+#message:28:005
+{
+	Headbonk a foe so hard, it sets[BR]
+	off an explosion.[End]
+}
+
+#message:28:006
+{
+	Goombario is a clever young[BR]
+	adventurer who admires Mario.[BR]
+	He's happy to be reunited with[BR]
+	him for another adventure.[BR]
+	Press [C-DOWN] to have him tell you[BR]
+	about everything nearby.[BR]
+	His specialty is headbonking.[BR]
+	Allowing him to reach airbone foes.[BR]
+	He also scouts enemy stats and[BR]
+	cheer him on in battle.[End]
+}
+
+#message:28:007
+{
+	Headbonk an enemy.[End]
+}
+
+#message:28:008
+{
+	Headbonk an enemy.[End]
+}
+
+#message:28:009
+{
+	Headbonk an enemy.[End]
+}
+
+#message:28:00A
+{
+	Tells you about a foe. Including[BR]
+	seeing HP at all times. Using it[BR]
+	will not use his turn, allowing[BR]
+	him do do another attack.[End]
+}
+
+#message:28:00B
+{
+	Raise Mario's morale to boost[BR]
+	attack for a short time.[BR]
+	The better you do the Action[BR]
+	Command, the longer it lasts.[End]
+}
+
+#message:28:00C
+{
+	Goombario headbonks a foe with[BR]
+	all of his might.[BR]
+	It only hits once, but[BR]
+	does massive damage.[BR]
+	It counts as both jump[BR]
+	and an explosion damage.[End]
+}
+
+#message:28:00D
+{
+	Press [C-DOWN] to reach an item[BR]
+	a short distance away.[End]
+}
+
+#message:28:00E
+{
+	His specialty is attacking[BR]
+	enemies on the ground.[End]
+}
+
+#message:28:00F
+{
+	Slam an enemy so hard, they[BR]
+	get sent flying into others.[End]
+}
+
+#message:28:010
+{
+	Fling a foe into the air, making[BR]
+	them Dizzy as they land.[End]
+}
+
+#message:28:011
+{
+	Hit all grounded enemies, piercing[BR]
+	through their defense.[End]
+}
+
+#message:28:012
+{
+	Attack all grounded foes in a[BR]
+	strong storm.[End]
+}
+
+#message:28:013
+{
+	After parting ways with Mario,[BR]
+	Kooper achieved his dream of[BR]
+	being a part of Kolorado's[BR]
+	archaeology team. Taking part[BR]
+	in many adventures as[BR]
+	Kolorado's understudy.[BR]
+	But he's happy he has crossed[BR]
+	paths with Mario once more, as[BR]
+	Kolorado enlists Mario's help[BR]
+	after hearing of the dangers.[BR]
+	Press [C-DOWN] to toss a shell and[BR]
+	reach items at a short distance.[BR]
+	His specialty is attacking[BR]
+	enemies on the ground.[BR]
+	Though he can also reach areial[BR]
+	foes for weak damage.[End]
+}
+
+#message:28:014
+{
+	Slam an enemy so hard, they[BR]
+	get sent flying into others.[End]
+}
+
+#message:28:015
+{
+	Slam an enemy so hard, they[BR]
+	get sent flying into others.[End]
+}
+
+#message:28:016
+{
+	Slam an enemy so hard, they[BR]
+	get sent flying into others.[End]
+}
+
+#message:28:017
+{
+	Kooper slams into a foe,[BR]
+	flinging them into the air.[BR]
+	The foe may get Dizzy as they[BR]
+	land or land on their back.[End]
+}
+
+#message:28:018
+{
+	Hit all grounded enemies,[BR]
+	piercing through their defense.[End]
+}
+
+#message:28:019
+{
+	Strike all grounded foes with a[BR]
+	mighty storm.[BR]
+	The attack does both water and[BR]
+	electric elemental damage.[End]
+}
+
+
+#message:28:041
+{
+	Press [C-DOWN] to illuminate the[BR]
+	area and see invisible blocks.[End]
+}
+
+#message:28:042
+{
+	Rush's elemental adaptability lets[BR]
+	her exploit weakness of her foes.[End]
+}
+
+#message:28:043
+{
+	Dash while glazed in sugar for[BR]
+	various secondary effects.[End]
+}
+
+#message:28:044
+{
+	Damage all enemies with[BR]
+	elemental gumballs.[End]
+}
+
+#message:28:045
+{
+	Swap the elemental property of[BR]
+	Rush's Glaze Attack.[End]
+}
+
+#message:28:046
+{
+	Strike a foe with three types[BR]
+	of elemental attacks.[End]
+}
+
+#message:28:047
+{
+	A young Sugar Sparky who craves[BR]
+	adventure. Press [C-DOWN] to light up[BR]
+	areas and see invisible blocks.[BR]
+	Her power over sweets makes[BR]
+	her a wild card. Having the[BR]
+	power to wield a wide variety of[BR]
+	elemental attacks.[End]
+}
+
+#message:28:048
+{
+	Bash into an enemy with[BR]
+	an attack glazed in sugar.[BR]
+	Star Flavor ignores defense.[BR]
+	Fire has a weak second attack...[BR]
+	Ice lowers the attack of a[BR]
+	foe for that turn.[End]
+}
+
+#message:28:049
+{
+	Bash into an enemy with[BR]
+	an attack glazed in sugar.[BR]
+	Star Flavor ignores defense.[BR]
+	Fire has a weak second attack...[BR]
+	Ice lowers the attack of a[BR]
+	foe for that turn.[End]
+}
+
+#message:28:04A
+{
+	Bash into an enemy with[BR]
+	an attack glazed in sugar.[BR]
+	Electric ignores defense.[BR]
+	Fire has a weak second attack...[BR]
+	Ice lowers the attack of a[BR]
+	foe for that turn.[End]
+}
+
+#message:28:04B
+{
+	Damage all enemies with gumballs[BR]
+	imbued in elemental power...[BR]
+	It'll do different elemental[BR]
+	damage based on Rush's Flavor.[End]
+}
+
+#message:28:04C
+{
+	Absorb sweets to change the[BR]
+	power of Rush's attacks.[BR]
+	Rotates between Star, Fire,[BR]
+	and Ice. But legends say...[BR]
+	a strong Sparky Star element[BR]
+	turns into Electric.[End]
+}
+
+#message:28:04D
+{
+	Strike a foe with three attacks[BR]
+	in the following order:[BR]
+	Strike a foe with fire, ice,[BR]
+	then electric damage...[BR]
+	The foe's defenses to each of[BR]
+	these affects overall damage.[End]
+}
+
+#message:28:04E
+{
+	Press [C-DOWN] to ride Chai, then[BR]
+	press [C-DOWN] again to dive.[End]
+}
+
+#message:28:04F
+{
+	Chai is great at supporting Mario[BR]
+	and crippling foes with statuses.[End]
+}
+
+#message:28:050
+{
+	Splash on an an enemy for water[BR]
+	damage. Healing 1 HP to Mario.[End]
+}
+
+#message:28:051
+{
+	Squirt a jet of tea water that[BR]
+	may also put them asleep.[End]
+}
+
+#message:28:052
+{
+	Recover Mario's HP with hearty tea.[End]
+}
+
+#message:28:053
+{
+	Flood all foes in a nasty water mix,[BR]
+	poisoning foes caught in it.[End]
+}
+
+#message:28:054
+{
+	Chai is a timid Cheep Cheep who's[BR]
+	always cautious and hesitant.[BR]
+	But she's brave when her[BR]
+	friends need her most.[BR]
+	Press [C-DOWN] once to ride the waves,[BR]
+	again to dive below the surface.[BR]
+	Living on Glace Island, Chai can[BR]
+	weild tea when in battle.[BR]
+	Specializing in weilding water to[BR]
+	hamper foes through statuses,[BR]
+	while also being able to heal[BR]
+	Mario and cure ailements.[End]
+}
+
+#message:28:055
+{
+	Splash on an an enemy for water[BR]
+	damage. Healing 1 HP to Mario.[End]
+}
+
+#message:28:056
+{
+	Splash on an an enemy for water[BR]
+	damage. Healing 1 HP to Mario.[End]
+}
+
+#message:28:057
+{
+	Splash on an an enemy for water[BR]
+	damage. Healing 1 HP to Mario.[End]
+}
+
+#message:28:058
+{
+	Squirt a jet of herbal tea at[BR]
+	a foe to do water damage.[BR]
+	It's great against fire foes,[BR]
+	and can make the target sleep.[BR]
+	It's rumored the tea can inflict[BR]
+	other status when using items.[End]
+}
+
+#message:28:059
+{
+	Create a mixture of hearthy tea[BR]
+	to heal Mario's HP.[BR]
+	Heals 2-10 HP depending on how[BR]
+	good the Action Command is...[BR]
+	A perfect Action Command can[BR]
+	even cure status conditions.[End]
+}
+
+#message:28:05A
+{
+	Mix rotten tea leaves and toxic[BR]
+	herbs into a tidal wave.[BR]
+	The mixture makes the attack[BR]
+	do 4 damage max to all foes.[BR]
+	However, it can also poison any,[BR]
+	if not all foes caught in it...[BR]
+	The toxins lingers on longer the[BR]
+	more successful the inputs.[End]
+}
+
+%Create a custom choice selection for choosing an element...
+#message:1E:050
+{
+	[Style Choice pos=90,60 size=140,75]
+	[StartChoice]
+	[Option 0][Color 0x23]Star[BR]
+	[Option 1][Color 0x20]Fire[BR]
+	[Option 2][Color 0x25]Ice[BR]
+	[Option 3][Color 0x0A]Electric[BR]
+	[EndChoice cancel=3][End]
+}
+
+%Try replacing Goombario's charge with text for "Flavor Swap"
+#message:1D:07D
+{
+	Rush is now [Var 0] flavored.[End]
+}
