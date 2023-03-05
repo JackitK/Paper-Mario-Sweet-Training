@@ -1,0 +1,142 @@
+
+%declaring the partners
+#define .goombarioID 1
+#define .kooperID 2
+#define .bombetteID 3
+#define .parakarryID 4
+#define .goompaID 5
+#define .wattID 6
+#define .sushieID 7
+#define .lakilesterID 8
+
+%For Dojo Test
+@ $Script_8024FD70 { % Fir go to starting castle roomst Play,
+	Call  DisablePlayerInput    ( .True )
+	% Set Story progress and starting partners (Start out with Rush and Chai in Ultra Rank with Rush leading [unless filename codes say otherwise])
+	Set *GB_StoryProgress FFFFFFAF
+	Call $SetPartnerBool (.wattID)
+	Call $SetPartnerBool (.sushieID)
+	Call $SetActivePartner (.wattID)
+	Call $upgradePartner (.wattID 2 1) %Upgrade Rush to Ultra Rank.
+    Call $upgradePartner (.sushieID 2 1) %Upgrade Chai to Ultra Rank.
+
+	% Give certain items, stats, and badges, based on file name code...
+	ExecWait $Script_ImplementFileCodes % Moved all of this into GameStartFunctions global patch; felt it made more sense...
+	% Determine wheter enemies should have "normal mode" or "hard mode" levels of HP base on if hard mode flag is triggered...
+	%ExecWait $DefineEnemyPower ( This is now done in the battle formation code itself by having a different formation for the hard version)
+	
+	% Warp to Toad Town
+	Call GotoMap ("mac_00" 1) 
+	Return
+	End
+}
+
+
+% Takes the file name to determine a value and then use that to determine which opening scripts to run and what flags to trigger
+#new:Script $Script_ImplementFileCodes
+{
+% Run a file name check to check for "name codes"...
+ExecWait $Script_FileNameChecks
+% Give certain items, stats, and badges, based on code...
+Switch *GB_FileCodeMode
+    Case == 1` % For Danger Code
+        Call $StartingStatsDangerRun
+        ExecWait $GiveBadgesDojoDanger 
+        Set *GF_DangerMode .True % Flag tied to actions exclusive to 5 max HP (Like disabling "finishing off" dialouge)
+    Case == 2` % For Tea Time Code (TeaTime)
+        Call $StartingStatsDojo ( )
+        ExecWait $GiveBadgesTeaTime
+    Case == 3` % For Weaken Mode (NotSuper)
+        Call $StartingStatsWeaken ( )
+        Call $upgradePartner (.wattID 1 1) %Rush --> Super Rank
+        Call $upgradePartner (.sushieID 1 1) %Chai --> Super Rank
+        ExecWait $GiveBadgesDojo()
+    Case == 4` % For Easy Mode (Mercy)
+        Call $StartingStatsStronger ( )
+        ExecWait $GiveBadgesEasyMode
+    Case == 5` % For Challenge Mode (Master)
+        Call $StartingStatsDojo ( )
+        Set *GF_HardMode .True % This determines hard mode enemy patterns
+        ExecWait $GiveBadgesChallengeMode
+    Case == 6` % For No Items Mode (FoxOnly)
+        Call $StartingStatsNoItems()
+        ExecWait $GiveBadgesNoItems()
+        Set *GF_MAC00_StopGifts .True % Set a flag checked in NPC interactions in order to skip events that give items
+    Case == 7` % For Berserker mode (Berserk)
+        Call $StartingStatsDojo ( )
+        ExecWait $GiveBadgesBerserker()
+        Set *GF_MAC00_StopGifts .True % Since you can't use items in Bersker mode anyways, why give them?
+        % Set *GF_HardMode .True (Not Sure if I want to add Hard mode to Bersker mode, depends on if I find a place to hide Bersker badge)
+        Set *GF_MAC00_StopGifts .True % Set a flag checked in NPC interactions in order to skip events that give items
+    Case == 8` % For Everything mode (AllSinks)
+        Call $StartingStatsKitchenSink
+        ExecWait $GiveBadgesKitchenSinkMode()
+        Call $upgradePartner (.wattID 1 1) %Rush --> Super Rank
+        Call $upgradePartner (.sushieID 1 1) %Chai --> Super Rank
+        Set *GF_HardMode .True
+        Set *GF_MAC00_StopGifts .True % Set a flag checked in NPC interactions in order to skip events that give items
+        Set *GF_DangerMode .True % Flag tied to actions exclusive to 5 max HP (Like disabling "finishing off" dialouge)
+    Case == 9` % For Super Challenge Mode (MegaHard) Like Challenge mode but your stats are decreased
+        ExecWait $GiveBadgesChallengeMode
+        Call $StartingStatsWeaken ( )
+        Call $upgradePartner (.wattID 1 1) %Rush --> Super Rank
+        Call $upgradePartner (.sushieID 1 1) %Chai --> Super Rank
+        Set *GF_HardMode .True % This determines hard mode enemy patterns
+    Case == 10` % For Super Tea Mode (SuperTea) All Tea but harder
+        % Check why hard mode isn't playing despite the flag being set to true.
+        ExecWait $GiveBadgesSuperTea
+        Call $StartingStatsDojo ( )
+        %Call $StartingStatsWeaken ( )
+        Set *GF_HardMode .True % This determines hard mode enemy patterns
+    Case == 11` % For Hard version of no Items Mode (FinalDes)
+        Call $StartingStatsNoItems()
+        ExecWait $GiveBadgesNoItems()
+        Set *GF_HardMode .True % This determines hard mode enemy patterns
+        Set *GF_MAC00_StopGifts .True % Set a flag checked in NPC interactions in order to skip events that give items
+
+    % Leftover from an attempt to get a Superguard mode to work.
+    /%
+    Case == 12` % For the mode that enables Super Guard (DefendUp)
+        Call $StartingStatsDojo ( )
+        ExecWait $GiveBadgesDojo() % See "GameStartFunctions" Global Patch for more details
+        Call $Function_FlipSuperguardFlag ( ) % Enable Superguard
+    Case == 13` % Hard Mode with SuperGuard (Master)
+        Call $StartingStatsDojo ( )
+        Set *GF_HardMode .True % This determines hard mode enemy patterns
+        ExecWait $GiveBadgesChallengeMode
+        Call $Function_FlipSuperguardFlag ( ) % Enable Superguard
+    % And you know what? Just because I really want to flex the attack patterns from the all sink mode, let's make a third super guard code featuring that...
+    Case == 14` % Hard Mode with SuperGuard (Master)
+        Call $StartingStatsWeaken ( )
+        Call $upgradePartner (.wattID 1 1) %Rush --> Super Rank
+        Call $upgradePartner (.sushieID 1 1) %Chai --> Super Rank
+        Set *GF_HardMode .True % This determines hard mode enemy patterns
+        ExecWait $GiveBadgesChallengeMode
+        Call $Function_FlipSuperguardFlag ( ) % Enable Superguard
+        Set *GB_FileCodeMode 8` % Reset the file code to All Sink's code to trick the game to running attack scripts exclusive to that mode.
+    %/
+    % If no file code run as normal...
+    Default
+        Call $StartingStatsDojo ( )
+        ExecWait $GiveBadgesDojo() % See "GameStartFunctions" Global Patch for more details
+EndSwitch
+
+Return
+End
+}
+
+/%
+%For main adventure
+@ $Script_8024FD70 { % First Play, go to LavaLava Island
+	%debug
+	
+	Set *GB_StoryProgress FFFFFF9E
+	Call $GivePartners ()
+	Call $SetPartnerBool (1)
+	Call $SetPartnerBool (2)
+	Call $GivePlayerStartingEquipment ( )
+	Call GotoMap ("jan_00" 0)
+	Return
+	End
+}
+%/

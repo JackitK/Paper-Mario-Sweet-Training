@@ -174,9 +174,9 @@
              %Set and call enter walk
    9C:  		Set   *Var0  $Script_80244CD4
    AC:  		Exec  EnterWalk
-                Return
    B8:  EndSwitch
    
+   Label 0
    %Add Welcome script
    % If any file code is set, skip playing the demo tutorial
    If *GB_FileCodeMode > 0` % Anything greater than 0 should be a file code.
@@ -614,10 +614,35 @@ EndIf
 
     %Check for first interaction (First time play introduction, after that play abridged version)
     If *GF_MAC00_MetGingerT == .False
+        %This is actually muti-phased: First Ginger T introduces herself, then the partner steps in to clarify it's about Sleepy Tea, then Ginger T annouces friendship after learning about Chai
         Call  SpeakToPlayer ( .Npc:Self 00830404 00830401 00000000 002F0310) % Hello, I'm Ginger T.
+        %This script varies slightly based on which partner is out so do a check and then play the proper dialouge...
+        Wait  10`
+            %Check the current partner and play dialouge accordingly
+            Call  GetCurrentPartnerID   ( *Var0 ) %Call this to check which partner is out...
+            Switch *Var0
+                %Rush's Line...
+                Case  ==  .Partner:Watt
+                    Call SpeakToNpc ( .Npc:Partner 00060004 00060003 00000000 .Npc:Self 002F0353 )
+                %Chai's Line...
+                Case  == .Partner:Sushie
+                    Call SpeakToNpc ( .Npc:Partner 00070004 00070003 00000000 .Npc:Self 002F0354 )
+                %Goombario Line's
+                Case  == .Partner:Goombario
+                Call SpeakToNpc ( .Npc:Partner 00010008 00010001 00000000 .Npc:Self 002F0355 )
+                %Kooper Line's (Same as Goombario, just different animation)
+                Case  == .Partner:Kooper
+                Call SpeakToNpc ( .Npc:Partner 0002000D 00020003 00000000 .Npc:Self 002F0355 )
+                %Default just in case.
+                Default
+                    Call SpeakToNpc ( .Npc:Partner 0002000D 00020003 00000000 .Npc:Self 002F0355 )
+            EndSwitch
+            % Ginger T's follow up...
+            Call  SpeakToPlayer ( .Npc:Self 00830404 00830401 00000000 002F0356) % Sleepy Tea? That sounds exactly ...
+
         % If haven't won any fights at the dojo, don't give tea...
         If *GB_MAC00_DojoRank  <  00000002
-            Call  SpeakToPlayer ( .Npc:Self 00830404 00830401 00000000 002F031A) % Though it may look like...
+            Call  SpeakToPlayer ( .Npc:Self 00830404 00830401 00000000 002F031A) % Oh, I know! Why don't you do ....
             Set *GF_MAC00_MetGingerT .True 
         % Otherwise give first Tea Award
         Else
