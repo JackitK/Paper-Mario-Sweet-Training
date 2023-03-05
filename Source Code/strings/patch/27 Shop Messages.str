@@ -1,0 +1,314 @@
+%New Shop Messages for Star Candy Trades...
+
+
+%Scripted message that plays when you pick up the item...
+#message:27:100
+{
+	[Style Postcard index=1]
+	Hi ya! So you like hunting for[BR]
+	treasure too? I found a neat[BR]
+	badge inside this block, but[BR]
+	you're not out of luck...[BR]
+	[Wait][Next]
+	I'm hunting for Candy Stars, sweet[BR]
+	candies scattered all across [BR]
+	Glace Island.[BR]
+	[Wait][Next]
+	If you come find me and agree[BR]
+	to help me find them, maybe I'll[BR]
+	sweeten the deal by sharing the[BR]
+	badge I found with you...[BR]
+	[Wait][Next]
+	Signed "Raven", Glace Island's[BR]
+	greatest treasure hunter.[BR][End]
+}
+
+%First meeting the Star Candy Salesperson (message 1)
+#message:27:101
+{
+	[Style Right]
+	Hi ya![Pause 10] I'm out looking[BR]
+	for Candy Stars. They're all the[BR]
+	rage here on Glace Island...[BR]
+	You could say it's pretty sweet.[BR]
+	[Wait][Next]
+	I think I found everything I can[BR]
+	around here, so I'm gonna head[BR]
+	back home to Glace Village.[BR]
+	[Wait][Next]
+	If you find any Candy Stars,[BR]
+	stop on by. I have awesome[BR]
+	items I can give in exchange...[Pause 10][BR]
+	...like this!
+	[Wait][End]
+}
+
+%First meeting the Star Candy Salesperson (message 2)
+#message:27:102
+{
+	[Style Right]
+	And that's only the icing on[BR]
+	the cake regarding stuff I[BR]
+	can trade you.[BR]
+	[Wait][Next]
+	I live up in the big tree,[BR]
+	back in town with the other[BR]
+	ravens...[BR]
+	[Wait][End]
+}
+
+%First meeting the Star Candy Salesperson (message 3)
+#message:27:10A
+{
+	[Style Right]
+	Oh by the way,[Pause 10] did you check[BR]
+	out the tree on that other[BR]
+	island there?[BR]
+	[Wait][Next]
+	I hear if you have someone[BR]
+	who can Tea Bend, you can[BR]
+	use items like that to[BR]
+	affect their abilities.[BR]
+	[Wait][Next]
+	They're sprinkled through-out[BR]
+	Glace Island.[BR]
+	[Wait][Next]
+	If you wanta get more, [Pause 5]come[BR]
+	find me. I can forage a couple[BR]
+	more for ya.[Pause 10] Assuming you[BR]
+	got Star Candies to sweeten the deal.[BR]
+	[Wait][Next]
+	So be sure to express deliver[BR]
+	any of them Star Candies ya[BR]
+	find my way. I'll be sure[BR]
+	to make your efforts worthwhile.[BR]
+	[Wait][Next]
+	'Kay, [Pause 10]bye![BR]
+	[Wait][End]
+}
+
+%Failsafe text in case salesperson is around map 4 after the scene they're supposed to leave.
+#message:27:103
+{
+	[Style Right]
+	See ya at the big tree.[BR]
+	'Kay, bye![BR]
+	[Wait][End]
+}
+
+%Failsafe text in case salesperson is around map 4 after the scene they're supposed to leave.
+#message:27:104
+{
+	[Style Right]
+	Sorry, this goody is too rich[BR]
+	for your wallet. Come back[BR]
+	with some more Star Candies[BR]
+	and THEN we'll talk.[BR]
+	[Wait][End]
+}
+
+%Opening text...
+#message:27:0A9
+{
+	[Style Right]
+	Hi ya![Pause 10] You here to trade some[BR]
+	delectable Star Candies for[BR]
+	some sweet prizes?[BR]
+	[Wait][End]
+}
+
+
+%Don't have enough Star Candies
+#message:27:105
+{
+	[Style Right]
+	Nice try, but I'm not blind![Pause 10][BR]
+	Come back when you've actually[BR]
+	collected enough Star Candies...[BR]
+	[Wait][End]
+}
+%Good bye...
+#message:27:106
+{
+	[Style Right]
+	Sweet! [Pause 10][BR]
+	No take-backs by the way...[BR]
+	You're the one that accepted[BR]
+	the deal after all![BR]
+	[Wait][End]
+}
+
+%Trade for the Slow Go badge
+#message:27:110
+{
+	[Style Right]
+	So I found this beloved badge[BR]
+	that'll help you take things[BR]
+	a bit more easy.[Pause 10] Nice way[BR]
+	to stop and smell the roses.[BR]
+	[Wait][Next]
+	But I'm not letting it go[BR]
+	without a Star Candy...[BR]
+	It's just a one though,[BR]
+	What do you say?[BR]
+	[Wait][End]
+}
+
+%Trade for the Arieal Stomp Badge
+#message:27:111
+{
+	[Style Right]
+	Ah man, you're gonna love this![BR]
+	This badge will make stomping[BR]
+	on foes a breeze![BR]
+	[Wait][Next]
+	I went through a lot to get[BR]
+	this baby, so I'm not letting[BR]
+	go of it for no less than 3 Star[BR]
+	Candies. What do you say?[BR]
+	[Wait][End]
+}
+%Trade for the D Down Badge
+#message:27:113
+{
+	[Style Right]
+	Annoyed by those armored foes?[BR]
+	I bet this badge will give you[BR]
+	just what you need.[BR]
+	[Wait][Next]
+	And I'd even be willing to part[BR]
+	with it for a single Star Candy...[BR]
+	What do you say?[BR]
+	[Wait][End]
+}
+%Trade for the Super Coco Bomb
+#message:27:114
+{
+	[Style Right]
+	Oooh! This is a REAL sweet one![BR]
+	This item is sure to be a blast[BR]
+	for anyone who gets hit by it.[BR]
+	[Wait][Next]
+	I bet the damage this baby will[BR]
+	cause will flip around any battle[BR]
+	you use it in...[BR]
+	[Wait][Next]
+	And just for you I'll give it[BR]
+	to you for just one Star Candy.[BR]
+	What do you say?[BR]
+	[Wait][End]
+}
+
+% Message for the Close Call Badge (if the player missed getting it from Kolorado)
+#message:27:115
+{
+	[Style Right]
+	Hey! So between you and me,[BR]
+	a Fuzzy came to me the other day[BR]
+	and gave me this random badge.[BR]
+	[Wait][Next]
+	They seemed kind of sus, but I'm[BR]
+	not gonna ask questions.[Pause 10][BR]
+	Free is free after all.[BR]
+	[Wait][Next]
+	That being said, if you want to[BR]
+	take it off my hands for...[Pause 5][BR]
+	let's say 2 Star Candies,[BR]
+	I won't mind.[BR]
+	[Wait][Next]
+	It won't me my problem anymore[BR]
+	at least. What do you say?[BR]
+	[Wait][End]
+}
+
+% Message for the Tasty Tonic
+#message:27:116
+{
+	[Style Right]
+	Hey ya! You know those tea[BR]
+	enchancers I mentioned earlier?[BR]
+	I found a couple more while[BR]
+	searching for Star Candies.[BR]
+	[Wait][Next]
+	I bet they'll be of great help[BR]
+	to your Tea Bending friend.[BR]
+	So I'll give both of these to[BR]
+	you for just 1 Star Candy.[BR]
+	[Wait][Next]
+	What do you say?[BR]
+	[Wait][End]
+}
+
+% Message for the Halt Leaf
+#message:27:116
+{
+	[Style Right]
+	Hey ya! Guess what!?[BR]
+	I found another tea enchancer,[BR]
+	and it's a super rare one![BR]
+	[Wait][Next]
+	I don't wanta part with it[BR]
+	for any less than 2 Star Candies.[BR]
+	You'll totally get why[BR]
+	when you see it![BR]
+	[Wait][Next]
+	It's the most gourmet thing[BR]
+	I can offer.[Pause 10][BR]
+	What do you say?[BR]
+	[Wait][End]
+}
+
+%When they are all out of items
+#message:27:107
+{
+	[Style Right]
+	So I don't got anything else[BR]
+	for now, but I'll trade you[BR]
+	50 coins for a Star Candy...[BR]
+	[Wait][Next]
+	Come on! [Pause 5]What use do you have[BR]
+	for those things anyways.[BR]
+	What do you say?[BR]
+	[Wait][End]
+}
+
+%If got the item already from Kolorado
+#message:27:108
+{
+	[Style Right]
+	Huh.[Pause 5] I thought I had something[BR]
+	to trade, but where did it go?[BR]
+	...[Pause 10]here we go! Let's try this again.[BR]
+	[Wait][End]
+}
+
+%Too early in the story to get this
+#message:27:109
+{
+	[Style Right]
+	So, I have a pretty spicy badge[BR]
+	here, but I doubt you would be[BR]
+	able to handle it right now...[BR]
+	[Wait][Next]
+	Say? Aren't those Sparky kids in[BR]
+	trouble at the moment?[Pause 5] How about[BR]
+	you come back after that is[BR]
+	sorted out?[BR]
+	[Wait][Next]
+	Then I'll be ready to spill[BR]
+	the beans and trade some more.[BR]
+	[Wait][End]
+}
+
+% If you have too many items
+#message:27:11B
+{
+	[Style Right]
+	On second thought[BR]
+	your pockets are bloated...[BR]
+	[Wait][Next]
+	Lose some weight and come back[BR]
+	after you dumped some items.[BR]
+	I'll be waiting.[BR]
+	[Wait][End]
+}

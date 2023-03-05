@@ -1,0 +1,812 @@
+#new:Function $Function_BoomEffect
+{
+    0:  ADDIU     SP, SP, FFC8
+    4:  SW        S1, 14 (SP)
+    8:  COPY      S1, A0
+    C:  SW        RA, 20 (SP)
+   10:  SW        S3, 1C (SP)
+   14:  SW        S2, 18 (SP)
+   18:  SW        S0, 10 (SP)
+   1C:  SDC1      F22, 30 (SP)
+   20:  SDC1      F20, 28 (SP)
+   24:  LW        S0, C (S1)
+   28:  LW        A1, 0 (S0)
+   2C:  JAL       ~Func:get_variable
+   30:  ADDIU     S0, S0, 4
+   34:  LW        A1, 0 (S0)
+   38:  ADDIU     S0, S0, 4
+   3C:  COPY      A0, S1
+   40:  JAL       ~Func:get_variable
+   44:  COPY      S3, V0
+   48:  COPY      A0, S1
+   4C:  LW        A1, 0 (S0)
+   50:  JAL       ~Func:get_variable
+   54:  COPY      S0, V0
+   58:  MTC1      S3, F20
+   5C:  NOP
+   60:  CVT.S.W   F20, F20
+   64:  COPY      S2, V0
+   68:  MTC1      S2, F22
+   6C:  NOP
+   70:  CVT.S.W   F22, F22
+   74:  MTC1      S0, F0
+   78:  NOP
+   7C:  CVT.S.W   F0, F0
+   80:  MFC1      A1, F20
+   84:  MFC1      A3, F22
+   88:  MFC1      A2, F0
+   8C:  JAL       ~Func:playFX_17
+   90:  CLEAR     A0
+   94:  LAH       V1, 800DC1EC
+   9C:  LI        V0, 93
+   A0:  BEQ       V1, V0, .o120
+   A4:  SLTI      V0, V1, 94
+   A8:  BEQ       V0, R0, .oC0
+   AC:  LI        V0, 92
+   B0:  BEQ       V1, V0, .oD4
+   B4:  NOP
+   B8:  BEQ       R0, R0, .o1D0
+   BC:  NOP
+        .oC0
+   C0:  LI        V0, 94
+   C4:  BEQ       V1, V0, .o178
+   C8:  NOP
+   CC:  BEQ       R0, R0, .o1D0
+   D0:  NOP
+        .oD4
+   D4:  LW        V0, AC (S1)
+   D8:  BLEZ      V0, .o100
+   DC:  ADDIU     V0, S0, 14
+   E0:  MTC1      V0, F0
+   E4:  NOP
+   E8:  CVT.S.W   F0, F0
+   EC:  MFC1      A1, F20
+   F0:  MFC1      A3, F22
+   F4:  MFC1      A2, F0
+   F8:  BEQ       R0, R0, .o208
+   FC:  LI        A0, 1
+        .o100
+  100:  MTC1      V0, F0
+  104:  NOP
+  108:  CVT.S.W   F0, F0
+  10C:  MFC1      A1, F20
+  110:  MFC1      A3, F22
+  114:  MFC1      A2, F0
+  118:  BEQ       R0, R0, .o208
+  11C:  CLEAR     A0
+        .o120
+  120:  LW        V0, AC (S1)
+  124:  BLEZ      V0, .o14C
+  128:  ADDIU     V0, S0, 14
+  12C:  MTC1      V0, F0
+  130:  NOP
+  134:  CVT.S.W   F0, F0
+  138:  MFC1      A1, F20
+  13C:  MFC1      A3, F22
+  140:  MFC1      A2, F0
+  144:  BEQ       R0, R0, .o168
+  148:  LI        A0, 1
+        .o14C
+  14C:  MTC1      V0, F0
+  150:  NOP
+  154:  CVT.S.W   F0, F0
+  158:  MFC1      A1, F20
+  15C:  MFC1      A3, F22
+  160:  MFC1      A2, F0
+  164:  CLEAR     A0
+        .o168
+  168:  JAL       ~Func:playFX_19
+  16C:  NOP
+  170:  BEQ       R0, R0, .o214
+  174:  LI        A0, 2017
+        .o178
+  178:  LW        V0, AC (S1)
+  17C:  BLEZ      V0, .o1A4
+  180:  ADDIU     V0, S0, 14
+  184:  MTC1      V0, F0
+  188:  NOP
+  18C:  CVT.S.W   F0, F0
+  190:  MFC1      A1, F20
+  194:  MFC1      A3, F22
+  198:  MFC1      A2, F0
+  19C:  BEQ       R0, R0, .o1C0
+  1A0:  LI        A0, 2
+        .o1A4
+  1A4:  MTC1      V0, F0
+  1A8:  NOP
+  1AC:  CVT.S.W   F0, F0
+  1B0:  MFC1      A1, F20
+  1B4:  MFC1      A3, F22
+  1B8:  MFC1      A2, F0
+  1BC:  LI        A0, 1
+        .o1C0
+  1C0:  JAL       ~Func:playFX_19
+  1C4:  NOP
+  1C8:  BEQ       R0, R0, .o214
+  1CC:  LI        A0, 2017
+        .o1D0
+  1D0:  MTC1      S3, F0
+  1D4:  NOP
+  1D8:  CVT.S.W   F0, F0
+  1DC:  ADDIU     V0, S0, 14
+  1E0:  MFC1      A1, F0
+  1E4:  MTC1      V0, F0
+  1E8:  NOP
+  1EC:  CVT.S.W   F0, F0
+  1F0:  MFC1      A2, F0
+  1F4:  MTC1      S2, F0
+  1F8:  NOP
+  1FC:  CVT.S.W   F0, F0
+  200:  MFC1      A3, F0
+  204:  CLEAR     A0
+        .o208
+  208:  JAL       ~Func:playFX_19
+  20C:  NOP
+  210:  LI        A0, 2016
+        .o214
+  214:  JAL       ~Func:sfx_play_sound
+  218:  NOP
+  21C:  LW        RA, 20 (SP)
+  220:  LW        S3, 1C (SP)
+  224:  LW        S2, 18 (SP)
+  228:  LW        S1, 14 (SP)
+  22C:  LW        S0, 10 (SP)
+  230:  LDC1      F22, 30 (SP)
+  234:  LDC1      F20, 28 (SP)
+  238:  LI        V0, 2
+  23C:  JR        RA
+  240:  ADDIU     SP, SP, 38
+}
+
+%Script for Swap tutorial. Update it to not show up in first place.....
+      % Despite not being a "hard mod" I think it's safe to assume if you're playing this you've at least understand the basics of Paper Mario.... 
+@ $Script_NextTurn_80239A3C
+{
+    0:  Call  GetBattlePhase    ( *Var0 )
+   10:  Switch  *Var0
+   1C:  	Case  ==  0000000A
+   28:  		If  *GF_Tutorial_SwapTurnOrder  ==  .False
+  228:  			Set   *GF_Tutorial_SwapTurnOrder  .True
+  24C:  		EndIf
+  254:  EndSwitch
+  25C:  Return
+  264:  End
+}
+
+%Patch script from Shadeblade's Dark Star (though he probably got it from elsewhere) to make tattle take zero turns
+@ $Script_8023C5B8
+{
+    0:  Call  GetActorPos   ( .Actor:Partner *Var0 *Var1 *Var2 )
+   1C:  Add   *Var0  0000001E
+   2C:  Call  SetActorSpeed ( .Actor:Partner *Fixed[6.0] )
+   40:  Call  SetAnimation  ( .Actor:Partner FFFFFFFF 00090003 )
+   58:  Call  SetGoalPos    ( .Actor:Partner *Var0 *Var1 *Var2 )
+   74:  Call  RunToGoal     ( .Actor:Partner 00000000 .False )
+   8C:  Call  SetAnimation  ( .Actor:Partner FFFFFFFF 00090001 )
+   A4:  Call  InitTargetIterator ( )
+   B0:  Call  SetGoalToTarget   ( .Actor:Partner )
+   C0:  Call  SetBattleFlagBits ( 00000004 .True )
+   D4:  Call  $Function_80238E04 ( )
+   E0:  Wait  12`
+   EC:  Call  SetCamEnabled ( .Cam:Tattle .True )
+  100:  Call  SetCamFlag80  ( .Cam:Tattle .False )
+  114:  Call  SetCamPerspective ( .Cam:Tattle 00000006 00000019 00000010 00000400 )
+  134:  Call  SetCamViewport    ( .Cam:Tattle 00000089 0000005F 0000008A 00000063 )
+  154:  Call  GetOwnerTarget    ( *VarA *VarB )
+  168:  Call  GetActorPos   ( *VarA *Var0 *Var1 *Var2 )
+  184:  Call  SetGoalPos    ( .Actor:Partner *Var0 *Var1 *Var2 )
+  1A0:  Call  $Function_80238BCC ( )
+  1AC:  Wait  1`
+  1B8:  Call  802CAE50      ( 00000002 *Var0 *Var1 *Var2 )
+  1D4:  Call  802CABE8      ( 00000002 00000000 *Var3 00000064 00000004 )
+  1F4:  Wait  2`
+  200:  Call  PlaySoundAtActor  ( .Actor:Partner 00000282 )
+  214:  Call  SetCamFlag80  ( .Cam:Tattle .True )
+  228:  Wait  10`
+  234:  Call  $Function_80238B60 ( )
+  240:  Call  ActorSpeak    ( *Var0 .Actor:Self 00000001 0009000F 00090001 ) % variable string ID
+  260:  Call  $Function_80238E48 ( )
+  26C:  Wait  12`
+  278:  Call  SetCamEnabled ( .Cam:Tattle .False )
+  28C:  Wait  32`
+  298:  Call  UseBattleCamPreset    ( 00000002 )
+  2A8:  Call  SetBattleFlagBits ( 00000004 .False )
+  2BC:  Call  80280818 ( )
+  2C8:  Call  SetGoalToHome ( .Actor:Partner )
+  2D8:  Call  SetActorSpeed ( .Actor:Partner *Fixed[4.0] )
+  2EC:  Call  SetActorJumpGravity   ( .Actor:Partner *Fixed[1.8] )
+  300:  Call  SetAnimation  ( .Actor:Partner FFFFFFFF 00090003 )
+  318:  Call  RunToGoal     ( .Actor:Partner 00000000 )
+  32C:  Call  SetAnimation  ( .Actor:Partner FFFFFFFF 00090001 )
+		Call $FreeTurn ( )
+  344:  Return
+  34C:  End
+}
+
+%Replace Charge with a move similar to Turbo Charge (Invigorate)
+@ $Script_8023C90C
+{
+    0:  Call  GetStatusFlags    ( .Actor:Player *Var0 )
+    % Fun fact: Turbo charge (and other moves that support Mario) has a different script for if Mario is status or not, 
+      %that's how the game knows which animation to play...
+   14:  If  *Var0  &  ~Flags:StatusFlags:Sleep|Frozen|Fear|Paralyze|Dizzy|Stone|Stop % 35D000
+   24:  	ExecWait  $Script_8023B450
+   30:  Else
+   38:  	ExecWait  $Script_8023AE8C
+   44:  EndIf
+   4C:  Return
+   54:  End
+}
+%Normal version of this Invigorate...
+#new:Script $Script_8023AE8C
+{
+    0:  Call  LoadActionCommand ( .ActionCommand:WaterBlock )
+   10:  Call  802A9000  ( 00000001 )
+   20:  Call  80269344  ( 00000000 )
+   30:  Call  SetActorFlagBits  ( .Actor:Player 20000000 .True )
+   48:  Call  UseIdleAnimation  ( .Actor:Player .False )
+   5C:  Call  SetAnimation      ( .Actor:Player 00000000 0001001F )
+   74:  Wait  5`
+   80:  Call  UseBattleCamPreset    ( 00000013 )
+   90:  Call  SetBattleCamTarget    (  -125`  42`  0` )
+   A8:  Call  SetBattleCamOffsetZ   (  0` )
+   B8:  Call  SetBattleCamZoom  (  340` )
+   C8:  Call  MoveBattleCamOver (  30` )
+     %Replace flying with Tattle animation..
+     Call  SetAnimation  ( .Actor:Partner FFFFFFFF 00090010 )
+  18C:  Wait  10`
+  198:  Call  802A9398  ( 00000000 00000064 00000003 )
+  1B0:  Call  AddBattleCamZoom  (  -75` )
+  1C0:  Call  MoveBattleCamOver (  100` )
+  1D0:  Call  8024ECF8  ( 00000000 00000000 00000001 )
+  2B0:  Wait  30`
+  2BC:  Call  PlaySoundAtActor  ( .Actor:Partner 0000028B )
+  2D0:  Call  GetActorPos       ( .Actor:Player *Var0 *Var1 *Var2 )
+  2EC:  Add   *Var1  0000002A
+     %This is the function tied to the electric effect... along with likely more critical parts of Power Charge....
+  314:  Wait  59`
+  320:  Call  AddBattleCamZoom  (  100` )
+  330:  Call  MoveBattleCamOver (  5` )
+        %Add function to rotate Goombario back to normal
+        Call  SetAnimation  ( .Actor:Partner FFFFFFFF 00090000 )
+  340:  Thread
+  348:  	Call  PlaySoundAtActor      ( .Actor:Player 00000160 )
+  35C:  	Call  SetActorJumpGravity   ( .Actor:Player *Fixed[1.0] )
+  370:  	Call  SetActorSpeed ( .Actor:Player *Fixed[1.0] )
+  384:  	Call  GetActorPos   ( .Actor:Player *Var0 *Var1 *Var2 )
+  3A0:  	Call  SetJumpAnimations     ( .Actor:Player 00000000 00010007 00010008 00010009 )
+  3C0:  	Call  SetGoalPos    ( .Actor:Player *Var0 *Var1 *Var2 )
+  3DC:  	Call  80273444      ( 00000014 00000000 00000000 )
+  3F4:  	Call  SetAnimation  ( .Actor:Player 00000000 00010009 )
+  40C:  	Wait  4`
+  418:  	Call  SetAnimation  ( .Actor:Player 00000000 00010002 )
+  430:  EndThread
+  
+  438:  Wait  30`
+  444:  Call  UseBattleCamPreset    ( 00000002 )
+  454:  Call  MoveBattleCamOver     (  10` )
+  464:  Call  PlaySoundAtActor      ( .Actor:Partner 0000208E )
+  478:  Call  GetActionCommandResult    ( *Var0 )
+  488:  Call  $Function_80238C08 ( )
+  494:  Set   *VarE  *VarF
+  4A4:  If  *VarA  >  00000000
+  4B4:  	Call  GetActorPos   ( .Actor:Player *Var0 *Var1 *Var2 )
+  4D0:  	Add   *Var0  0000000F
+  4E0:  	Add   *Var1  00000023
+  4F0:  	Add   *VarF  00000000
+  500:  	Call  PlayEffect    ( 00000056 *VarF *Var0 *Var1 *Var2 *Fixed[1.5] 0000003C 00000000 00000000 00000000 00000000 00000000 00000000 00000000 )
+  544:  	Wait  4`
+  550:  EndIf
+  558:  If  *Var0  ==  00000000
+  568:  Else
+  570:  	Call  ShowVariableMessageBox    ( 0000002A 0000003C *VarA )
+  588:  EndIf
+  590:  Call  WaitForMessageBoxDone ( )
+  59C:  Call  SetActorFlagBits  ( .Actor:Player 20000000 .False )
+  5B4:  Return
+  5BC:  End
+}
+%Statused version of this move.
+#new:Script $Script_8023B450
+{
+    0:  Call  LoadActionCommand ( .ActionCommand:WaterBlock )
+   10:  Call  802A9000  ( 00000001 )
+   20:  Call  80269344  ( 00000000 )
+   30:  Call  UseIdleAnimation  ( .Actor:Player .False )
+   44:  Wait  5`
+   50:  Call  UseBattleCamPreset    ( 00000013 )
+   60:  Call  SetBattleCamTarget    (  -125`  42`  0` )
+   78:  Call  SetBattleCamOffsetZ   (  0` )
+   88:  Call  SetBattleCamZoom  (  340` )
+   98:  Call  MoveBattleCamOver (  30` )
+  168:  %Replace flying with Tattle animation..
+  %Add function to rotate to Mario here
+  Call  SetAnimation  ( .Actor:Partner FFFFFFFF 00090010 )
+18C:  Wait  10`
+198:  Call  802A9398  ( 00000000 00000064 00000003 )
+1B0:  Call  AddBattleCamZoom  (  -75` )
+1C0:  Call  MoveBattleCamOver (  100` )
+1D0:  Call  8024ECF8  ( 00000000 00000000 00000001 )
+2B0:  Wait  30`
+2BC:  Call  PlaySoundAtActor  ( .Actor:Partner 0000028B )
+2D0:  Call  GetActorPos       ( .Actor:Player *Var0 *Var1 *Var2 )
+2EC:  Add   *Var1  0000002A
+314:  Wait  59`
+320:  Call  AddBattleCamZoom  (  100` )
+330:  Call  MoveBattleCamOver (  5` )
+     %Add function to rotate Goombario back to normal
+  280:  Wait  30`
+  31C:  Call  UseBattleCamPreset        ( 00000002 )
+  32C:  Call  MoveBattleCamOver (  10` )
+  33C:  Call  PlaySoundAtActor  ( .Actor:Partner 0000208E )
+  350:  Call  GetActionCommandResult    ( *Var0 )
+  360:  Call  $Function_80238C08 ( )
+  36C:  Set   *VarE  *VarF
+  37C:  If  *VarA  >  00000000
+  38C:  	Call  GetActorPos   ( .Actor:Player *Var0 *Var1 *Var2 )
+  3A8:  	Add   *Var0  0000000F
+  3B8:  	Add   *Var1  00000023
+  3C8:  	Add   *VarF  00000000
+  3D8:  	Call  PlayEffect    ( 00000056 *VarF *Var0 *Var1 *Var2 *Fixed[1.5] 0000003C 00000000 00000000 00000000 00000000 00000000 00000000 00000000 )
+  41C:  	Wait  4`
+  428:  EndIf
+  430:  If  *Var0  ==  00000000
+  440:  Else
+  448:  	Call  ShowVariableMessageBox    ( 0000002A 0000003C *VarA )
+  460:  EndIf
+  468:  Call  WaitForMessageBoxDone ( )
+  474:  Call  SetActorFlagBits  ( .Actor:Player 20000000 .False )
+  48C:  Return
+  494:  End
+}
+
+% Muti-bonk --> Nuclear Bonk
+% I adapted the script of Mega Bonk from Dark Star to behave, slightly differently.
+% To balance the extra power (and make it feel different from Mega Bonk), the attack does a VERY powerful explosion effect...
+%...but it hits so hard that Goombario will lose his following turn.
+% (The exploison effect only triggers if you successfully pull off the Action Command so you if fail you don't lose your turn)
+@ $Script_8023BB9C
+{
+    0:  Call     LoadActionCommand 	( 00000001 )
+   10:  Call     802A9000 ( )
+   1C:  ExecWait $Script_8023A52C 
+   28:  ExecWait $Script_8023A66C 
+   34:  Call     SetAnimation 	( .Actor:Self 00000001 00090007 )
+   4C:  Call     SetActorDispOffset ( 00000100 00000000 00000012 00000000 )
+   68:  Wait     00000005 
+   74:  Call     SetActorDispOffset ( 00000100 00000000 00000013 00000000 )
+   90:  Wait     00000001 
+   9C:  Call     UseBattleCamPreset 	( 00000034 )
+   AC:  Call     802A9120 ( *Var[A] 00000003 )
+   C0:  Call     UseBattleCamPreset 	( 00000034 )
+   D0:  Call     SetAnimation 	( .Actor:Self 00000001 00090006 )
+   E8:  Call     SetActorDispOffset ( 00000100 00000000 00000009 00000000 )
+  104:  Call     SetGoalToTarget 	( .Actor:Partner )
+  114:  Call     SetJumpAnimations 	( .Actor:Partner 00000000 00090006 00090006 00090006 )
+  134:  Call     PlaySoundAtActor 	( .Actor:Partner 0000200D )
+  148:  Call     $Function_8023817C ( *Var[A] 00000003 )
+  15C:  Call     PartnerTestEnemy 	( *Var[0] 00000080 00000014 00000000 00000001 00000010 )
+  180:  If  *Var[0]  ==  00000006 
+  190:  	Call     SetJumpAnimations 	( .Actor:Partner 00000000 00090006 00090006 00090006 )
+  1B0:  	Call     $Function_80238A20 ( )
+  1BC:  	Thread
+  1C4:  		Call     ShakeCam    	( 00000001 00000000 00000005 *Fixed[1.0] )
+                  %Play the explosion effect if the action command was successful
+                  Call  PlayEffect    ( ~FX:RedImpact:Normal *Var0 00000000 *Var2 00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 )
+  1E0:  	EndThread
+  1E8:  	Call     PlaySoundAtActor 	( .Actor:Partner 00000162 )
+  1FC:  	Wait     00000014 
+  208:  	ExecWait $Script_80239CA8 
+  214:  	Return
+  21C:  EndIf
+  224:  ChildThread
+  22C:  	Call     SetActorScale 	( .Actor:Partner *Fixed[1.1005859] *Fixed[0.80078125] *Fixed[1.0] )
+  248:  	Wait     00000001 
+  254:  	Call     SetActorScale 	( .Actor:Partner *Fixed[1.3007812] *Fixed[0.5] *Fixed[1.0] )
+  270:  	Wait     00000001 
+  27C:  	Call     SetActorScale 	( .Actor:Partner *Fixed[1.0] *Fixed[1.0] *Fixed[1.0] )
+  298:  EndChildThread
+  2A0:  Wait     00000001 
+		ExecWait $ShakyCam
+  2AC:  Call     802807D0 ( *Var[0] ) %action command success value? : 0 = fail, >0 = not fail?
+  2BC:  Switch  *Var[0] 
+  2C8:  	Case  >  00000000 
+                  Call	 GetActorPos 	( .Actor:Partner *Var[4] *Var[5] *Var[6] )
+                  Call  $Function_BoomEffect    ( *Var[4] *Var[5] *Var[6] ) %Explosion Effect?
+				%Call     $Function_80239068 ( ) %May be tied to adding charge power and removing charge (Shouldn't need since Goombario doesn't charge here)
+  2E0:  		Add  *Var[0]  00000001 
+				Add *Var[0] B %13 base damage
+                                    Call     PartnerDamageEnemy 	( *Var[1] ~Flags:DamageType:Blast|Jump 0000000 00000000 *Var[0] 00000070 ) %flag 4 is success?
+                         Wait 2`
+					Wait 2`
+				Call	 GetActorPos 	( .Actor:Partner *Var[4] *Var[5] *Var[6] )
+                    %Try adding the explosion effect here... calling VAr 4,5, and 6 for x/y/z coordinates
+				Call	 PlayEffect ( 00000000 *Var[4] *Var[5] *Var[6] ) %steam
+				Call     PlaySoundAtActor 	( .Actor:Partner 00000000 )		
+                        %Damage the user for a turn in exchange for the massive damage.
+                        SetConst  *Var1  0009000B
+  178:  		      Set   *Var2  0000000C
+  188:  		      SetConst  *Var3  0009000C
+  198:  		      ExecWait  80294C68
+                        Call SetTargetActor ( .Actor:Partner .Actor:Partner )
+                        Call  EnemyDamageTarget ( .Actor:Self *Var0 ~Flags:DamageType:NoContact|Blast 00000000 00000000 00000001 00000020 )
+                        
+  314:  	Default
+  31C:  		Call     $Function_80239068 ( ) %this is also called right before the second hit
+  328:  		Add  *Var[0]  00000001 
+				Add *Var[0] 5 % this is supposed to be 6 damage
+  338:  		Call     PartnerDamageEnemy 	( *Var[1] 00000080 00000000 00000000 *Var[0] 00000030 ) 
+				Call	 GetActorPos 	( .Actor:Partner *Var[4] *Var[5] *Var[6] )
+				Call	 PlayEffect ( 00000000 *Var[4] *Var[5] *Var[6] ) %steam
+				Call     PlaySoundAtActor 	( .Actor:Partner 00000000 )
+				ExecWait $Script_80239CA8
+				Return
+          
+  35C:  EndSwitch
+
+		%hopefully this section spawns the "nice" text somewhere
+  3E0:  Thread
+  3E8:  	Call     UseBattleCamPreset 	( 00000032 )
+  3F8:  	Wait     00000005 
+  404:  	Call     SetGoalToTarget 	( .Actor:Partner )
+  414:  	Call     UseBattleCamPreset 	( 00000035 )
+  424:  EndThread
+  42C:  Call     80269524 ( *Var[F] )
+  43C:  Call     80269410 ( )
+  448:  Call     LoadActionCommand 	( 00000001 )
+  458:  Call     802A9000 ( )
+  464:  Call     802694A4 ( 00000000 )
+  474:  Call     802A9120 ( 00000018 00000003 )		%this might be important 
+  488:  Set  *Var[A]  00000018 
+  510:  Call     SetGoalToHome 	( .Actor:Partner )
+  520:  Call     SetJumpAnimations 	( .Actor:Partner 00000000 00090006 00090006 00090006 )
+  540:  Call     PlaySoundAtActor 	( .Actor:Partner 000000E2 )
+  554:  Call     $Function_8023817C ( *Var[A] 00000003 ) %is this the jump?
+		Call     SetAnimation 	( .Actor:Partner FFFFFFFF 00090001 )
+		Thread
+			Wait     00000004 
+			Call     SetActorRotationOffset 	( .Actor:Self 00000000 0000000C 00000000 )
+			Set  *Var[0]  000000B4 
+			Loop     00000003 
+				Add  *Var[0]  0000003C 
+				Call     SetActorRotation 	( .Actor:Self 00000000 00000000 *Var[0] )
+				Wait     00000001 
+			EndLoop
+			Call     SetActorRotation 	( .Actor:Self 00000000 00000000 00000000 )
+			Call     SetActorRotationOffset 	( .Actor:Self 00000000 00000000 00000000 )
+		EndThread
+		Call     SetGoalToHome 	( .Actor:Partner )
+		Call	 AddGoalPos 	( .Actor:Partner 00000000 FFFFFFF8 00000000 ) %to do: fix levitation somehow
+		Call     SetActorJumpGravity 	( .Actor:Partner *Fixed[1.2001953] )
+		Call     $Function_80238000 ( )
+		Call     JumpToGoal  	( .Actor:Partner *Var[0] 00000000 00000001 00000000 )
+		Call     SetAnimation 	( .Actor:Self 00000001 00090007 )
+		Call     SetGoalToHome 	( .Actor:Partner )
+		Call     SetActorSpeed 	( .Actor:Partner *Fixed[8.0] )
+		Call     SetAnimation 	( .Actor:Partner FFFFFFFF 00090003 )
+		Call     RunToGoal   	( .Actor:Partner 00000000 )
+		Call	 GetGoalPos		( .Actor:Partner *Var[0] *Var[1] *Var[2] )		
+		Call	 SetActorPos 	( .Actor:Partner *Var[0] 00000000 *Var[2] )
+		Call     SetAnimation 	( .Actor:Partner FFFFFFFF 00090001 )
+		Call     SetActorDispOffset ( .Actor:Partner 00000000 00000000 00000000 ) %I think this will fix the levitation really
+		Call     UseBattleCamPreset 	( 00000002 )
+		Call     SetGoalToHome 	( .Actor:Partner )
+  660:  Return
+  668:  End
+}
+
+%Animation fixes carried over from Dark Star's Mega Bonk
+#new:Script $ShakyCam
+{
+    0:  Call     80254218 ( 0000000B )
+   10:  Thread
+   18:  	Call     ShakeCam    	( 00000001 00000000 00000002 *Fixed[1.0] )
+   34:  	Call     ShakeCam    	( 00000001 00000000 00000002 *Fixed[3.0] )
+   50:  	Call     ShakeCam    	( 00000001 00000000 00000002 *Fixed[6.0] )
+   6C:  	Call     ShakeCam    	( 00000001 00000000 00000002 *Fixed[5.0] )
+   88:  	Call     ShakeCam    	( 00000001 00000000 00000002 *Fixed[4.0] )
+   A4:  	Call     ShakeCam    	( 00000001 00000000 00000002 *Fixed[3.0] )
+   C0:  	Call     ShakeCam    	( 00000001 00000000 00000002 *Fixed[2.0] )
+   DC:  	Call     ShakeCam    	( 00000001 00000000 00000002 *Fixed[1.0] )
+   F8:  	Call     ShakeCam    	( 00000001 00000000 00000002 *Fixed[0.5] )
+  114:  	Call     ShakeCam    	( 00000001 00000000 00000002 *Fixed[0.20019531] )
+  130:  EndThread
+  138:  Return
+  140:  End
+}
+
+%Functions carried over from Watt's Turbo Charge...
+#new:Function $Function_80238810
+{
+    0:  ADDIU     SP, SP, FFC8
+    4:  SW        S2, 18 (SP)
+    8:  COPY      S2, A0
+    C:  LA        V0, 800DC070
+   14:  SW        RA, 24 (SP)
+   18:  SW        S4, 20 (SP)
+   1C:  SW        S3, 1C (SP)
+   20:  SW        S1, 14 (SP)
+   24:  SW        S0, 10 (SP)
+   28:  SDC1      F22, 30 (SP)
+   2C:  SDC1      F20, 28 (SP)
+   30:  LW        S0, DC (V0)
+   34:  LW        A0, C (S2)
+   38:  LW        S1, D8 (V0)
+   3C:  BEQ       A1, R0, .o48
+   40:  ADDIU     S3, S0, C
+   44:  SW        R0, 70 (S2)
+        .o48
+   48:  LW        V1, 70 (S2)
+   4C:  LI        S4, 1
+   50:  BEQ       V1, S4, .o128
+   54:  SLTI      V0, V1, 2
+   58:  BEQL      V0, R0, .o70
+   5C:  LI        V0, 2
+   60:  BEQ       V1, R0, .o88
+   64:  NOP
+   68:  BEQ       R0, R0, .o298
+   6C:  NOP
+        .o70
+   70:  BEQ       V1, V0, .o1DC
+   74:  LI        V0, 3
+   78:  BEQ       V1, V0, .o28C
+   7C:  LI        V0, 2
+   80:  BEQ       R0, R0, .o298
+   84:  NOP
+        .o88
+   88:  LW        A1, 0 (A0)
+   8C:  JAL       ~Func:get_variable
+   90:  COPY      A0, S2
+   94:  SW        V0, 78 (S2)
+   98:  LWC1      F12, 144 (S1)
+   9C:  LWC1      F14, 148 (S1)
+   A0:  LW        A2, 144 (S0)
+   A4:  JAL       ~Func:dist2D
+   A8:  LW        A3, 148 (S0)
+   AC:  SWC1      F0, 58 (S0)
+   B0:  LWC1      F0, 144 (S1)
+   B4:  LIF       F2, 36.0
+   BC:  LWC1      F10, 144 (S0)
+   C0:  LIF       F4, 90.0
+   C8:  LIF       F6, 5.0
+   D0:  SWC1      F0, 18 (S0)
+   D4:  LWC1      F0, 148 (S1)
+   D8:  LIF       F8, 0.5
+   E0:  ADD.S     F0, F0, F2
+   E4:  LWC1      F2, 14C (S0)
+   E8:  SWC1      F0, 1C (S0)
+   EC:  LWC1      F12, 14C (S1)
+   F0:  LWC1      F0, 148 (S0)
+   F4:  LI        V0, 5A
+   F8:  SH        V0, 70 (S0)
+   FC:  LI        V0, A
+  100:  SWC1      F10, C (S0)
+  104:  SWC1      F2, 14 (S0)
+  108:  SWC1      F4, 54 (S0)
+  10C:  SWC1      F6, 50 (S0)
+  110:  SWC1      F8, 48 (S0)
+  114:  SWC1      F0, 10 (S0)
+  118:  SWC1      F12, 20 (S0)
+  11C:  SW        V0, 74 (S2)
+  120:  BEQ       R0, R0, .o298
+  124:  SW        S4, 70 (S2)
+        .o128
+  128:  LWC1      F0, 54 (S0)
+  12C:  LIF       F2, 6.28318
+  138:  NOP
+  13C:  MUL.S     F0, F0, F2
+  140:  NOP
+  144:  LIF       F2, 360.0
+  14C:  NOP
+  150:  DIV.S     F20, F0, F2
+  154:  JAL       ~Func:sin_rad
+  158:  MOV.S     F12, F20
+  15C:  MOV.S     F22, F0
+  160:  JAL       ~Func:cos_rad
+  164:  MOV.S     F12, F20
+  168:  LWC1      F2, 58 (S0)
+  16C:  MUL.S     F6, F2, F22
+  170:  NOP
+  174:  NEG.S     F2, F2
+  178:  MUL.S     F8, F2, F0
+  17C:  NOP
+  180:  LWC1      F2, 50 (S0)
+  184:  LWC1      F0, 48 (S0)
+  188:  ADD.S     F2, F2, F0
+  18C:  LWC1      F12, 54 (S0)
+  190:  ADD.S     F12, F12, F2
+  194:  LWC1      F4, 18 (S0)
+  198:  LWC1      F0, 1C (S0)
+  19C:  ADD.S     F4, F4, F6
+  1A0:  SWC1      F2, 50 (S0)
+  1A4:  ADD.S     F0, F0, F8
+  1A8:  SWC1      F12, 54 (S0)
+  1AC:  SWC1      F4, C (S0)
+  1B0:  JAL       ~Func:clamp_angle
+  1B4:  SWC1      F0, 10 (S0)
+  1B8:  LHU       V0, 70 (S0)
+  1BC:  SWC1      F0, 54 (S0)
+  1C0:  ADDIU     V0, V0, FFFF
+  1C4:  SH        V0, 70 (S0)
+  1C8:  SLL       V0, V0, 10
+  1CC:  BNE       V0, R0, .o298
+  1D0:  LI        V0, 2
+  1D4:  BEQ       R0, R0, .o298
+  1D8:  SW        V0, 70 (S2)
+        .o1DC
+  1DC:  LWC1      F0, 54 (S0)
+  1E0:  LIF       F2, 6.28318
+  1EC:  NOP
+  1F0:  MUL.S     F0, F0, F2
+  1F4:  NOP
+  1F8:  LIF       F2, 360.0
+  200:  NOP
+  204:  DIV.S     F20, F0, F2
+  208:  JAL       ~Func:sin_rad
+  20C:  MOV.S     F12, F20
+  210:  MOV.S     F22, F0
+  214:  JAL       ~Func:cos_rad
+  218:  MOV.S     F12, F20
+  21C:  LWC1      F2, 58 (S0)
+  220:  MUL.S     F6, F2, F22
+  224:  NOP
+  228:  NEG.S     F2, F2
+  22C:  MUL.S     F8, F2, F0
+  230:  NOP
+  234:  LWC1      F12, 54 (S0)
+  238:  LWC1      F0, 50 (S0)
+  23C:  ADD.S     F12, F12, F0
+  240:  LWC1      F2, 18 (S0)
+  244:  ADD.S     F2, F2, F6
+  248:  LWC1      F0, 1C (S0)
+  24C:  ADD.S     F0, F0, F8
+  250:  SWC1      F12, 54 (S0)
+  254:  SWC1      F2, C (S0)
+  258:  JAL       ~Func:clamp_angle
+  25C:  SWC1      F0, 10 (S0)
+  260:  LIF       F2, 45.0
+  268:  NOP
+  26C:  C.LT.S    F0, F2
+  270:  NOP
+  274:  BC1F      .o288
+  278:  SWC1      F0, 54 (S0)
+  27C:  LI        V0, 3
+  280:  BEQ       R0, R0, .o298
+  284:  SW        V0, 70 (S2)
+        .o288
+  288:  LI        V0, 2
+        .o28C
+  28C:  SW        R0, 18C (S1)
+  290:  BEQ       R0, R0, .o304
+  294:  SW        R0, 18C (S0)
+        .o298
+  298:  LWC1      F0, 48 (S3)
+  29C:  LIF       F2, 180.0
+  2A4:  NOP
+  2A8:  C.LT.S    F2, F0
+  2AC:  NOP
+  2B0:  BC1FL     .o2BC
+  2B4:  SWC1      F2, 18C (S0)
+  2B8:  SW        R0, 18C (S0)
+        .o2BC
+  2BC:  LWC1      F0, 0 (S3)
+  2C0:  SWC1      F0, 144 (S0)
+  2C4:  LWC1      F0, 4 (S3)
+  2C8:  SWC1      F0, 148 (S0)
+  2CC:  LWC1      F0, 8 (S3)
+  2D0:  SWC1      F0, 14C (S0)
+  2D4:  LW        V0, 78 (S2)
+  2D8:  BNE       V0, R0, .o304
+  2DC:  CLEAR     V0
+  2E0:  LWC1      F0, 18C (S1)
+  2E4:  LWC1      F2, 74 (S2)
+  2E8:  CVT.S.W   F2, F2
+  2EC:  ADD.S     F0, F0, F2
+  2F0:  SWC1      F0, 18C (S1)
+  2F4:  LW        V0, 74 (S2)
+  2F8:  ADDIU     V0, V0, 1
+  2FC:  SW        V0, 74 (S2)
+  300:  CLEAR     V0
+        .o304
+  304:  LW        RA, 24 (SP)
+  308:  LW        S4, 20 (SP)
+  30C:  LW        S3, 1C (SP)
+  310:  LW        S2, 18 (SP)
+  314:  LW        S1, 14 (SP)
+  318:  LW        S0, 10 (SP)
+  31C:  LDC1      F22, 30 (SP)
+  320:  LDC1      F20, 28 (SP)
+  324:  JR        RA
+  328:  ADDIU     SP, SP, 38
+}
+
+% This one too...
+#new:Function $Function_80238B3C
+{
+    0:  ADDIU     SP, SP, FFD8
+    4:  SW        S1, 1C (SP)
+    8:  COPY      S1, A0
+    C:  SW        RA, 24 (SP)
+   10:  SW        S2, 20 (SP)
+   14:  SW        S0, 18 (SP)
+   18:  LW        S0, C (S1)
+   1C:  LW        A1, 0 (S0)
+   20:  JAL       ~Func:get_variable
+   24:  ADDIU     S0, S0, 4
+   28:  LW        A1, 0 (S0)
+   2C:  ADDIU     S0, S0, 4
+   30:  COPY      A0, S1
+   34:  JAL       ~Func:get_variable
+   38:  COPY      S2, V0
+   3C:  COPY      A0, S1
+   40:  LW        A1, 0 (S0)
+   44:  JAL       ~Func:get_variable
+   48:  COPY      S0, V0
+   4C:  CLEAR     A0
+   50:  MTC1      S2, F2
+   54:  NOP
+   58:  CVT.S.W   F2, F2
+   5C:  MFC1      A1, F2
+   60:  MTC1      S0, F2
+   64:  NOP
+   68:  CVT.S.W   F2, F2
+   6C:  MFC1      A2, F2
+   70:  MTC1      V0, F2
+   74:  NOP
+   78:  CVT.S.W   F2, F2
+   7C:  LIF       F0, 1.0
+   84:  MFC1      A3, F2
+   88:  LI        V1, 3C
+   8C:  SW        V1, 14 (SP)
+   90:  JAL       ~Func:playFX_58
+   94:  SWC1      F0, 10 (SP)
+   98:  COPY      V1, V0
+   9C:  LW        A0, C (V1)
+   A0:  LI        V0, 2
+   A4:  SAW       V1, $End[4]
+   AC:  COPY      V1, V0
+   B0:  SW        V1, 30 (A0)
+   B4:  LW        RA, 24 (SP)
+   B8:  LW        S2, 20 (SP)
+   BC:  LW        S1, 1C (SP)
+   C0:  LW        S0, 18 (SP)
+   C4:  JR        RA
+   C8:  ADDIU     SP, SP, 28
+}
+% And probably this one...
+#new:Function $Function_80238C08
+{
+    0:  LW        V1, 84 (A0)
+    4:  LA        A1, 800DC070
+    C:  BLEZ      V1, .o1C
+   10:  LI        V0, 1
+   14:  BEQ       R0, R0, .o20
+   18:  SW        V0, 84 (A0)
+        .o1C
+   1C:  SW        R0, 84 (A0)
+        .o20
+   20:  SW        R0, C0 (A0)
+   24:  SW        V1, AC (A0)
+   28:  LB        V0, 9B (A1)
+   2C:  SLT       V0, V0, V1
+   30:  BEQ       V0, R0, .o58
+   34:  LI        V0, 1
+   38:  SB        V1, 9B (A1)
+   3C:  SB        V0, 9C (A1)
+   40:  COPY      V0, V1
+   44:  LW        V1, 43C (A1)
+   48:  SLL       V0, V0, 18
+   4C:  LW        V1, C (V1)
+   50:  SRA       V0, V0, 18
+   54:  SH        V0, 24 (V1)
+        .o58
+   58:  LA        A0, 800DC070
+   60:  LW        V1, 4 (A0)
+   64:  ANDI      V0, V1, 2
+   68:  BEQ       V0, R0, .o74
+   6C:  ORI       V0, V1, 100
+   70:  SW        V0, 4 (A0)
+        .o74
+   74:  JR        RA
+   78:  LI        V0, 2
+}

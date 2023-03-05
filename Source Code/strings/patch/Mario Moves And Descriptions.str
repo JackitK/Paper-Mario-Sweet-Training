@@ -1,0 +1,47 @@
+%Move names
+#message:2A:00F
+{
+Ooze Wack[End]
+}
+
+#message:26:067
+{
+Ooze Wack[End]
+}
+
+%Move descriptions Short....
+#message:23:067
+{
+A weak strike that may poison.[End]
+}
+
+%Move description long....
+#message:25:067
+{
+Lets you do Ooze Wack. [BR]
+Use 1 FP. The attack is weak,[BR]
+but it may also poison the[BR]
+enemy it hits.[End]
+}
+
+
+
+%Brand new moves....
+
+%Tempest Stomp (Name, short desc, long desc)
+#message:26:110
+{
+Gale Stomp[End]
+}
+#message:23:110
+{
+Stomp a foe with a gust of wind.[BR]
+More effective on aerial foes.[End]
+}
+#message:25:110
+{
+Lets you do Gale Stomp. [BR]
+Use 2 FP. Stomp on a foe for[BR]
+wind damage. Wind damage is[BR]
+extra effective on airbone foes.[End]
+}

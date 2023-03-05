@@ -1,0 +1,1469 @@
+% Alternations on Dojo text:
+
+% New opening for the Master
+#message:02:017
+{
+	[Style Right]
+	Ah, Mario...[Pause 10] just the person[BR]
+	I wished to see.[BR]
+	[Wait][Next]
+	Me and my pupils just got back[BR]
+	from a mythical place known as[BR]
+	Glace Island.[BR]
+	[Wait][Next]
+	We trained there and are now[BR]
+	stronger than ever.[BR]
+	[Wait][Next]
+	I would like to see how much[BR]
+	stronger you have become[BR]
+	as well...[BR]
+	[Wait][Next]
+	If you wish to train with us,[BR]
+	please speak to me so that we[BR]
+	can begin our session...[BR]
+	[Wait][Next]
+	So, would you like to begin?[BR]
+	[Yield][End]
+}
+
+% Chan??
+#message:02:01B
+{
+	[Style Right]
+	At Glace Island I tried to[BR]
+	master the art of Tea Bending,[BR]
+	but I was not adept enough[BR]
+	with water to master it.[BR]
+	[Wait][Next]
+	While useful on its own, to[BR]
+	truly master Tea Bending one[BR]
+	must know when to use items[BR]
+	tying to tea...[BR]
+	[Wait][Next]
+	Tea Bending on its own has[BR]
+	uses, but certain items will[BR]
+	enchance its abilities.[BR]
+	[Wait][Next]
+	You use an item, and how the[BR]
+	tea attack behaves can change[BR]
+	completly![Pause 5] Tea of Sleep could[BR]
+	make a foe Dizzy instead![BR]
+	[Wait][Next]
+	A secret I learned is that this[BR]
+	change in your tea attack[BR]
+	lingers until you use it.[BR]
+	[Wait][Next]
+	So perhaps you can set up[BR]
+	the tea's effect in advance[BR]
+	and then wait for the perfect[BR]
+	moment to strike![BR]
+	[Wait][End]
+}
+
+% Lee??
+#message:02:01C
+{
+	[Style Right]
+	Glace Island has interesting[BR]
+	fighting styles...[BR]
+	[Wait][Next]
+	Sugar Sparkies have the[BR]
+	ability to change the way[BR]
+	they attack based on the[BR]
+	situation they're in.[BR]
+	[Wait][Next]
+	When fighting alongside one[BR]
+	you should pay mind to how[BR]
+	each attack behaves,[Pause 5] not just[BR]
+	its elemental property.[Wait][End]
+}
+
+% If you loose...
+#message:02:042
+{
+	[Style Right]
+	Hm...[BR]
+	[Pause 10]You lack strength.[Pause 15][BR]
+	You have skill, though.[Pause 10] Perhaps[BR]
+	this will ease your training...[BR]
+	[Wait][Next]
+	Make a new game and name your[BR]
+	file "[SaveColor][Color:02]Mercy[RestoreColor]"[BR]
+	to start in an easier timeline.[BR]
+	[Wait][Next]
+	Then come back after your[BR]
+	mastered your abilities...[BR]
+	[Pause 10][PrintRising][Shake]Cough...hack...[Wait][End]
+}
+
+
+%Create a custom choice selection for choosing an element...
+% (Not actually used for anything yet but one can dream)
+#message:1E:050
+{
+	[Style Choice pos=90,60 size=140,75]
+	[StartChoice]
+	[Option 0][Color 0x23]Star[BR]
+	[Option 1][Color 0x20]Fire[BR]
+	[Option 2][Color 0x25]Ice[BR]
+	[Option 3][Color 0x0A]Electric[BR]
+	[EndChoice cancel=3][End]
+}
+
+
+
+%Dojo Exclusive text
+
+% Change to Volt Shroom battle message to reflect the new effects
+#message:1D:08E
+{
+	Mario and partner are electrified![BR]
+	Tea now has Paraylzing effects!![End]
+}
+
+% Tattle Lee Rush
+#message:1C:08A
+{
+	[Style Right]
+	This is Lee disguised as Rush.[BR]
+	[Pause 10]He's weak to ice due to[BR]
+	sticking the electric form, but it[BR]
+	also means contact will be shocking![BR]
+	[Wait][Next]
+	He will swap as he attacks, so[BR]
+	it's hard to tell which attack[BR]
+	he'll do until he hits you. They[BR]
+	carry similar secondary effects too.[BR]
+	[Wait][Next]
+	Don't forget the fire one strikes[BR]
+	twice so be ready to block.[BR]
+	[Wait][Next]
+	Man,[Pause 5] there must be alot to keep[BR]
+	track of when you can swap elements[BR]
+	like that,[Pause 10] I know it would make[BR]
+	my head spin![Wait][End]
+}
+
+% Tattle Lee Chai
+#message:1C:08A
+{
+	[Style Right]
+	This is Lee disguised a Chai.[BR]
+	[Pause 10]Wow,[Pause 5] he looks almost as[BR]
+	weak as the real thing![BR]
+	Weak to Electric.[BR]
+	[Wait][Next]
+	He's not strong but he is bulkly.[BR]
+	Plus that Hearty Flop attack will[BR]
+	heal him as he attacks us.[BR]
+	[Wait][Next]
+	If we had a way to make him[BR]
+	gradually take damage, then[BR]
+	we wouldn't even have to worry[BR]
+	about that though.[Wait][End]
+}
+
+%Welcome to "Fondant Training"
+#message:2F:300
+{
+	[Style Inspect]
+	Welcome to a gameplay[BR]
+	demo of Sweet Expedition.[BR]
+	[Wait][Next]
+	Here you can try out some of[BR]
+	skills and abilities exclusive[BR]
+	to Sweet Expedition...[BR]
+	[Wait][Next]
+	...by testing your meddle against[BR]
+	the Master and his pupils.[BR]
+	[Wait][Next]
+	Is it possible to beat every[BR]
+	battle?[Pause 10] Who knows?[BR]
+	[Wait][Next]
+	Either way I hope you have fun.[BR]
+	[Pause 10] - JackitK[Wait][End]
+}
+% Credits message...
+#message:2F:351
+{
+	[Style Inspect]
+	Credits:[BR]
+	Code referenced and borrowed[BR]
+	from Dark Star for certain[BR]
+	abilities...[BR]
+	[Wait][Next]
+	Scripting, writing, edits to[BR]
+	sprites and art by JackitK.[BR]
+	[Wait][Next]
+	And special thanks to the Paper[BR]
+	Mario modding community for all[BR]
+	the help along the way.[BR]
+	[Wait][Next]
+	Including but not limited to...[BR]
+	Rain, Wrymouth, elDexter,[BR]
+	Shadeblade, and more.[BR]
+	[Wait][End]
+}
+
+% Victory Message (Normal mode)
+#message:2F:301
+{
+	[Style Inspect]
+	Congrats! You've beat every[BR]
+	battle this game mode has[BR]
+	to offer...[BR]
+	[Wait][Next]
+	...but did you know this isn't[BR]
+	the only game mode Sweet Training[BR]
+	has to offer?[BR]
+	[Wait][Next]
+	Give your file different name[BR]
+	for different types of challenges![BR]
+	[Wait][Next]
+	Start by taking this Candy Star[BR]
+	and search behind the item shop.[BR]
+	You may find a special surprise.[BR]
+	[Wait][Next]
+	Plus, talk to everyone in town.[BR]
+	Some of them may have even more[BR]
+	secrets for you.[BR]
+	[Wait][Next]
+	Thank you for playing and look[BR]
+	forward to more Sweet Expedition[BR]
+	news in the future.[BR]
+	[Wait][Next]
+	This project has taken much longer[BR]
+	than planned, but hopefully this[BR]
+	will help show my appreciation for[BR]
+	your patience.[BR]
+	[Wait][End]
+}
+
+% Victory Message (Normal mode)
+#message:2F:33E
+{
+	[Style Inspect]
+	Wow! You beat the hard[BR]
+	versions of the Master and[BR]
+	his pupils...[BR]
+	[Wait][Next]
+	You might be ready for an[BR]
+	even greater challenge...[BR]
+	Here's a file code for a[BR]
+	super player like you![BR]
+	[Wait][Next]
+	Name your file "[SaveColor][Color:02]MegaHard[RestoreColor]"[BR]
+	to take on these battles with a[BR]
+	handicap to your abilities.[BR]
+	[Wait][Next]
+	If that's not enough, take[BR]
+	this Candy Star to the[BR]
+	trader for an even crazier[BR]
+	mission...[BR]
+	[Wait][Next]
+	Thanks again for playing.[BR]
+	[Wait][End]
+}
+
+#message:2F:350
+{
+	[Style Inspect]
+	You can't leave...[BR]
+	[Wait][End]
+}
+
+% Candy Star trader Introduction
+#message:2F:302
+{
+	[Style Right]
+	Well...[Pause 10]this a bit tangy...[Pause 5] You're[BR]
+	not supposed to find me yet.[Pause 15][BR]
+	Welp, nothing stopping me from[BR]
+	introducing myself now...[BR]
+	[Wait][Next]
+	I'm a Raven that loves Candy[BR]
+	Stars! They're the sweetest[BR]
+	things around![Pause 10] So I collect as[BR]
+	many as I can.[BR]
+	[Wait][Next]
+	Typically, I hang out at Glace[BR]
+	Island.[Pause 10] But I decided to spice[BR]
+	things up and take a visit to[BR]
+	Toad Town today instead![BR]
+	[Wait][Next]
+	If you find any Candy Stars,[BR]
+	hook me up.[Pause 5] I'll give you a[BR]
+	treat to make it worthwhile.[BR]
+	[Wait][End]
+}
+
+% Candy Star trader Revist 
+#message:2F:303
+{
+	[Style Right]
+	Hey![Pause 10] [BR]
+	Any luck finding Candy Stars?[BR]
+	[Wait][End]
+}
+
+% No Candy Star/Hint of where to find one
+#message:2F:304
+{
+	[Style Right]
+	Oh![Pause 5] No luck?[BR]
+	[Wait][Next]
+	You know, I hear that Dojo[BR]
+	Master found something sweet[BR]
+	in his training and travels...[BR]
+	[Wait][Next]
+	Maybe if you prove you're tough[BR]
+	enough, he can share something[BR]
+	to widen your pallet.[BR]
+	[Wait][End]
+}
+
+
+% Candy Star trade Part 1
+#message:2F:305
+{
+	[Style Right]
+	Oh![Pause 5] You found one![BR]
+	Let's trade!
+	[Wait][End]
+}
+
+% Candy Star trade Part 2
+#message:2F:306
+{
+	[Style Right]
+	Well,[Pause 5] the bad news is I left all[BR]
+	my delectable goods back home[BR]
+	on Glace Island...[BR]
+	[Wait][Next]
+	All I got with me is this[BR]
+	Speedy Spin badge...[BR]
+	[Wait][Next]
+	But maybe this little secret[BR]
+	will quench your appetite.[BR]
+	[Wait][Next]
+	I hear if you[Wave] start a new game[BR]
+	and name your save file[BR][/fx]
+	"[SaveColor][Color:02]Master[RestoreColor]"...[BR]
+	something real spicy happens.[BR]
+	[Wait][Next]
+	Not sure what "new game" and[BR]
+	"name file" mean, but you look[BR]
+	like the sort of bloke that[BR]
+	can figure that out.[BR]
+	[Wait][Next]
+	I bet there's other secret[BR]
+	phrases like this scattered[BR]
+	around town as well.[BR]
+	[Wait][Next]
+	Best of luck finding them all![BR]
+	[Wait][End]
+}
+
+
+% Repeat filename secret...
+#message:2F:307
+{
+	[Style Right]
+	Start a new game with "[SaveColor][Color:02]Master[RestoreColor]"[BR]
+	for a spicy challenge...[BR]
+	[Wait][Next]
+	I wonder what that's all about?[BR]
+	[Wait][End]
+}
+
+% Repeat filename secret (Hard Mode)...
+#message:2F:338
+{
+	[Style Right]
+	Start a new game with[BR]
+	"[SaveColor][Color:02]AllSinks[RestoreColor]"[BR]
+	for a challenge that throws[BR]
+	everything at you at once.[BR]
+	[Wait][Next]
+	Good luck, you're gonna need it.[BR]
+	[Wait][End]
+}
+
+
+% Add dialouge for if you trade Candy Stars in a hard mode...
+#message:2F:337
+{
+	[Style Right]
+	Oh? [Pause 10]You knew that already?[BR]
+	Okay wise guy, here's a real[BR]
+	doozy of a sweet for ya...[BR]
+	[Wait][Next]
+	Name your save file "[SaveColor][Color:02]AllSinks[RestoreColor]"...[BR]
+	for a challenge mode that throws[BR]
+	everything at you at once.[BR]
+	[Wait][Next]
+	What does that mean? Why not[BR]
+	try it out and see...[Pause 15][BR]
+	If you're brave enough.[BR]
+	[Wait][End]
+}
+
+% Candy Star trade Part 2 (If filename is currently AllSinks)
+#message:2F:308
+{
+	[Style Right]
+	Wait? You knew that too??[BR]
+	...[Pause 15][BR]
+	[Wait][Next]
+	Welp,[Pause 5] I got nothing,[Pause 5] you'll[BR]
+	have to come visit me on Glace[BR]
+	Island if you want something[BR]
+	really luscious from me.[BR]
+	[Wait][Next]
+	In the meantime, take this.[BR]
+	[Wait][End]
+}
+
+% Candy Star Reject trade
+#message:2F:309
+{
+	[Style Right]
+	Really? You went through all of[BR]
+	that trouble and aren't even[BR]
+	gonna trade?[BR]
+	[Wait][Next]
+	Well, there's nothing else you[BR]
+	can do with that Candy Star.[BR]
+	So I'll be here... waiting.[BR]
+	[Wait][End]
+}
+
+
+
+%---- Tea Toad Dialouge---
+% Introduction 
+#message:2F:310
+{
+	[Style Right]
+	Hello, I'm Ginger T.[Pause 10][BR]
+	I'm a tea loving Toad that enjoys[BR]
+	collecting tea leaves, and other[BR]
+	items to enhace their flavors.[BR]
+	[Wait][Next]
+	Have you heard of a land called[BR]
+	Glace Island?[Pause 10][BR]
+	I hear some amazing things about[BR]
+	the tea on that island...[BR]
+	[Wait][Next]
+	Really? Your friends are from [BR]
+	Glace Island!?[Pause 10][BR]
+	Our meeting must of been fate![BR]
+	[Wait][Next]
+	I hear there's rare items on the[BR]
+	island that enchance tea in[BR]
+	various ways.[BR]
+	[Wait][Next]
+	If you know anyone who uses tea[BR]
+	in combat, you can even use these[BR]
+	items to change their attacks.[BR]
+	[Wait][Next]
+	In honor of our new friendship,[BR]
+	I'd like to give you some items...[BR]
+	[Wait][End]
+}
+
+%Introduction part 2
+#message:2F:31A
+{
+	[Style Right]
+	Oh, I know![Pause 5] Why don't you do[BR]
+	some training at the Dojo?[BR]
+	[Wait][Next]
+	I'll share some tea items with[BR]
+	you based on how well you do.[Pause 10][BR]
+	I'd be more than happy to share[BR]
+	with a fellow tea fan! [HEART][BR]
+	[Wait][End]
+}
+
+
+#message:2F:31B
+{
+	[Style Right]
+	Don't give up yet![BR]
+	I know you can do it![BR]
+	[Wait][Next]
+	If you can at least get a[BR]
+	Second-Degree card, I'd be[BR]
+	more than happy to share more[BR]
+	tea with you.[BR]
+	[Wait][Next]
+	Good luck fellow tea fan! [HEART][BR]
+	[Wait][End]
+}
+
+% Repated disscussion
+#message:2F:311
+{
+	[Style Right]
+	Hello friend![Pause 5] You enjoying the[BR]
+	wonders of tea today?[BR]
+	[Wait][End]
+}
+
+% After beating pupils
+#message:2F:312
+{
+	[Style Right]
+	Yes! I knew you could do it! [HEART][BR]
+	Did you get a chance to try out[BR]
+	the power of the tea items?[BR]
+	[Wait][Next]
+	Sleepy Tea is already good with[BR]
+	it's sleep inducing abilities,[BR]
+	but with tea items, you can do[BR]
+	even more with it![BR]
+	[Wait][Next]
+	Here's a couple to try out...[BR]
+	I wonder if they're potent[BR]
+	enough to get through even the[BR]
+	Master's defenses?[BR]
+	[Wait][End]
+}
+
+% After giving tea items (or after recieving all rare tea items)
+#message:2F:313
+{
+	[Style Right]
+	Best of luck out there![BR]
+	[Wait][End]
+}
+
+% Have not recieved Halt Tea (dialouge 1)
+#message:2F:314
+{
+	[Style Right]
+	Those fights may be tough,[BR]
+	but you have a Tea-bender[BR]
+	on your side...[Pause 10][BR]
+	I believe you can do it![BR]
+	[Wait][Next]
+	In fact, come see me once you[BR]
+	get the Third-Degree Card.[BR]
+	[Wait][Next]
+	I have a pretty rare item[BR]
+	that can really get you out[BR]
+	of a pinch in a battle.[BR]
+	[Wait][Next]
+	Think of it as a little[BR]
+	motivation to do your best[BR]
+	in your training![BR]
+	[Wait][End]
+}
+
+% Have not recieved Halt Tea (abridged version)
+#message:2F:315
+{
+	[Style Right]
+	Don't forget to come see me[BR]
+	once you get the Third[BR]
+	degree card...[BR]
+	[Wait][Next]
+	I promise it'll be well worth[BR]
+	the trouble.[BR]
+	[Wait][End]
+}
+
+% Have not recieved Halt Tea (abridged version)
+#message:2F:334
+{
+	[Style Right]
+	Visit me once you get the[BR]
+	once you get the Fourth[BR]
+	Degree card...[BR]
+	[Wait][Next]
+	I don't have much left[BR]
+	but maybe I can find[BR]
+	a little something[BR]
+	to help...[BR]
+	[Wait][End]
+}
+
+% Giving it in battle
+#message:2F:316
+{
+	[Style Right]
+	You got the Third Degree card![BR]
+	Wow! You're very strong![BR]
+	Not just you, I bet your Glace[BR]
+	Island friends were very helpful.[BR]
+	[Wait][Next]
+	Like I promised, here's a very[BR]
+	special item. Even on Glace Island[BR]
+	this is very rare! So treat it[BR]
+	with care.[BR]
+	[Wait][Next]
+	I hear when a Tea-bender uses[BR]
+	it, their tea will halt anyone in[BR]
+	their tracks.[BR]
+	[Wait][Next]
+	Think of me whenever you use it[BR]
+	in battle, okay? [HEART][BR]
+	[Wait][End]
+}
+
+% Final Reward Tease
+#message:2F:31C
+{
+	[Style Right]
+	I don't have much left to give,[BR]
+	but let me know when you get the[BR]
+	Fourth Degree Card...[BR]
+	[Wait][Next]
+	It's no Halt Herb, but it could[BR]
+	come in handy in a pinch...[BR]
+	[Pause 10]Best of luck![BR]
+	[Wait][End]
+}
+
+% Final Reward
+#message:2F:31D
+{
+	[Style Right]
+	You did it! You've come[BR]
+	so far...[BR]
+	[Wait][Next]
+	Though now, the Master will[BR]
+	be fighting at his fullest.[BR]
+	[Wait][Next]
+	Lucky for you, I held on to[BR]
+	this...[BR]
+	[Wait][Next]
+	...just in case you used up[BR]
+	all your items getting this far.[BR]
+	[Wait][Next]
+	It's still not going to be easy,[BR]
+	but I believe in you Mario! [HEART][BR]
+	[Wait][End]
+}
+
+% Give the Tea Only code for beating the Master...
+#message:2F:330
+{
+	[Style Right]
+	Incredible![Pause 5] I knew a tea master[BR]
+	such as yourself could do it![BR]
+	[Wait][Next]
+	I think you deserve an extra[BR]
+	special gift![BR]
+	[Wait][Next]
+	I don't have any more tea items[BR]
+	to give you...[BR]
+	[Wait][Next]
+	but some fella claiming to be a[BR]
+	Raven did share an extra special[BR]
+	secret with me.[BR]
+	[Wait][Next]
+	If you start a new game and[BR]
+	name your file...[Pause 15] "[SaveColor][Color:02]TeaTime[RestoreColor]"[Pause 10][BR]
+	you can do a special challenge.[bR]
+	[Wait][Next]
+	But I know it'll be no problem[BR]
+	for a tea master like you! [HEART][BR]
+	[Wait][End]
+}
+% Give the Tea Only code for beating the Master (Hard version)...
+#message:2F:33F
+{
+	[Style Right]
+	Amazing!![Pause 5] You had mastery in[BR]
+	those battles like none other![BR]
+	I think a master player like you[BR]
+	could handle this code...[BR]
+	[Wait][Next]
+	Start a new game and and name[BR]
+	your file...[Pause 15] "[SaveColor][Color:02]SuperTea[RestoreColor]"[Pause 10][BR]
+	to do a tea only challenge with[BR]
+	these harder battles...[BR]
+	[Wait][Next]
+	It may be tough, but I believe[BR]
+	in you tea master! [HEART][BR]
+	[Wait][End]
+}
+% Give the Tea Only code for beating the Master...
+#message:2F:331
+{
+	[Style Right]
+	Don't forget, name a file[BR]
+	"[SaveColor][Color:02]TeaTime[RestoreColor]"[BR]
+	for a special tea themed[BR]
+	challenge![BR]
+	[Wait][End]
+}
+% Give the Tea Only code for beating the Master (Hard version)...
+#message:2F:340
+{
+	[Style Right]
+	Don't forget, name a file[BR]
+	"[SaveColor][Color:02]SuperTea[RestoreColor]"[BR]
+	for a special tea themed[BR]
+	challenge![BR]
+	[Wait][End]
+}
+% No room for items
+#message:2F:317
+{
+	[Style Right]
+	Oh dear![Pause 10] It looks[BR]
+	like you don't have any room.[BR]
+	[Wait][Next]
+	Come back here after you've[BR]
+	made some space. I'll be sure[BR]
+	to hold onto these for when[BR]
+	you come back.[BR]
+	[Wait][End]
+}
+
+% You refused items [ie) Doing a No Items run]
+#message:2F:332
+{
+	[Style Right]
+	...Huh? [Pause 15]You don't want any tea?[Pause 15][BR]
+	Okay...[Pause 10]...[Pause 5] you just looked like[BR]
+	you were a big fan of tea.[BR]
+	Sorry to be a burden on you.[BR]
+	[Wait][End]
+}
+
+% Beat Master without tea...
+#message:2F:333
+{
+	[Style Right]
+	Incredible! You did it! You[BR]
+	didn't even need my help to do so![BR]
+	[Wait][Next]
+	I bet you really wish you had at[BR]
+	least a little tea now though,[Pause 5][BR]
+	don't you?[BR]
+	[Wait][Next]
+	Here's a secret...[BR]
+	start a new game and name[BR]
+	your file... "[SaveColor][Color:02]TeaTime[RestoreColor]"[Pause 10][BR]
+	to do a special challenge.[BR]
+	[Wait][Next]
+	Probably won't be a challenge[BR]
+	for you, but it could be fun![BR]
+	[Wait][End]
+}
+
+% New Message for shop keeper to sastify them not doing their service today.
+#message:2F:318
+{
+	[Style Right]
+	Hello Mario! Today we're doing[BR]
+	a special of tropical delicacies.[BR]
+	[Wait][Next]
+	All these yummy treats are[BR]
+	imported right from Glace Island.[Pause 5][BR]
+	The island of sweets![BR]
+	[Wait][Next]
+	Sadly, our staff are backlogged[BR]
+	with orders... [BR]
+	[Wait][Next]
+	So we cannot offer our usual[BR]
+	services of selling, storing[BR]
+	or checking items today.[BR]
+	[Wait][Next]
+	We are sorry for the inconvence,[BR]
+	but feel free to enjoy our [BR]
+	assortment of sweets.[BR]
+	[Wait][Next]
+	In fact, here's a free sample![BR]
+	[Wait][End]
+}
+
+% No room...
+#message:2F:319
+{
+	[Style Right]
+	...but it doesn't look like you[BR]
+	have the space.[BR]
+	[Wait][Next]
+	Stop by later. I'll be sure to[BR]
+	hold onto this for you.[BR]
+	[Wait][End]
+}
+
+% Itemless mode...
+#message:2F:335
+{
+	[Style Right]
+	Sorry Mario, some man in green[BR]
+	bought up all of our stock...[BR]
+	[Wait][Next]
+	I don't even have any free[BR]
+	samples left to hand out.[BR]
+	Sorry about that...[BR]
+	[Wait][End]
+}
+
+% Repeat visits...
+#message:2F:320
+{
+	[Style Right]
+	Sorry Mario, only one sample[BR]
+	per customer. Even for Mushroom[BR]
+	Kingdom heroes![BR]
+	[Wait][Next]
+	You'll have to save up if you[BR]
+	want any more,[Pause 5] just like [BR]
+	everyone else.[BR]
+	[Wait][End]
+}
+
+% Repeat visits...
+#message:2F:329
+{
+	[Style Right]
+	No means no,[Pause 5][BR]
+	No matter how many times[BR]
+	you ask![BR]
+	[Wait][End]
+}
+
+% Repeat visits...
+#message:2F:32A
+{
+	[Style Right]
+	Listen carefully...[Pause 5][BR]
+	You[Pause 10] will[Pause 10] not[Pause 10] get[Pause 10] any[Pause 10][BR]
+	more[Pause 10] items[Pause 10] from[Pause 10] me.[Pause 10][BR]
+	[Wait][End]
+}
+% Repeat visits...
+#message:2F:32B
+{
+	[Style Right]
+	No![BR]
+	[Wait][End]
+}
+% Repeat visits...
+#message:2F:32C
+{
+	[Style Right]
+	You think if you keep[BR]
+	pestering me about it[BR]
+	that I'll eventually cave?[BR]
+	[Wait][Next]
+	I'm not that type of Toad.[BR]
+	In fact, you can have the[BR]
+	literal opposite of a gift...[BR]
+	[Wait][Next]
+	"[SaveColor][Color:02]FoxOnly[RestoreColor]"[Pause 10][BR]
+	Not sure how you use it,[Pause 5] but[BR]
+	it apparently takes away[BR]
+	all your items when you use it.[BR]
+	[Wait][End]
+}
+% Repeat visits...
+#message:2F:32D
+{
+	[Style Right]
+	"[SaveColor][Color:02]FoxOnly[RestoreColor]"[Pause 10][BR]
+	That's all I have left[BR]
+	to say to you.[BR]
+	[Wait][Next]
+	One sample per customer and[BR]
+	I'm never gonna budge on that.[BR]
+	[Wait][End]
+}
+
+% ---- Mis. NPCs in the room
+
+% Red Toad at the enterance
+#message:2F:321
+{
+	[Style Right]
+	Hey there Mario![Pause 5] Have you heard[BR]
+	of Glace Island? It's been all[BR]
+	the rage ever since they opened[BR]
+	up to tourism.[BR]
+	[Wait][Next]
+	Even Rust T. has gotten into it.[BR]
+	I bet if you give him a visit,[BR]
+	he can tell you all about the[BR]
+	people and places of the island.[BR]
+	[Wait][Next]
+	Might even be worth a visit for a[BR]
+	refresher on battle strategies.[BR]
+	They might be a bit different[BR]
+	from how you remembered...[BR]
+	[Wait][End]
+}
+
+% Red Toad in front the shop...
+#message:2F:322
+{
+	[Style Right]
+	Hey Mario! Did you hear that[BR]
+	the shop is having a "Sweet [BR]
+	Sell-Out" on treats from[BR]
+	Glace Island?[BR]
+	[Wait][Next]
+	They're doing a one day sale[BR]
+	on a bunch of sweets you can[BR]
+	normally only get on Glace Island.[BR]
+	[Wait][Next]
+	They've been selling out like[BR]
+	hot-cakes, so I doubt you'll be[BR]
+	able to get any...[BR]
+	[Wait][Next]
+	...but they are doing a special[BR]
+	deal were every customer gets[BR]
+	a free sample.[BR]
+	[Wait][Next]
+	You should go check it out.[BR]
+	[Wait][End]
+}
+
+% Toad Couple by the fountain (Part 1)
+#message:2F:323
+{
+	[Style Right]
+	Glace Island treats are sweet[BR]
+	but nothing is sweeter than[BR]
+	you my love![BR]
+	[Wait][Next]
+	Together we shall overcome[BR]
+	any challenge no matter[BR]
+	how thick or thin.
+	[Wait][End]
+}
+
+% Toad Couple by the fountain (Part 1)
+#message:2F:324
+{
+	[Style Right]
+	Oh my love! The world can[BR]
+	be more bitter than a cup[BR]
+	of Mugwort or Carqueja...[BR]
+	[Wait][Next]
+	...but as long as you're[BR]
+	with me, we can endure any[BR]
+	hardship, no matter how[BR]
+	sour or bitter.[BR]
+	[Wait][End]
+}
+
+% Family inside the house (Housewife)
+#message:2F:325
+{
+	[Style Right]
+	My sweetie treated me to some[BR]
+	Glace Island teas earlier.[BR]
+	[Wait][Next]
+	They're known for their sweets[BR]
+	but their tea are really wonderful[BR]
+	as well. It's nutritious and tasty.[BR]
+	[Wait][Next]
+	I hear there is even an entire[BR]
+	fighting style dedicated to[BR]
+	mastering its use for mending[BR]
+	wonds and affecting the mind.[BR]
+	[Wait][Next]
+	I wonder what that sort of[BR]
+	tea tastes like?[BR]
+	[Wait][End]
+}
+
+% Family inside the house (Husband)
+#message:2F:326
+{
+	[Style Right]
+	I've been working extra hours[BR]
+	at the castle to try and save[BR]
+	up enough to buy treats for all[BR]
+	the kids at home.[BR]
+	[Wait][Next]
+	It's a one day sale, so we got to[BR]
+	get enough to enjoy year 'round.[BR]
+	[Wait][Next]
+	Think I'm also going to get a[BR]
+	couple Static Leafs for my wife[BR]
+	because she's the spark of[BR]
+	my life. [HEART] [BR]
+	[Wait][End]
+}
+
+% Family inside the house (Little Kid on the left)
+#message:2F:327
+{
+	[Style Right]
+	Dad has been spending a lot of[BR]
+	time at the castle lately...[Pause 10][BR]
+	He tells me he's doing it so[BR]
+	he can get us lots of sweets.[BR]
+	[Wait][Next]
+	But the sweetest thing is when[BR]
+	he is home playing with us![BR]
+	[Wait][Next]
+	I hope we can spend a lot of[BR]
+	time together today.[BR]
+	[Wait][End]
+}
+
+% Family inside the house (Little Kid on the right)
+#message:2F:328
+{
+	[Style Right]
+	I really want a Choco Kaboom![BR]
+	I bet with something like that[BR]
+	I could be as strong as you![BR]
+	[Wait][Next]
+	But Mom and Dad won't get me[BR]
+	one. They say it's way too[BR]
+	dangerous for a kid like me...[BR]
+	[Wait][Next]
+	I heard there's even a super[BR]
+	mega ultra powerful one that[BR]
+	blows up on everyone, including[BR]
+	yourself...[BR]
+	[Wait][Next]
+	...okay maybe THAT one is a[BR]
+	little too dangerous for me.[BR]
+	[Wait][Next]
+	Hey Mario, if you ever find a[BR]
+	Choco Kaboom, be sure to give[BR]
+	those meanies a big KA-BAM![BR]
+	for me, okay?[BR]
+	[Wait][End]
+}
+
+% Family inside the house (Little Kid on the left)
+#message:2F:327
+{
+	[Style Right]
+	Dad has been spending a lot of[BR]
+	time at the castle lately...[Pause 10][BR]
+	He tells me he's doing it so[BR]
+	he can get us lots of sweets.[BR]
+	[Wait][Next]
+	But the sweetest thing is when[BR]
+	he is home playing with us![BR]
+	[Wait][Next]
+	I hope we can spend a lot of[BR]
+	time together today.[BR]
+	[Wait][End]
+}
+
+
+#message:2F:336
+{
+	[Style Inspect]
+	There was a hidden note[BR]
+	inside the block.[Pause 10][BR]
+	The message reads...[BR]
+	[Wait][Next]
+	To reveal the forbidden Berserker[BR]
+	badge, start a new game and[BR]
+	name the file "[SaveColor][Color:02]Berserk[RestoreColor]".[BR]
+	[Wait][Next]
+	It's power is unmatched but it[BR]
+	is said to make anyone who equips[BR]
+	it go out of control with rage.[Pause 15][BR]
+	Wear it if you dare... >:)[BR]
+	[Wait][End]
+}
+
+% New phase 2 text for Master
+#message:02:033
+{
+[Style Right]
+Mario, [Pause 5][SaveColor][Color:07]you aren't the only one[RestoreColor][BR]
+[SaveColor][Color:07]to master the elements![RestoreColor][Wait][End]
+}
+
+% Luigi Hi...
+#message:2F:33A
+{
+	[Style Right]
+	Hey Bro! How's it going?[BR]
+	[Wait][End]
+}
+
+% Luigi reveals file code
+#message:2F:33B
+{
+	[Style Right]
+	What!? You actually beat him!?[BR]
+	Again![Pause 10] And he had crazy[BR]
+	elemental powers!? That's wild![BR]
+	[Wait][Next]
+	That's my bro! Stomping the[BR]
+	floor with anyone that gets[BR]
+	in his way![Pause 15][BR]
+	That reminds me...[BR]
+	[Wait][Next]
+	Some shady raven has been[BR]
+	trading secrets to people around [BR]
+	town for Candy Stars...[BR]
+	[Wait][Next]
+	But you're my bro! I know I can[BR]
+	trust you with a good secret![BR]
+	[Wait][Next]
+	Apparently, you start a new[BR]
+	game and name the save file [BR]
+	"[SaveColor][Color:02]Danger[RestoreColor]" to start a [BR]
+	"Danger run".[BR]
+	[Wait][Next]
+	It starts you with more BP and[BR]
+	even a couple new badges, but[BR]
+	you only have 5 HP.[BR]
+	[Wait][Next]
+	Sounds dangerous,[Pause 5] not my[BR]
+	cup of tea...[Pause 10] but I bet someone[BR]
+	as super as you Mario could do[BR]
+	it no problem.[BR]
+	[Wait][End]
+}
+
+% File code repeat
+#message:2F:33C
+{
+	[Style Right]
+	Want that secret code [BR]
+	again bro?[Pause 10] Name your save file[BR]
+	"[SaveColor][Color:02]Danger[RestoreColor]"[BR]
+	to start up a Danger run.[BR]
+	[Wait][End]
+}
+% Opening Dialouge for Luigi
+#message:2F:33D
+{
+	[Style Right]
+	Pipe home broke down. So I'm[BR]
+	just doing some work to fix[BR]
+	it up...[BR]
+	[Wait][Next]
+	It's gonna take some time to[BR]
+	get it working again.[Pause 10] Why don't[BR]
+	you check out what's going on[BR]
+	around town in the meantime?[BR]
+	[Wait][Next]
+	I heard the Master and his[BR]
+	pupils over at the dojo have[BR]
+	been itching for a rematch.[BR]
+	[Wait][Next]
+	Let me know how it goes if you[BR]
+	decide to spar with them.[BR]
+	[Wait][Next]
+	I'd go check myself, but I[BR]
+	gotta keep working on this pipe.[BR]
+	...[Pause 10] yeah...[Pause 10] that pipe ain't gonna[BR]
+	fix itself after all![BR]
+	[Wait][End]
+}
+
+% After talking to him once (But before he reveals his secret)
+#message:2F:341
+{
+	[Style Right]
+	Hey,[Pause 10] since you got so much free[BR]
+	time, you mind checking out[BR]
+	that warp pipe over by the[BR]
+	pond over there?[BR]
+	[Wait][Next]
+	Maybe there's some parts that[BR]
+	can fix this pipe somewhere[BR]
+	in the Toad Town underground...[BR]
+	[Wait][Next]
+	I'll be here...[Pause 10] not like I can go[BR]
+	anywhere until we get this pipe[BR]
+	fixed after all.[BR]
+	[Wait][End]
+}
+
+% Checked out the pipe
+#message:2F:342
+{
+	[Style Right]
+	So you checked out that pipe?[BR]
+	What's that?[Pause 10] A shady block [BR]
+	had an onimous code about a[BR]
+	forbidden badge...[BR]
+	[Wait][Next]
+	Spooky![Pause 5] That reminds me...[Pause 10][BR]
+	Some shady raven has been[BR]
+	trading secrets to people around [BR]
+	town for Candy Stars...[BR]
+	[Wait][Next]
+	But you're my bro! I know I can[BR]
+	trust you with a good secret![BR]
+	[Wait][Next]
+	Apparently, you start a new[BR]
+	game and name the save file [BR]
+	"[SaveColor][Color:02]Danger[RestoreColor]" to start a [BR]
+	"Danger run".[BR]
+	[Wait][Next]
+	It starts you with more BP and[BR]
+	even a couple new badges, but[BR]
+	you only have 5 HP.[BR]
+	[Wait][Next]
+	Sounds dangerous,[Pause 5] not my[BR]
+	cup of tea...[Pause 10] but I bet someone[BR]
+	as super as you Mario could do[BR]
+	it no problem.[BR]
+	[Wait][End]
+}
+
+% Chan's dire dialouge for All Sink mode.
+#message:2F:343
+{
+	[Style Right]
+	Oof![Pause 5] My vitality is weakening...[Pause 10][BR]
+	I think it's time to go all out![BR]
+	[Wait][End]
+}
+% Master3 new text when hp is low enough to do triple attacks
+#message:2F:344
+{
+	[Style Right]
+	Hmm...[Pause 5] I seem to have taken[BR]
+	you for granted Mario...[Pause 15][BR]
+	Very well, time to face the[BR]
+	wrath of my ultimate attacks![BR]
+	[Wait][End]
+}
+% Master3 exclusive less than 10 HP text...
+#message:2F:345
+{
+	[Style Right]
+	No![Pause 5] I've come too far to give up![Pause 10][BR]
+	No more holding anything back![BR]
+	[Wait][End]
+}
+
+% Final Desination Shopkeeper text
+#message:2F:346
+{
+	[Style Right]
+	That said,[Pause 5] a bird that stopped[BR]
+	by earlier and gave me a code[BR]
+	for my last Star Candy...[BR]
+	[Wait][Next]
+	How about I share that to make[BR]
+	up for my lack of wares?[BR]
+	[Wait][Next]
+	If you name a file "[SaveColor][Color:02]FinalDes[RestoreColor]"[BR]
+	you can do a "hard-core"[BR]
+	no item run...[Pause 10][BR]
+	Whatever that means.[bR]
+	[Wait][Next]
+	Maybe you can make more sense[BR]
+	out of it than me...[BR]
+	[Wait][End]
+}
+% Final Desination Shopkeeper text abridged
+#message:2F:347
+{
+	[Style Right]
+	If you name a file "[SaveColor][Color:02]FinalDes[RestoreColor]"[BR]
+	you can do a "hard-core"[BR]
+	no item run...[Pause 10][BR]
+	Whatever that means.[bR]
+	[Wait][Next]
+	Maybe you can make more sense[BR]
+	out of it than me...[BR]
+	[Wait][End]
+}
+
+% Special message for beating AllSinks
+#message:2F:348
+{
+	[Style Inspect]
+	...[Pause 10]Wow...[Pause 10][BR]
+	You actually spent all that[BR]
+	time trying to beat that... [Pause 20]Why?[Wait][End]
+}
+
+%----Filename Cheat text....---
+
+#message:2F:400
+{
+	[Style Inspect]
+	Danger mode unlocked. [BR]
+	[Wait][Next]
+	Mario will start with 5 HP[BR]
+	and with Danger Badges.[Wait][End]
+}
+
+#message:2F:400
+{
+	[Style Inspect]
+	Danger mode unlocked. [BR]
+	[Wait][Next]
+	Mario will start with 5 HP[BR]
+	and with Danger Badges.[Wait][End]
+}
+
+#message:2F:401
+{
+	[Style Inspect]
+	Cheater mode unlocked...[BR]
+	[Wait][Next]
+	Nice try Cheater.[Wait][End]
+}
+
+#message:2F:402
+{
+	[Style Inspect]
+	Tea Only mode unlocked. [BR]
+	[Wait][Next]
+	All of Mario's healing items[BR]
+	have been replaced with items[BR]
+	that affect Tea.[BR][Wait][End]
+}
+
+#message:2F:403
+{
+	[Style Inspect]
+	Grand Challenge Mode unlocked.[BR]
+	[Wait][Next]
+	Mario and partners have been[BR]
+	downgraded and your items[BR]
+	are more limited.[BR]
+	[Wait][Next]
+	That's not even the worst[BR]
+	of your worries...[BR]
+	[Wait][End]
+}
+
+#message:2F:404
+{
+	[Style Inspect]
+	Downgrade Mode unlocked.[BR]
+	[Wait][Next]
+	Partners,[Pause 5] along with Mario's[BR]
+	boots and hammer have been[BR]
+	downgraded to Super.[BR]
+	[Wait][End]
+}
+#message:2F:405
+{
+	[Style Inspect]
+	Easy Mode unlocked.[BR]
+	[Wait][Next]
+	Mario will start off[BR]
+	with more HP and FP.[BR]
+	[Wait][Next]
+	More items and badges have[BR]
+	been added as well.[BR]
+	[Wait][End]
+}
+#message:2F:406
+{
+	[Style Inspect]
+	Itemless Mode unlocked.[BR]
+	[Wait][Next]
+	Mario will start with no items, in[BR]
+	exchange for extra badges and[BR]
+	status such as HP, FP, and BP.[BR]
+	[Wait][Next]
+	Also, NPCs like Ginger T. will no[BR]
+	longer give you items.[BR]
+	[Wait][End]
+}
+#message:2F:407
+{
+	[Style Inspect]
+	Super Tea Mode unlocked.[BR]
+	[Wait][Next]
+	Not only will fights be more[BR]
+	tough, but you will be limited[BR]
+	to only tea items.[BR]
+	[Wait][Next]
+	You may notice other minor[BR]
+	changes in this mode as well.[BR]
+	[Wait][End]
+}
+#message:2F:408
+{
+	[Style Inspect]
+	Berserker Mode unlocked.[BR]
+	[Wait][Next]
+	Mario starts with extra badges,[BR]
+	including the Berserker badge.[BR]
+	[Wait][End]
+}
+#message:2F:409
+{
+	[Style Inspect]
+	"Everything Plus the Kitchen Sink"[BR]
+	unlocked...[BR]
+	[Wait][Next]
+	Mario will start itemless, with 5 HP,[BR]
+	with downgraded partners, hammer,[BR]
+	and boots. [BR]
+	The berserker badge is included.[BR]
+	[Wait][Next]
+	Your opponents will also be [BR]
+	be stronger...[Pause 15][BR]
+	Possibly with even more tricks[BR]
+	than your typical hard mode...[BR]
+	[Wait][Next]
+	This mode is not for the faint[BR]
+	of heart...[BR]
+	[Wait][End]
+}
+
+#message:2F:40A
+{
+	[Style Inspect]
+	Challenge Mode unlocked.[BR]
+	[Wait][Next]
+	Mario will have less items to[BR]
+	use and your challengers have[BR]
+	new tricks up their sleeves.[BR]
+	[Wait][Next]
+	Do you have what it takes[BR]
+	to handle this grand challenge?[BR]
+	[Wait][End]
+}
+
+#message:2F:40B
+{
+	[Style Inspect]
+	Final Desintation unlocked.[BR]
+	aka itemless challenge mode.[BR]
+	[Wait][Next]
+	Mario will have no items and[BR]
+	and fights will be tougher.[BR]
+	Don't go looking for freebies[BR]
+	either...[BR]
+	[Wait][Next]
+	This mode is not for the faint[BR]
+	of heart...[BR]
+	[Wait][End]
+}
+
+% Message that plays when giving items to the player out of pitty
+#message:2F:410
+{
+	[Style Inspect]
+	It looks like you had a hard[BR]
+	time out there...[BR]
+	[Wait][End]
+}
+% Message to nudge the player to check out Ginger T.
+#message:2F:411
+{
+	[Style Inspect]
+	Have you explored around the[BR]
+	town yet?[BR]
+	[Wait][Next]
+	I hear there's a Toad hanging[BR]
+	around the dojo that might[BR]
+	have something that could[BR]
+	help you in your training.[BR]
+	[Wait][End]
+}
