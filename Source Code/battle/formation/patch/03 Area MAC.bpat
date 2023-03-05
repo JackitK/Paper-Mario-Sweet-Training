@@ -218,7 +218,7 @@
 {
     .Status:Normal      0`
 	.Status:Default     0`
-	.Status:Sleep      100`
+	.Status:Sleep      0`
 	.Status:Poison     100`
 	.Status:Frozen      0`
 	.Status:Dizzy      100`
@@ -228,7 +228,7 @@
 	.Status:Shrink     50`
 	.Status:Stop      100`
 	.Status:DefaultTurnMod    0`
-	.Status:SleepTurnMod      2`
+	.Status:SleepTurnMod      0`
 	.Status:PoisonTurnMod     2` % Add two extra turns of poison to keep up with danger D-Downpound
 	.Status:FrozenTurnMod     0`
 	.Status:DizzyTurnMod      0`
