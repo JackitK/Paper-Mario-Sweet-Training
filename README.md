@@ -1,1 +1,1 @@
-# PaperMario_SweetTraining
+# Paper Mario Sweet Training
