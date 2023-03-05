@@ -1,0 +1,1094 @@
+%look at fivehealth.patch for some other stuff
+
+%some random data helpful for storing stuff
+#export:Data $RandomBattleData
+{
+	00000000
+}
+
+%import the badge equipped function from other mods
+%Sometimes is_ability_active or the other ones can't be used for some reason so this is another way
+%This one does not touch anything other than A0
+
+% A0 = badge ID, returns boolean on A0
+% Doesn't follow calling convention, deal with it.
+
+%well at least it is guaranteed not to touch any of the other values
+#export:Function $IsBadgeEquipped %8043f280 (can move around when you add more stuff?)
+{
+PUSH	S1, S2, S3
+.Init
+LIO		S2, 8010F498	% position in list
+ADDIU	S3, S2, 7E		% end of list
+.Loop
+LH		S1, 0 (S2)
+BEQL	A0, S1, .End
+ADDIU	A0, R0, 1 % return true
+BNE		S2, S3, .Loop
+ADDIU	S2, S2, 2
+ADDIU	A0, R0, 0 % return false
+.End
+POP		S1, S2, S3
+JR		RA
+NOP
+}
+
+%#export $IsBadgeEquipped
+
+
+%Item spawn function
+%801313F4
+%A0 = Item ID
+%A1-A3 = Position (vector3 floats)
+%It also uses stack arguments
+%(SP + 4) = (float) (Return value from some function?)
+%(SP + 8) = (float)	(Return value from some function?)
+%(SP + C) = (float)	(Return value from some function?)
+%(SP + 10) = mode (Determines how item behaves, whether it is stationary or uses physics, see item struct)
+%(SP + 14) = ??? (certain values prevent item from spawning entirely)
+%(SP + 18) = ??? (Determines trajectory?) (values influence how fast item will move away?)
+%(SP + 1C) = ??? (No noticable effect)
+
+
+
+%Get playerdata value
+%	Returns value of (second arg) + playerdata into (first arg)
+#export:Function $Function_GetPlayerDataByte %( out, offset ) 
+{
+PUSH RA, A0, A1, S0, S1, S2
+COPY	S2, A0
+LW		S1, C (A0)
+LW		A1, 0 (S1) %get argument 1
+COPY	S0, A1
+ADDIU	S1, S1, 4
+COPY	A0, S2
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 2
+%S0 = first arg pointer
+%V0 = second arg
+LIO		T0, 8010F290
+ADD		T0, T0, V0
+LBU		T1, 0 (T0)
+%store
+COPY	A2, T1
+COPY	A0, S2
+ADDIU	S1, S1, FFFC
+JAL		~Func:set_variable
+LW		A1, 0 (S1) %get argument 1
+POP RA, A0, A1, S0, S1, S2
+JR	RA
+ADDIU	V0, R0, 2
+}
+
+%Get battle data value
+%	Returns value of (second arg) + battle data into (first arg)
+#export:Function $Function_GetBattleDataByte %( out, offset ) 
+{
+PUSH RA, A0, A1, S0, S1, S2
+COPY	S2, A0
+LW		S1, C (A0)
+LW		A1, 0 (S1) %get argument 1
+COPY	S0, A1
+ADDIU	S1, S1, 4
+COPY	A0, S2
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 2
+%S0 = first arg pointer
+%V0 = second arg
+LIO		T0, 800DC070
+ADD		T0, T0, V0
+LBU		T1, 0 (T0)
+%store
+COPY	A2, T1
+COPY	A0, S2
+ADDIU	S1, S1, FFFC
+JAL		~Func:set_variable
+LW		A1, 0 (S1) %get argument 1
+POP RA, A0, A1, S0, S1, S2
+JR	RA
+ADDIU	V0, R0, 2
+}
+
+%Get arbitrary byte
+%	Returns value of (second arg) into (first arg)
+#export:Function $Function_GetArbitraryByte %( out, address ) 
+{
+PUSH RA, A0, A1, S0, S1, S2
+COPY	S2, A0
+LW		S1, C (A0)
+LW		A1, 0 (S1) %get argument 1
+COPY	S0, A1
+ADDIU	S1, S1, 4
+COPY	A0, S2
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 2
+%S0 = first arg pointer
+%V0 = second arg
+%LIO	T0, 800DC070
+%ADD	T0, T0, V0
+COPY	T0, V0
+LBU		T1, 0 (T0)
+%store
+COPY	A2, T1
+COPY	A0, S2
+ADDIU	S1, S1, FFFC
+JAL		~Func:set_variable
+LW		A1, 0 (S1) %get argument 1
+POP RA, A0, A1, S0, S1, S2
+JR	RA
+ADDIU	V0, R0, 2
+}
+
+#export:Function $Function_GetArbitraryShort %( out, address ) 
+{
+PUSH RA, A0, A1, S0, S1, S2
+COPY	S2, A0
+LW		S1, C (A0)
+LW		A1, 0 (S1) %get argument 1
+COPY	S0, A1
+ADDIU	S1, S1, 4
+COPY	A0, S2
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 2
+%S0 = first arg pointer
+%V0 = second arg
+%LIO	T0, 800DC070
+%ADD	T0, T0, V0
+COPY	T0, V0
+LHU		T1, 0 (T0)
+%store
+COPY	A2, T1
+COPY	A0, S2
+ADDIU	S1, S1, FFFC
+JAL		~Func:set_variable
+LW		A1, 0 (S1) %get argument 1
+POP RA, A0, A1, S0, S1, S2
+JR	RA
+ADDIU	V0, R0, 2
+}
+
+#export:Function $Function_GetArbitraryWord %( out, address ) 
+{
+PUSH RA, A0, A1, S0, S1, S2
+COPY	S2, A0
+LW		S1, C (A0)
+LW		A1, 0 (S1) %get argument 1
+COPY	S0, A1
+ADDIU	S1, S1, 4
+COPY	A0, S2
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 2
+%S0 = first arg pointer
+%V0 = second arg
+%LIO	T0, 800DC070
+%ADD	T0, T0, V0
+COPY	T0, V0
+LW		T1, 0 (T0)
+%store
+COPY	A2, T1
+COPY	A0, S2
+ADDIU	S1, S1, FFFC
+JAL		~Func:set_variable
+LW		A1, 0 (S1) %get argument 1
+POP RA, A0, A1, S0, S1, S2
+JR	RA
+ADDIU	V0, R0, 2
+}
+
+#export:Function $Function_SetArbitraryByte %( in, address ) 
+{
+PUSH RA, A0, A1, S0, S1, S2
+COPY	S2, A0
+LW		S1, C (A0)
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 1
+COPY	S0, V0
+ADDIU	S1, S1, 4
+COPY	A0, S2
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 2
+%S0 = arg 1
+%V0 = arg 2
+COPY	T0, V0
+SB		S0, 0 (T0)
+POP RA, A0, A1, S0, S1, S2
+JR	RA
+ADDIU	V0, R0, 2
+}
+
+#export:Function $Function_SetArbitraryShort %( in, address ) 
+{
+PUSH RA, A0, A1, S0, S1, S2
+COPY	S2, A0
+LW		S1, C (A0)
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 1
+COPY	S0, V0
+ADDIU	S1, S1, 4
+COPY	A0, S2
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 2
+%S0 = arg 1
+%V0 = arg 2
+COPY	T0, V0
+SH		S0, 0 (T0)
+POP RA, A0, A1, S0, S1, S2
+JR	RA
+ADDIU	V0, R0, 2
+}
+
+#export:Function $Function_SetArbitraryWord %( in, address ) 
+{
+PUSH RA, A0, A1, S0, S1, S2
+COPY	S2, A0
+LW		S1, C (A0)
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 1
+COPY	S0, V0
+ADDIU	S1, S1, 4
+COPY	A0, S2
+JAL		~Func:get_variable
+LW		A1, 0 (S1) %get argument 2
+%S0 = arg 1
+%V0 = arg 2
+COPY	T0, V0
+SW		S0, 0 (T0)
+POP RA, A0, A1, S0, S1, S2
+JR	RA
+ADDIU	V0, R0, 2
+}
+
+
+
+%Fix a problem with GetCurrentPartner I'm having
+/%
+@Function F74D4
+{
+	NOP
+}
+%/
+/%
+% 000F74BC --> 802D2B0C
+#new:Function $Function_GetCurrentPartner
+{
+    0:  ADDIU     SP, SP, FFE8
+    4:  SW        RA, 10 (SP)
+    8:  LW        V0, C (A0)
+    C:  LAB       V1, 8010EBB0		%This pointer is sometimes 0, which seems to break this function
+   14:  LW        A1, 0 (V0)
+   18:  BEQ       V1, R0, .o2C
+   1C:  CLEAR     A2
+   20:  LA        V0, 8010F290
+   28:  LB        A2, 12 (V0)		%this value always seems to be correct, not sure that the top conditional <-- no, it's used to find which partner you're currently using?
+        .o2C
+   2C:  JAL       ~Func:set_variable
+   30:  NOP
+   34:  LW        RA, 10 (SP)
+   38:  LI        V0, 2
+   3C:  JR        RA
+   40:  ADDIU     SP, SP, 18
+}
+%/
+
+
+%I need a special version of BoostAttack and BoostDefense that allows enemies to buff themselves
+%	The problem with the originals is that they have this stupid property where it just cancels the scripts when the arrow appears
+
+%scratch that, I'll just modify the real one and hope that it never causes problems
+
+@Function 19E918
+{
+NOP
+NOP
+}
+
+@Function 19EDB8
+{
+NOP
+NOP
+}
+
+/%
+% 0019E5B4 --> 8026FCD4
+#export:Function $Function_BoostAttackSelf
+{
+    0:  ADDIU     SP, SP, FFC0
+    4:  SW        S2, 20 (SP)
+    8:  COPY      S2, A0
+    C:  SW        RA, 24 (SP)
+   10:  SW        S1, 1C (SP)
+   14:  SW        S0, 18 (SP)
+   18:  SDC1      F24, 38 (SP)
+   1C:  SDC1      F22, 30 (SP)
+   20:  SDC1      F20, 28 (SP)
+   24:  LW        S1, C (S2)
+   28:  BNEL      A1, R0, .o30
+   2C:  SW        R0, 70 (S2)
+        .o30
+   30:  LW        V0, 70 (S2)
+   34:  BNE       V0, R0, .oEC
+   38:  NOP
+   3C:  LW        A1, 0 (S1)
+   40:  ADDIU     S1, S1, 4
+   44:  JAL       ~Func:get_variable
+   48:  COPY      A0, S2
+   4C:  COPY      S0, V0
+   50:  LI        V0, FF81
+   54:  BNE       S0, V0, .o60
+   58:  NOP
+   5C:  LW        S0, 148 (S2)
+        .o60
+   60:  LW        A1, 0 (S1)
+   64:  JAL       ~Func:get_variable
+   68:  COPY      A0, S2
+   6C:  COPY      S1, V0
+   70:  JAL       ~Func:get_actor
+   74:  COPY      A0, S0
+   78:  COPY      S0, V0
+   7C:  LI        A0, 8
+   80:  SW        S0, 74 (S2)
+   84:  JAL       $Function_8024E40C
+   88:  SW        S1, 78 (S2)
+   8C:  JAL       ~Func:btl_cam_set_zoffset
+   90:  LI        A0, C
+   94:  LH        A0, 192 (S0)
+   98:  JAL       ~Func:btl_cam_target_actor
+   9C:  NOP
+   A0:  JAL       ~Func:btl_cam_set_zoom
+   A4:  LI        A0, FA
+   A8:  JAL       ~Func:btl_cam_move
+   AC:  LI        A0, A
+   B0:  JAL       $Function_8024E60C
+   B4:  NOP
+   B8:  LW        V0, 0 (S0)
+   BC:  ANDI      V0, V0, 800
+   C0:  BEQ       V0, R0, .oD4
+   C4:  LI        V0, 1
+   C8:  JAL       ~Func:btl_cam_set_zoffset
+   CC:  CLEAR     A0
+   D0:  LI        V0, 1
+        .oD4
+   D4:  SAB       V0, 8029FBD4
+   DC:  LI        V0, 5
+   E0:  SW        V0, 7C (S2)
+   E4:  LI        V0, 1
+   E8:  SW        V0, 70 (S2)
+        .oEC
+   EC:  JAL       ~Func:get_actor
+   F0:  LW        A0, 148 (S2)
+   F4:  LW        S0, 74 (S2)
+   F8:  LW        S1, 78 (S2)
+   FC:  LH        V0, 150 (S0)
+  100:  LW        V1, 0 (S0)
+  104:  LWC1      F0, 144 (S0)
+  108:  MTC1      V0, F2
+  10C:  NOP
+  110:  CVT.S.W   F2, F2
+  114:  ANDI      V0, V1, 800
+  118:  BEQ       V0, R0, .o154
+  11C:  ADD.S     F10, F0, F2
+  120:  LH        V0, 152 (S0)
+  124:  LWC1      F2, 148 (S0)
+  128:  MTC1      V0, F0
+  12C:  NOP
+  130:  CVT.S.W   F0, F0
+  134:  LBU       V0, 191 (S0)
+  138:  ADD.S     F2, F2, F0
+  13C:  SRL       V0, V0, 1
+  140:  MTC1      V0, F0
+  144:  NOP
+  148:  CVT.S.W   F0, F0
+  14C:  BEQ       R0, R0, .o1C0
+  150:  SUB.S     F6, F2, F0
+        .o154
+  154:  ANDI      V0, V1, 8000
+  158:  BNE       V0, R0, .o194
+  15C:  NOP
+  160:  LH        V0, 152 (S0)
+  164:  LWC1      F2, 148 (S0)
+  168:  MTC1      V0, F0
+  16C:  NOP
+  170:  CVT.S.W   F0, F0
+  174:  LBU       V0, 191 (S0)
+  178:  ADD.S     F2, F2, F0
+  17C:  SRL       V0, V0, 1
+  180:  MTC1      V0, F0
+  184:  NOP
+  188:  CVT.S.W   F0, F0
+  18C:  BEQ       R0, R0, .o1C0
+  190:  ADD.S     F6, F0, F2
+        .o194
+  194:  LH        V0, 152 (S0)
+  198:  LWC1      F0, 148 (S0)
+  19C:  MTC1      V0, F2
+  1A0:  NOP
+  1A4:  CVT.S.W   F2, F2
+  1A8:  LBU       V0, 191 (S0)
+  1AC:  ADD.S     F0, F0, F2
+  1B0:  MTC1      V0, F2
+  1B4:  NOP
+  1B8:  CVT.S.W   F2, F2
+  1BC:  ADD.S     F6, F0, F2
+        .o1C0
+  1C0:  LH        V0, 154 (S0)
+  1C4:  LH        V1, 150 (S0)
+  1C8:  LWC1      F0, 14C (S0)
+  1CC:  MTC1      V0, F2
+  1D0:  NOP
+  1D4:  CVT.S.W   F2, F2
+  1D8:  MTC1      V1, F4
+  1DC:  NOP
+  1E0:  CVT.S.W   F4, F4
+  1E4:  LBU       V0, 190 (S0)
+  1E8:  ADD.S     F0, F0, F2
+  1EC:  LIF       F2, 10.0
+  1F4:  LW        V1, 0 (S0)
+  1F8:  ADD.S     F8, F0, F2
+  1FC:  LWC1      F0, 144 (S0)
+  200:  SRL       V0, V0, 1
+  204:  ADD.S     F0, F0, F4
+  208:  MTC1      V0, F2
+  20C:  NOP
+  210:  CVT.S.W   F2, F2
+  214:  ANDI      V0, V1, 800
+  218:  BEQ       V0, R0, .o250
+  21C:  ADD.S     F24, F0, F2
+  220:  LH        V0, 152 (S0)
+  224:  LWC1      F0, 148 (S0)
+  228:  MTC1      V0, F2
+  22C:  NOP
+  230:  CVT.S.W   F2, F2
+  234:  LBU       V0, 191 (S0)
+  238:  ADD.S     F0, F0, F2
+  23C:  MTC1      V0, F2
+  240:  NOP
+  244:  CVT.S.W   F2, F2
+  248:  BEQ       R0, R0, .o2BC
+  24C:  SUB.S     F20, F0, F2
+        .o250
+  250:  ANDI      V0, V1, 8000
+  254:  BNE       V0, R0, .o28C
+  258:  NOP
+  25C:  LH        V0, 152 (S0)
+  260:  LWC1      F0, 148 (S0)
+  264:  MTC1      V0, F2
+  268:  NOP
+  26C:  CVT.S.W   F2, F2
+  270:  LBU       V0, 191 (S0)
+  274:  ADD.S     F0, F0, F2
+  278:  MTC1      V0, F2
+  27C:  NOP
+  280:  CVT.S.W   F2, F2
+  284:  BEQ       R0, R0, .o2BC
+  288:  ADD.S     F20, F2, F0
+        .o28C
+  28C:  LH        V0, 152 (S0)
+  290:  LWC1      F2, 148 (S0)
+  294:  MTC1      V0, F0
+  298:  NOP
+  29C:  CVT.S.W   F0, F0
+  2A0:  LBU       V0, 191 (S0)
+  2A4:  ADD.S     F2, F2, F0
+  2A8:  SLL       V0, V0, 1
+  2AC:  MTC1      V0, F0
+  2B0:  NOP
+  2B4:  CVT.S.W   F0, F0
+  2B8:  ADD.S     F20, F2, F0
+        .o2BC
+  2BC:  LH        V0, 154 (S0)
+  2C0:  LWC1      F0, 14C (S0)
+  2C4:  MTC1      V0, F2
+  2C8:  NOP
+  2CC:  CVT.S.W   F2, F2
+  2D0:  ADD.S     F0, F0, F2
+  2D4:  LW        V0, 70 (S2)
+  2D8:  LIF       F2, 10.0
+  2E0:  ADDIU     V1, V0, FFFF
+  2E4:  SLTIU     V0, V1, 5
+  2E8:  BEQ       V0, R0, .o478
+  2EC:  ADD.S     F22, F0, F2
+  2F0:  SLL       V0, V1, 2
+  2F4:  LTW       V0, V0 ($JumpTable_8029D808)
+  300:  JR        V0
+  304:  NOP
+	% LBL: from $JumpTable_8029D808 , entry 0`
+  308:  LW        V0, 7C (S2)
+  30C:  BNE       V0, R0, .o444
+  310:  ADDIU     V0, V0, FFFF
+  314:  LI        A0, 2
+  318:  MFC1      A1, F10
+  31C:  MFC1      A2, F6
+  320:  MFC1      A3, F8
+  324:  LIF       F0, 1.0
+  32C:  LI        S0, 1E
+  330:  SW        S0, 14 (SP)
+  334:  JAL       80070BB0
+  338:  SWC1      F0, 10 (SP)
+  33C:  JAL       $Function_8024E3D8
+  340:  LI        A0, 13
+  344:  LI        V0, 2
+  348:  SW        S0, 7C (S2)
+  34C:  BEQ       R0, R0, .o478
+  350:  SW        V0, 70 (S2)
+	% LBL: from $JumpTable_8029D808 , entry 1`
+  354:  LW        V0, 7C (S2)
+  358:  BNE       V0, R0, .o444
+  35C:  ADDIU     V0, V0, FFFF
+  360:  COPY      A0, S0
+  %364:  JAL       ~Func:dispatch_event_actor
+  %368:  LI        A1, 3F
+  36C:  JAL       $Function_8024E40C
+  370:  LI        A0, 2
+  374:  JAL       ~Func:btl_cam_move
+  378:  LI        A0, F
+  37C:  LBU       V0, 221 (S0)
+  380:  LI        V1, 1
+  384:  SB        V1, 220 (S0)
+  388:  ADDU      V0, V0, S1
+  38C:  SB        V0, 221 (S0)
+  390:  SLL       V0, V0, 18
+  394:  SRA       V0, V0, 18
+  398:  SLTI      V0, V0, 15
+  39C:  BNE       V0, R0, .o3AC
+  3A0:  ADDIU     A0, S1, FFFF
+  3A4:  LI        V0, 14
+  3A8:  SB        V0, 221 (S0)
+        .o3AC
+  3AC:  MFC1      A1, F24
+  3B0:  MFC1      A2, F20
+  3B4:  MFC1      A3, F22
+  3B8:  LIF       F0, 1.0
+  3C0:  LI        V0, 3C
+  3C4:  SW        V0, 14 (SP)
+  3C8:  JAL       800718D0
+  3CC:  SWC1      F0, 10 (SP)
+  3D0:  LI        V0, F
+  3D4:  SW        V0, 7C (S2)
+  3D8:  LI        V0, 3
+  3DC:  BEQ       R0, R0, .o478
+  3E0:  SW        V0, 70 (S2)
+	% LBL: from $JumpTable_8029D808 , entry 2`
+  3E4:  LW        V0, 7C (S2)
+  3E8:  BNE       V0, R0, .o444
+  3EC:  ADDIU     V0, V0, FFFF
+  3F0:  LI        A0, 1D
+  3F4:  LI        A1, 3C
+  3F8:  JAL       ~Func:btl_show_variable_battle_message
+  3FC:  COPY      A2, S1
+  400:  LI        V0, 4
+  404:  BEQ       R0, R0, .o478
+  408:  SW        V0, 70 (S2)
+	% LBL: from $JumpTable_8029D808 , entry 3`
+  40C:  JAL       ~Func:btl_is_popup_displayed
+  410:  NOP
+  414:  BNE       V0, R0, .o47C
+  418:  CLEAR     V0
+  41C:  JAL       $Function_8024E40C
+  420:  LI        A0, 2
+  424:  LI        V0, A
+  428:  SW        V0, 7C (S2)
+  42C:  LI        V0, 5
+  430:  BEQ       R0, R0, .o478
+  434:  SW        V0, 70 (S2)
+	% LBL: from $JumpTable_8029D808 , entry 4`
+  438:  LW        V0, 7C (S2)
+  43C:  BEQ       V0, R0, .o44C
+  440:  ADDIU     V0, V0, FFFF
+        .o444
+  444:  BEQ       R0, R0, .o478
+  448:  SW        V0, 7C (S2)
+        .o44C
+  44C:  LW        V0, 1D8 (S0)
+  450:  BEQ       V0, R0, .o468
+  454:  NOP
+  458:  JAL       ~Func:does_script_exist
+  45C:  LW        A0, 1E8 (S0)
+  460:  BNE       V0, R0, .o47C
+  464:  CLEAR     V0
+        .o468
+  468:  SAB       R0, 8029FBD4
+  470:  BEQ       R0, R0, .o47C
+  474:  LI        V0, 2
+        .o478
+  478:  CLEAR     V0
+        .o47C
+  47C:  LW        RA, 24 (SP)
+  480:  LW        S2, 20 (SP)
+  484:  LW        S1, 1C (SP)
+  488:  LW        S0, 18 (SP)
+  48C:  LDC1      F24, 38 (SP)
+  490:  LDC1      F22, 30 (SP)
+  494:  LDC1      F20, 28 (SP)
+  498:  JR        RA
+  49C:  ADDIU     SP, SP, 40
+}
+
+% 0019EA54 --> 80270174
+#export:Function $Function_BoostDefenseSelf
+{
+    0:  ADDIU     SP, SP, FFC0
+    4:  SW        S2, 20 (SP)
+    8:  COPY      S2, A0
+    C:  SW        RA, 24 (SP)
+   10:  SW        S1, 1C (SP)
+   14:  SW        S0, 18 (SP)
+   18:  SDC1      F24, 38 (SP)
+   1C:  SDC1      F22, 30 (SP)
+   20:  SDC1      F20, 28 (SP)
+   24:  LW        S1, C (S2)
+   28:  BNEL      A1, R0, .o30
+   2C:  SW        R0, 70 (S2)
+        .o30
+   30:  LW        V0, 70 (S2)
+   34:  BNE       V0, R0, .oEC
+   38:  NOP
+   3C:  LW        A1, 0 (S1)
+   40:  ADDIU     S1, S1, 4
+   44:  JAL       ~Func:get_variable
+   48:  COPY      A0, S2
+   4C:  COPY      S0, V0
+   50:  LI        V0, FF81
+   54:  BNE       S0, V0, .o60
+   58:  NOP
+   5C:  LW        S0, 148 (S2)
+        .o60
+   60:  LW        A1, 0 (S1)
+   64:  JAL       ~Func:get_variable
+   68:  COPY      A0, S2
+   6C:  COPY      S1, V0
+   70:  JAL       ~Func:get_actor
+   74:  COPY      A0, S0
+   78:  COPY      S0, V0
+   7C:  LI        A0, 8
+   80:  SW        S0, 74 (S2)
+   84:  JAL       $Function_8024E40C
+   88:  SW        S1, 78 (S2)
+   8C:  JAL       ~Func:btl_cam_set_zoffset
+   90:  LI        A0, C
+   94:  LH        A0, 192 (S0)
+   98:  JAL       ~Func:btl_cam_target_actor
+   9C:  NOP
+   A0:  JAL       ~Func:btl_cam_set_zoom
+   A4:  LI        A0, FA
+   A8:  JAL       ~Func:btl_cam_move
+   AC:  LI        A0, A
+   B0:  JAL       $Function_8024E60C
+   B4:  NOP
+   B8:  LW        V0, 0 (S0)
+   BC:  ANDI      V0, V0, 800
+   C0:  BEQ       V0, R0, .oD4
+   C4:  LI        V0, 1
+   C8:  JAL       ~Func:btl_cam_set_zoffset
+   CC:  CLEAR     A0
+   D0:  LI        V0, 1
+        .oD4
+   D4:  SAB       V0, 8029FBD4
+   DC:  LI        V0, 5
+   E0:  SW        V0, 7C (S2)
+   E4:  LI        V0, 1
+   E8:  SW        V0, 70 (S2)
+        .oEC
+   EC:  JAL       ~Func:get_actor
+   F0:  LW        A0, 148 (S2)
+   F4:  LW        S0, 74 (S2)
+   F8:  LW        S1, 78 (S2)
+   FC:  LH        V0, 150 (S0)
+  100:  LW        V1, 0 (S0)
+  104:  LWC1      F0, 144 (S0)
+  108:  MTC1      V0, F2
+  10C:  NOP
+  110:  CVT.S.W   F2, F2
+  114:  ANDI      V0, V1, 800
+  118:  BEQ       V0, R0, .o154
+  11C:  ADD.S     F10, F0, F2
+  120:  LH        V0, 152 (S0)
+  124:  LWC1      F2, 148 (S0)
+  128:  MTC1      V0, F0
+  12C:  NOP
+  130:  CVT.S.W   F0, F0
+  134:  LBU       V0, 191 (S0)
+  138:  ADD.S     F2, F2, F0
+  13C:  SRL       V0, V0, 1
+  140:  MTC1      V0, F0
+  144:  NOP
+  148:  CVT.S.W   F0, F0
+  14C:  BEQ       R0, R0, .o1C0
+  150:  SUB.S     F6, F2, F0
+        .o154
+  154:  ANDI      V0, V1, 8000
+  158:  BNE       V0, R0, .o194
+  15C:  NOP
+  160:  LH        V0, 152 (S0)
+  164:  LWC1      F2, 148 (S0)
+  168:  MTC1      V0, F0
+  16C:  NOP
+  170:  CVT.S.W   F0, F0
+  174:  LBU       V0, 191 (S0)
+  178:  ADD.S     F2, F2, F0
+  17C:  SRL       V0, V0, 1
+  180:  MTC1      V0, F0
+  184:  NOP
+  188:  CVT.S.W   F0, F0
+  18C:  BEQ       R0, R0, .o1C0
+  190:  ADD.S     F6, F0, F2
+        .o194
+  194:  LH        V0, 152 (S0)
+  198:  LWC1      F0, 148 (S0)
+  19C:  MTC1      V0, F2
+  1A0:  NOP
+  1A4:  CVT.S.W   F2, F2
+  1A8:  LBU       V0, 191 (S0)
+  1AC:  ADD.S     F0, F0, F2
+  1B0:  MTC1      V0, F2
+  1B4:  NOP
+  1B8:  CVT.S.W   F2, F2
+  1BC:  ADD.S     F6, F0, F2
+        .o1C0
+  1C0:  LH        V0, 154 (S0)
+  1C4:  LH        V1, 150 (S0)
+  1C8:  LWC1      F0, 14C (S0)
+  1CC:  MTC1      V0, F2
+  1D0:  NOP
+  1D4:  CVT.S.W   F2, F2
+  1D8:  MTC1      V1, F4
+  1DC:  NOP
+  1E0:  CVT.S.W   F4, F4
+  1E4:  LBU       V0, 190 (S0)
+  1E8:  ADD.S     F0, F0, F2
+  1EC:  LIF       F2, 10.0
+  1F4:  LW        V1, 0 (S0)
+  1F8:  ADD.S     F8, F0, F2
+  1FC:  LWC1      F0, 144 (S0)
+  200:  SRL       V0, V0, 1
+  204:  ADD.S     F0, F0, F4
+  208:  MTC1      V0, F2
+  20C:  NOP
+  210:  CVT.S.W   F2, F2
+  214:  ANDI      V0, V1, 800
+  218:  BEQ       V0, R0, .o250
+  21C:  ADD.S     F24, F0, F2
+  220:  LH        V0, 152 (S0)
+  224:  LWC1      F0, 148 (S0)
+  228:  MTC1      V0, F2
+  22C:  NOP
+  230:  CVT.S.W   F2, F2
+  234:  LBU       V0, 191 (S0)
+  238:  ADD.S     F0, F0, F2
+  23C:  MTC1      V0, F2
+  240:  NOP
+  244:  CVT.S.W   F2, F2
+  248:  BEQ       R0, R0, .o2BC
+  24C:  SUB.S     F20, F0, F2
+        .o250
+  250:  ANDI      V0, V1, 8000
+  254:  BNE       V0, R0, .o28C
+  258:  NOP
+  25C:  LH        V0, 152 (S0)
+  260:  LWC1      F0, 148 (S0)
+  264:  MTC1      V0, F2
+  268:  NOP
+  26C:  CVT.S.W   F2, F2
+  270:  LBU       V0, 191 (S0)
+  274:  ADD.S     F0, F0, F2
+  278:  MTC1      V0, F2
+  27C:  NOP
+  280:  CVT.S.W   F2, F2
+  284:  BEQ       R0, R0, .o2BC
+  288:  ADD.S     F20, F2, F0
+        .o28C
+  28C:  LH        V0, 152 (S0)
+  290:  LWC1      F2, 148 (S0)
+  294:  MTC1      V0, F0
+  298:  NOP
+  29C:  CVT.S.W   F0, F0
+  2A0:  LBU       V0, 191 (S0)
+  2A4:  ADD.S     F2, F2, F0
+  2A8:  SLL       V0, V0, 1
+  2AC:  MTC1      V0, F0
+  2B0:  NOP
+  2B4:  CVT.S.W   F0, F0
+  2B8:  ADD.S     F20, F2, F0
+        .o2BC
+  2BC:  LH        V0, 154 (S0)
+  2C0:  LWC1      F0, 14C (S0)
+  2C4:  MTC1      V0, F2
+  2C8:  NOP
+  2CC:  CVT.S.W   F2, F2
+  2D0:  ADD.S     F0, F0, F2
+  2D4:  LW        V0, 70 (S2)
+  2D8:  LIF       F2, 10.0
+  2E0:  ADDIU     V1, V0, FFFF
+  2E4:  SLTIU     V0, V1, 5
+  2E8:  BEQ       V0, R0, .o478
+  2EC:  ADD.S     F22, F0, F2
+  2F0:  SLL       V0, V1, 2
+  2F4:  LTW       V0, V0 ($JumpTable_8029D820)
+  300:  JR        V0
+  304:  NOP
+	% LBL: from $JumpTable_8029D820 , entry 0`
+  308:  LW        V0, 7C (S2)
+  30C:  BNE       V0, R0, .o444
+  310:  ADDIU     V0, V0, FFFF
+  314:  LI        A0, 2
+  318:  MFC1      A1, F10
+  31C:  MFC1      A2, F6
+  320:  MFC1      A3, F8
+  324:  LIF       F0, 1.0
+  32C:  LI        S0, 1E
+  330:  SW        S0, 14 (SP)
+  334:  JAL       80070BB0
+  338:  SWC1      F0, 10 (SP)
+  33C:  JAL       $Function_8024E3D8
+  340:  LI        A0, 13
+  344:  LI        V0, 2
+  348:  SW        S0, 7C (S2)
+  34C:  BEQ       R0, R0, .o478
+  350:  SW        V0, 70 (S2)
+	% LBL: from $JumpTable_8029D820 , entry 1`
+  354:  LW        V0, 7C (S2)
+  358:  BNE       V0, R0, .o444
+  35C:  ADDIU     V0, V0, FFFF
+  360:  COPY      A0, S0
+  %364:  JAL       ~Func:dispatch_event_actor
+  %368:  LI        A1, 3F
+  36C:  JAL       $Function_8024E40C
+  370:  LI        A0, 2
+  374:  JAL       ~Func:btl_cam_move
+  378:  LI        A0, F
+  37C:  LBU       V0, 222 (S0)
+  380:  LI        V1, 1
+  384:  SB        V1, 220 (S0)
+  388:  ADDU      V0, V0, S1
+  38C:  SB        V0, 222 (S0)
+  390:  SLL       V0, V0, 18
+  394:  SRA       V0, V0, 18
+  398:  SLTI      V0, V0, 15
+  39C:  BNE       V0, R0, .o3AC
+  3A0:  ADDIU     A0, S1, 5
+  3A4:  LI        V0, 14
+  3A8:  SB        V0, 222 (S0)
+        .o3AC
+  3AC:  MFC1      A1, F24
+  3B0:  MFC1      A2, F20
+  3B4:  MFC1      A3, F22
+  3B8:  LIF       F0, 1.0
+  3C0:  LI        V0, 3C
+  3C4:  SW        V0, 14 (SP)
+  3C8:  JAL       800718D0
+  3CC:  SWC1      F0, 10 (SP)
+  3D0:  LI        V0, F
+  3D4:  SW        V0, 7C (S2)
+  3D8:  LI        V0, 3
+  3DC:  BEQ       R0, R0, .o478
+  3E0:  SW        V0, 70 (S2)
+	% LBL: from $JumpTable_8029D820 , entry 2`
+  3E4:  LW        V0, 7C (S2)
+  3E8:  BNE       V0, R0, .o444
+  3EC:  ADDIU     V0, V0, FFFF
+  3F0:  LI        A0, 1E
+  3F4:  LI        A1, 3C
+  3F8:  JAL       ~Func:btl_show_variable_battle_message
+  3FC:  COPY      A2, S1
+  400:  LI        V0, 4
+  404:  BEQ       R0, R0, .o478
+  408:  SW        V0, 70 (S2)
+	% LBL: from $JumpTable_8029D820 , entry 3`
+  40C:  JAL       ~Func:btl_is_popup_displayed
+  410:  NOP
+  414:  BNE       V0, R0, .o47C
+  418:  CLEAR     V0
+  41C:  JAL       $Function_8024E40C
+  420:  LI        A0, 2
+  424:  LI        V0, A
+  428:  SW        V0, 7C (S2)
+  42C:  LI        V0, 5
+  430:  BEQ       R0, R0, .o478
+  434:  SW        V0, 70 (S2)
+	% LBL: from $JumpTable_8029D820 , entry 4`
+  438:  LW        V0, 7C (S2)
+  43C:  BEQ       V0, R0, .o44C
+  440:  ADDIU     V0, V0, FFFF
+        .o444
+  444:  BEQ       R0, R0, .o478
+  448:  SW        V0, 7C (S2)
+        .o44C
+  44C:  LW        V0, 1D8 (S0)
+  450:  BEQ       V0, R0, .o468
+  454:  NOP
+  458:  JAL       ~Func:does_script_exist
+  45C:  LW        A0, 1E8 (S0)
+  460:  BNE       V0, R0, .o47C
+  464:  CLEAR     V0
+        .o468
+  468:  SAB       R0, 8029FBD4
+  470:  BEQ       R0, R0, .o47C
+  474:  LI        V0, 2
+        .o478
+  478:  CLEAR     V0
+        .o47C
+  47C:  LW        RA, 24 (SP)
+  480:  LW        S2, 20 (SP)
+  484:  LW        S1, 1C (SP)
+  488:  LW        S0, 18 (SP)
+  48C:  LDC1      F24, 38 (SP)
+  490:  LDC1      F22, 30 (SP)
+  494:  LDC1      F20, 28 (SP)
+  498:  JR        RA
+  49C:  ADDIU     SP, SP, 40
+}
+%/
+
+%Put the functions used to determine how strong Dark Mario is here
+%I might want them later
+
+#export:Function $Function_GetMarioMaxHP %arg 1 = output
+{
+	PUSH	RA
+	LAB		V0, 8010F293 %this value changes when you use HP Plus, 8010F294 does not
+	ADDI	A2, V0, 0
+	LW		V0, C (A0)
+	JAL		~Func:set_variable
+	LW		A1, 0 (V0)
+	POP		RA
+	JR		RA
+	ADDIU	V0, R0, 2
+}
+
+#export:Function $Function_GetMarioMaxFP %arg 1 = output
+{
+	PUSH	RA
+	LAB		V0, 8010F296 %this value changes when you use FP Plus, 8010F297 does not
+	ADDI	A2, V0, 0
+	LW		V0, C (A0)
+	JAL		~Func:set_variable
+	LW		A1, 0 (V0)
+	POP		RA
+	JR		RA
+	ADDIU	V0, R0, 2
+}
+
+#export:Function $Function_GetMarioFP %arg 1 = output
+{
+	PUSH	RA
+	LAB		V0, 8010F295 %this value changes when you use FP Plus, 8010F297 does not
+	ADDI	A2, V0, 0
+	LW		V0, C (A0)
+	JAL		~Func:set_variable
+	LW		A1, 0 (V0)
+	POP		RA
+	JR		RA
+	ADDIU	V0, R0, 2
+}
+
+#export:Function $Function_CheckBadge %arg 1 = badge, arg 2 = output (1 if you have badge, 0 if not)
+{
+	PUSH	  RA, S1, S2, S3
+	COPY	  S2, A0
+	LW        V0, C (S2)
+	COPY	  S1, V0
+	JAL       ~Func:get_variable
+	LW        A1, 0 (S1)
+	JAL		  $IsBadgeEquipped
+	COPY	  A0, V0
+	LW        V0, C (S2)
+	COPY	  A2, A0
+	COPY	  A0, S2
+	JAL       ~Func:set_variable
+	LW        A1, 4 (S1) %get the next var
+	POP 	  RA, S1, S2, S3
+	JR		  RA
+	ORI 	  V0, R0, 2
+}
+
+%Uses the ability check
+#export:Function $Function_CheckAbility %arg 1 = badge, arg 2 = output (1 if you have badge, 0 if not)
+{
+	PUSH	  RA, S1, S2, S3
+	COPY	  S2, A0
+	LW        V0, C (S2)
+	COPY	  S1, V0
+	JAL       ~Func:get_variable
+	LW        A1, 0 (S1)	
+	JAL       ~Func:is_ability_active %gets if you have a badge equipped, it can detect copies of badges like deep focus
+	COPY	  A0, V0
+	%ADDIU     A0, R0, 30 %ability 0x30 = deep focus
+	COPY	  A0, V0
+	LW        V0, C (S2)
+	COPY	  A2, A0
+	COPY	  A0, S2
+	JAL       ~Func:set_variable
+	LW        A1, 4 (S1) %get the next var
+	POP 	  RA, S1, S2, S3
+	JR		  RA
+	ORI 	  V0, R0, 2
+}
+	
+%Only calculates unconditional attack increases
+#export:Function $Function_CalculateAttack %arg 1 = output var
+{
+	PUSH	 S1, S2, S3, RA
+	COPY	 S1, A0		%Keep value of A0 for later
+	ORI		 S2, R0, 0 %attack val
+	LAW		 S3, 800DC148 %player actor pointer
+	COPY	 A0, S3
+	JAL		 802672AC %advanced ability checker, requires player/partner actor pointer in A0?
+	ORI		 A1, R0, 1C %power plus
+	ADD		 S2, S2, V0
+	COPY	 A0, S3
+	JAL		 802672AC 
+	ORI		 A1, R0, 25 %p-down, d-up
+	SUB		 S2, S2, V0
+	COPY	 A0, S3
+	JAL		 802672AC 
+	ORI		 A1, R0, A %all or nothing
+	ADD		 S2, S2, V0
+	COPY	 A0, S3
+	JAL		 802672AC 
+	ORI		 A1, R0, 22 %p-up, d-down
+	ADD		 S2, S2, V0
+	%now that we have our defense, return it
+	ADDI	A2, S2, 0
+	ADD		A0, S1, R0 %get value of A0 back
+	LW		V0, C (A0)
+	JAL		~Func:set_variable
+	LW		A1, 0 (V0)
+	POP		 S1, S2, S3, RA
+	JR		 RA
+	ORI 	  V0, R0, 2
+}
+	
+%Only calculates unconditional defense increases
+#export:Function $Function_CalculateDefense %arg 1 = output var
+{
+	PUSH	 S1, S2, S3, RA
+	COPY	 S1, A0		%Keep value of A0 for later
+	ORI		 S2, R0, 1 %defense val
+	LAW		 S3, 800DC148 %player actor pointer
+	COPY	 A0, S3
+	JAL		 802672AC %advanced ability checker, requires player/partner actor pointer in A0? (Also known as ~Func:player_team_is_ability_active)
+	ORI		 A1, R0, 1B %defense plus
+	ADD		 S2, S2, V0
+	COPY	 A0, S3
+	JAL		 802672AC 
+	ORI		 A1, R0, 25 %p-down, d-up
+	ADD		 S2, S2, V0
+	COPY	 A0, S3
+	JAL		 802672AC 
+	ORI		 A1, R0, 33 %damage dodge
+	ADD		 S2, S2, V0
+	COPY	 A0, S3
+	JAL		 802672AC 
+	ORI		 A1, R0, 22 %p-up, d-down
+	SUB		 S2, S2, V0
+	%now that we have our defense, return it
+	ADDI	A2, S2, 0
+	ADD		A0, S1, R0 %get value of A0 back
+	LW		V0, C (A0)
+	JAL		~Func:set_variable
+	LW		A1, 0 (V0)
+	POP		 S1, S2, S3, RA
+	JR		 RA
+	ORI 	  V0, R0, 2
+}
+
+

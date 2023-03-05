@@ -1,0 +1,438 @@
+% Attempting to copy this over and get it working in Sweet Training...
+%8010F2A9 now contains the superguard flag
+% If I can figure out how the flag is set on and off, I should be able to set it up to be available in certain challenge modes.
+
+#new:Function $OriginalFunctionTesting
+{
+ ADDIU          SP, SP, -38
+ SW             S4, 0020 (SP)
+ DADDU          S4, A0, R0
+ SW             S7, 002C (SP)
+ DADDU          S7, R0, R0
+ SW             S1, 0014 (SP)
+ LUI            S1, 800E
+ ADDIU          S1, S1, C070
+ SW             S5, 0024 (SP)
+ LUI            S5, 8011
+ ADDIU          S5, S5, F290
+ SW             S6, 0028 (SP)
+ LUI            S6, 802A
+ ADDIU          S6, S6, FBE0
+ SW             RA, 0030 (SP)
+ SW             S3, 001C (SP)
+ SW             S2, 0018 (SP)
+ SW             S0, 0010 (SP)
+ LB             V1, 0083 (S1)
+ ADDIU          V0, R0, FFFF
+ BNE            V1, V0, .label1
+ SB             R0, 0087 (S1)
+ LW             V0, 0000 (S1)
+ LUI            V1, 0200
+ AND            V0, V0, V1
+ BEQ            V0, r0, .label1
+ ADDIU          V0, R0, 0001
+ SB             V0, 0087 (S1)
+ BEQ 			r0, r0, .end
+ ADDIU          V0, R0, 0001
+.label1
+ LB             V0, 0083 (S1)
+ BEQ            V0, r0, .end
+ DADDU          V0, R0, R0
+ LUI            V0, 8007
+ LW             V0, 419C (V0)
+ LBU            V0, 00AA (V0)
+ ANDI           V0, V0, 0001
+ BNE            V0, r0, .end
+ DADDU          V0, R0, R0
+ LHU            V1, 0298 (S5)
+ SLTIU          V0, V1, 270F
+ BEQ            V0, r0, .label2
+ ADDIU          V0, V1, 0001
+ SH             V0, 0298 (S5)
+ BEQ 			r0, r0, .label3
+ SH             R0, 006E (S6)
+.label9
+ BEQ 			r0, r0, .label4
+ ADDIU          S7, R0, 0001
+.label13
+ ADDIU          V0, R0, 0001
+ SB             V0, 0087 (S1)
+ BEQ r0, r0,    .label5
+ ADDIU          S2, R0, 0001
+.label2
+ ADDIU          V0, R0, 0001
+ SH             V0, 006E (S6)
+.label3
+ DADDU          S2, R0, R0
+ ADDIU          S0, R0, 0003 %A Button frame window
+ LUI            V0, 800E
+ LW             V0, C070 (V0)
+ LUI            V1, 0008
+ AND            V0, V0, V1
+ BNE            V0, r0, .label6
+ ADDIU          S3, R0, 000A
+ JAL            800E9D48
+ DADDU          A0, S2, R0
+ BNEL           V0, r0, .label6
+ ADDIU          S0, R0, 0005
+.label6
+ LB             V1, 0431 (S1)
+ ADDU           V0, S3, S0
+ SUBU           V1, V1, V0
+ BLTL           V1, r0, .label7
+ ADDIU          V1, V1, 0040
+.label7
+ BEQ            S3, r0, .label4
+ DADDU          A0, R0, R0
+.label10
+ SLTI           V0, V1, 0040
+ BEQL           V0, r0, .label8
+ ADDIU          V1, V1, FFC0
+.label8
+ SLL            V0, V1, 2
+ ADDU           V0, S1, V0
+ LW             V0, 0330 (V0)
+ AND            V0, V0, S4
+ BNE            V0, r0, .label9
+ ADDIU          A0, A0, 0001
+ SLT            V0, A0, S3
+ BNE            V0, r0, .label10
+ ADDIU          V1, V1, 0001
+.label4
+ LB             V1, 0431 (S1)
+ SUBU           V1, V1, S0
+ BLTL           V1, r0, .label11
+ ADDIU          V1, V1, 0040
+.label11
+ BEQ            S0, r0, .label5
+ DADDU          A0, R0, R0
+.label14
+ SLTI           V0, V1, 0040
+ BEQL           V0, r0, .label12
+ ADDIU          V1, V1, FFC0
+.label12
+ SLL            V0, V1, 2
+ ADDU           V0, S1, V0
+ LW             V0, 0330 (V0)
+ AND            V0, V0, S4
+ BNE            V0, r0, .label13
+ ADDIU          A0, A0, 0001
+ SLT            V0, A0, S0
+ BNE            V0, r0, .label14
+ ADDIU          V1, V1, 0001
+.label5
+ BEQ            S7, r0, .label15
+ ADDIU          V0, R0, FFFF
+ SB             V0, 0087 (S1)
+ DADDU          S2, R0, R0
+.label15
+ ADDIU          V0, R0, 0001
+ BNE            S2, V0, .label16
+ ADDU           V0, S3, S0
+ LB             V1, 0431 (S1)
+ SUBU           V1, V1, V0
+ BLTL           V1, r0, .label17
+ ADDIU          V1, V1, 0040
+.label17
+ BEQ            V0, r0, .label16
+ DADDU          A0, R0, R0
+ DADDU          A1, V0, R0
+.label19
+ SLTI           V0, V1, 0040
+ BEQL           V0, r0, .label18
+ ADDIU          V1, V1, FFC0
+.label18
+ SLL            V0, V1, 2
+ ADDU           V0, S1, V0
+ SW             R0, 0330 (V0)
+ ADDIU          A0, A0, 0001
+ SLT            V0, A0, A1
+ BNE            V0, r0, .label19
+ ADDIU          V1, V1, 0001
+.label16
+ BEQ            S2, r0, .end
+ DADDU          V0, S2, R0
+ LH             V0, 006E (S6)
+ BNE            V0, r0, .end
+ DADDU          V0, S2, R0
+ LHU            V0, 029A (S5)
+ ADDIU          V0, V0, 0001
+ SH             V0, 029A (S5)
+ DADDU          V0, S2, R0
+.end
+ BNE v0, r0, .skipBSetFlagto0
+ NOP
+ LAB 			AT, 8010F2A9 %new: check flag 8010F2A9
+ BEQ AT, R0, .actualend
+ NOP
+ JAL $NewFunctionTesting
+ ORI a0, r0, 4000 %B button
+ BEQ v0, r0, .actualend
+ NOP
+ ORI t0, r0, 0001
+ SAW t0, $FlagForButtonPressed
+.modifiedend
+ LW             RA, 0030 (SP)
+ LW             S7, 002C (SP)
+ LW             S6, 0028 (SP)
+ LW             S5, 0024 (SP)
+ LW             S4, 0020 (SP)
+ LW             S3, 001C (SP)
+ LW             S2, 0018 (SP)
+ LW             S1, 0014 (SP)
+ %ADD 			s0, r0, r0 %set damage mario takes to 0
+ LW             S0, 0010 (SP)
+ SRA			S0, S0, 1 %shifting right by 1 is effectively div by 2
+ %ADDI			S0, S0, FFFC %subtract 4 (guarding subtracts by 1?)
+ JR             RA
+ ADDIU          SP, SP, 38
+.actualend
+ LAB			S7, $BattlePerks[2]		%S7 gets overwritten by the stuff below so using it is fine
+ OR				V0, S7, V0
+ LW             RA, 0030 (SP)
+ LW             S7, 002C (SP)
+ LW             S6, 0028 (SP)
+ LW             S5, 0024 (SP)
+ LW             S4, 0020 (SP)
+ LW             S3, 001C (SP)
+ LW             S2, 0018 (SP)
+ LW             S1, 0014 (SP)
+ LW             S0, 0010 (SP)
+ JR             RA
+ ADDIU          SP, SP, 38
+.skipBSetFlagto0
+SAW r0, $FlagForButtonPressed
+BEQ r0, r0, .actualend
+NOP
+}
+
+
+
+
+#new:Function $NewFunctionTesting
+{
+ ADDIU          SP, SP, -38
+ SW             S4, 0020 (SP)
+ DADDU          S4, A0, R0
+ SW             S7, 002C (SP)
+ DADDU          S7, R0, R0
+ SW             S1, 0014 (SP)
+ LUI            S1, 800E
+ ADDIU          S1, S1, C070
+ SW             S5, 0024 (SP)
+ LUI            S5, 8011
+ ADDIU          S5, S5, F290
+ SW             S6, 0028 (SP)
+ LUI            S6, 802A
+ ADDIU          S6, S6, FBE0
+ SW             RA, 0030 (SP)
+ SW             S3, 001C (SP)
+ SW             S2, 0018 (SP)
+ SW             S0, 0010 (SP)
+ LB             V1, 0083 (S1)
+ ADDIU          V0, R0, FFFF
+ BNE            V1, V0, .blabel1
+ SB             R0, 0087 (S1)
+ LW             V0, 0000 (S1)
+ LUI            V1, 0200
+ AND            V0, V0, V1
+ BEQ            V0, r0, .blabel1
+ ADDIU          V0, R0, 0001
+ SB             V0, 0087 (S1)
+ BEQ 			r0, r0, .end
+ ADDIU          V0, R0, 0001
+.blabel1
+ LB             V0, 0083 (S1)
+ BEQ            V0, r0, .end
+ DADDU          V0, R0, R0
+ LUI            V0, 8007
+ LW             V0, 419C (V0)
+ LBU            V0, 00AA (V0)
+ ANDI           V0, V0, 0001
+ BNE            V0, r0, .end
+ DADDU          V0, R0, R0
+ LHU            V1, 0298 (S5)
+ SLTIU          V0, V1, 270F
+ BEQ            V0, r0, .blabel2
+ ADDIU          V0, V1, 0001
+ SH             V0, 0298 (S5)
+ BEQ 			r0, r0, .blabel3
+ SH             R0, 006E (S6)
+.blabel9
+ BEQ 			r0, r0, .blabel4
+ ADDIU          S7, R0, 0001
+.blabel13
+ ADDIU          V0, R0, 0001
+ SB             V0, 0087 (S1)
+ BEQ r0, r0,    .blabel5
+ ADDIU          S2, R0, 0001
+.blabel2
+ ADDIU          V0, R0, 0001
+ SH             V0, 006E (S6)
+.blabel3
+ DADDU          S2, R0, R0
+ ADDIU          S0, R0, 0001 	%B Button frame window		(one frame seems to be really hard and kinda inconsistent, or maybe I'm just bad)
+ LUI            V0, 800E
+ LW             V0, C070 (V0)
+ LUI            V1, 0008
+ AND            V0, V0, V1
+ BNE            V0, r0, .blabel6
+ ADDIU          S3, R0, 000A
+ JAL            800E9D48
+ DADDU          A0, S2, R0
+ BNEL           V0, r0, .blabel6
+ ADDIU          S0, R0, 0001	%Dodge master window (1 frame)	(No improvement!) (note that 3 is the standard, no dodge master guard window) 
+.blabel6
+ LB             V1, 0431 (S1)
+ ADDU           V0, S3, S0
+ SUBU           V1, V1, V0
+ BLTL           V1, r0, .blabel7
+ ADDIU          V1, V1, 0040
+.blabel7
+ BEQ            S3, r0, .blabel4
+ DADDU          A0, R0, R0
+.blabel10
+ SLTI           V0, V1, 0040
+ BEQL           V0, r0, .blabel8
+ ADDIU          V1, V1, FFC0
+.blabel8
+ SLL            V0, V1, 2
+ ADDU           V0, S1, V0
+ LW             V0, 0330 (V0)
+ AND            V0, V0, S4
+ BNE            V0, r0, .blabel9
+ ADDIU          A0, A0, 0001
+ SLT            V0, A0, S3
+ BNE            V0, r0, .blabel10
+ ADDIU          V1, V1, 0001
+.blabel4
+ LB             V1, 0431 (S1)
+ SUBU           V1, V1, S0
+ BLTL           V1, r0, .blabel11
+ ADDIU          V1, V1, 0040
+.blabel11
+ BEQ            S0, r0, .blabel5
+ DADDU          A0, R0, R0
+.blabel14
+ SLTI           V0, V1, 0040
+ BEQL           V0, r0, .blabel12
+ ADDIU          V1, V1, FFC0
+.blabel12
+ SLL            V0, V1, 2
+ ADDU           V0, S1, V0
+ LW             V0, 0330 (V0)
+ AND            V0, V0, S4
+ BNE            V0, r0, .blabel13
+ ADDIU          A0, A0, 0001
+ SLT            V0, A0, S0
+ BNE            V0, r0, .blabel14
+ ADDIU          V1, V1, 0001
+.blabel5
+ BEQ            S7, r0, .blabel15
+ ADDIU          V0, R0, FFFF
+ SB             V0, 0087 (S1)
+ DADDU          S2, R0, R0
+.blabel15
+ ADDIU          V0, R0, 0001
+ BNE            S2, V0, .blabel16
+ ADDU           V0, S3, S0
+ LB             V1, 0431 (S1)
+ SUBU           V1, V1, V0
+ BLTL           V1, r0, .blabel17
+ ADDIU          V1, V1, 0040
+.blabel17
+ BEQ            V0, r0, .blabel16
+ DADDU          A0, R0, R0
+ DADDU          A1, V0, R0
+.blabel19
+ SLTI           V0, V1, 0040
+ BEQL           V0, r0, .blabel18
+ ADDIU          V1, V1, FFC0
+.blabel18
+ SLL            V0, V1, 2
+ ADDU           V0, S1, V0
+ SW             R0, 0330 (V0)
+ ADDIU          A0, A0, 0001
+ SLT            V0, A0, A1
+ BNE            V0, r0, .blabel19
+ ADDIU          V1, V1, 0001
+.blabel16
+ BEQ            S2, r0, .end
+ DADDU          V0, S2, R0
+ LH             V0, 006E (S6)
+ BNE            V0, r0, .end
+ DADDU          V0, S2, R0
+ LHU            V0, 029A (S5)
+ ADDIU          V0, V0, 0001
+ SH             V0, 029A (S5)
+ DADDU          V0, S2, R0
+.end
+ LW             RA, 0030 (SP)
+ LW             S7, 002C (SP)
+ LW             S6, 0028 (SP)
+ LW             S5, 0024 (SP)
+ LW             S4, 0020 (SP)
+ LW             S3, 001C (SP)
+ LW             S2, 0018 (SP)
+ LW             S1, 0014 (SP)
+ LW             S0, 0010 (SP)
+ JR             RA
+ ADDIU          SP, SP, 38
+}
+
+@Function 1A62A4
+{
+JAL $OriginalFunctionTesting
+ORI a0, r0, 8000 %A button input
+}
+
+
+@Hook 195200 %[80266920]
+{
+PUSH RA, T0 %t0 might do something
+LAW t0, $FlagForButtonPressed
+BEQ t0, r0, .Apressed
+NOP
+ORI a0, r0, 0002 %Super! text instead of Nice! text
+SAW r0, $FlagForButtonPressed
+.Apressed
+POP RA, T0
+MFC1	A1, F0 %hooked over
+J 80266928
+LUI 	AT, 4120 %hooked over
+}
+
+#new:Data $FlagForButtonPressed %A = 0, B = 1
+{
+00000000
+}
+
+%Give it a different sound to stand out
+%I think this one is executed before the text check
+%Note that the damage dodge check is around here too (Directly above this code, V0 = damage dodge count)
+@Hook 1A6310 %[80277A30]
+{
+PUSH 	RA, T0
+LAW 	t0, $FlagForButtonPressed
+BEQ 	t0, r0, .Apressed
+NOP
+ORI 	A0, R0, 238
+.Apressed
+POP		RA, T0
+LW 		A2, C (S1) %hooked over
+J 		80277A38
+LW 		A3, 10 (S1) %hooked over
+}
+
+%This is the function used to trigger "unlocking" Superguard in Dark Star. 
+%So in theory, if I export this code I can call it whenever I want to unlock Superguard
+    %(Ie if the player names there file ExtraBlock)
+#export:Function $Function_FlipSuperguardFlag
+{
+	PUSH 	RA
+	ORI 	A0, R0, 1
+	SAB		A0, 8010F2A9 %superguard flag loc
+	POP 	RA
+	JR		RA
+	ORI 	V0, R0, 2
+}

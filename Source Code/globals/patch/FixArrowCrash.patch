@@ -1,0 +1,115 @@
+%Fix BoostAttack Crash
+%J E00AC114 jump back to here
+%s1 here holds the value to add/subtract by, -1
+%so to get the original value, add 1 to s0
+#new:Function $FixBoostAttackFunc %can use s1, v1, at
+{
+ LW 			at, 002C (sp)
+ LIO 			v1, FFFFFF00
+ SRL 			at, at, 08 %last byte is knocked off
+ SLL 			at, at, 08 %move back and compare to FFFFFF00
+ BNE at, v1, .positivenumber
+ NOP
+ .negativenumber
+ ORI 			v1, r0, 0001
+ SW             V1, 001C (A0) %store 0001 for negative sign
+ BEQ r0, r0, .aftersign
+ NOP
+ .positivenumber
+ ORI 			v1, r0, 0000
+ SW             V1, 001C (A0) %store 0000 for plus sign
+ BEQ r0, r0, .aftersign
+ NOP
+.aftersign
+ LW 			at, 002C (sp)
+ SW             R0, 0028 (A0)
+ SW             R0, 002C (A0)
+ SW             R0, 0030 (A0)
+ SW             R0, 0038 (A0)
+ SW             R0, 0034 (A0)
+ SWC1           F0, 0010 (A0)
+ DADDU          V0, S0, R0
+ SW             at, 0020 (A0)
+ LW             RA, 0030 (SP)
+ LW             S1, 002C (SP)
+ LW             S0, 0028 (SP)
+ LDC1           F24, 0048 (SP)
+ LDC1           F22, 0040 (SP)
+ LDC1           F20, 0038 (SP)
+LIO at, E00AC114
+JR at
+NOP
+}
+
+@Function 3AEEE8 %[E00AC0C8] yes this is the RAM address...it's in kseg3 memory region
+{
+LW 			at, 002C (sp)
+SRL 		at, at, 18
+ORI 		t0, r0, 0080
+BNE 		t0, at, .runmodifiedcode
+NOP
+LIO at, $VanillaArrowCode
+JR at
+NOP
+.runmodifiedcode
+LIO at, $FixBoostAttackFunc
+JR at
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+}
+
+#new:Function $VanillaArrowCode
+{
+ SLL            V0, S1, 3
+ ADDU           V0, V0, V1
+ SW             R0, 0028 (A0)
+ SW             R0, 002C (A0)
+ SW             R0, 0030 (A0)
+ SW             R0, 0038 (A0)
+ SW             R0, 0034 (A0)
+ SWC1           F0, 0010 (A0)
+ LW             V1, 0000 (V0)
+ SW             V1, 001C (A0)
+ LW             V1, 0004 (V0)
+ DADDU          V0, S0, R0
+ SW             V1, 0020 (A0)
+ LW             RA, 0030 (SP)
+ LW             S1, 002C (SP)
+ LW             S0, 0028 (SP)
+ LDC1           F24, 0048 (SP)
+ LDC1           F22, 0040 (SP)
+ LDC1           F20, 0038 (SP)
+ LIO at, E00AC114
+ JR at
+ NOP
+}
+
+/%
+@Hook 3AEEE4 %[E00AC0C8] original function
+ SLL            V0, S1, 3
+ ADDU           V0, V0, V1
+ SW             R0, 0028 (A0)
+ SW             R0, 002C (A0)
+ SW             R0, 0030 (A0)
+ SW             R0, 0038 (A0)
+ SW             R0, 0034 (A0)
+ SWC1           F0, 0010 (A0)
+ LW             V1, 0000 (V0)
+ SW             V1, 001C (A0)
+ LW             V1, 0004 (V0)
+ DADDU          V0, S0, R0
+ SW             V1, 0020 (A0)
+ LW             RA, 0030 (SP)
+ LW             S1, 002C (SP)
+ LW             S0, 0028 (SP)
+ LDC1           F24, 0048 (SP)
+ LDC1           F22, 0040 (SP)
+ LDC1           F20, 0038 (SP)
+ J E00AC114
+NOP%/

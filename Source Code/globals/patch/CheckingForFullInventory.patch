@@ -1,0 +1,45 @@
+%Inventory Check: Returns count of items in the inventory as an int
+#export:Function $checkTotalItemsInInventory {
+    PUSH ra
+    LI t0, 8010F444
+    DADDU v0, r0, r0 %loop counter
+    DADDU v1, r0, r0 %found items counter
+    .loop
+    LH t1, 0000 (t0)
+    BNEL t1, r0, .itemIDIsntZero
+    ADDIU v1, v1, 1
+    .itemIDIsntZero
+    ADDIU v0, v0, 1 %increment loop counter
+    SLTI t2, v0, A %check if less than 10 items
+    BNE t2, r0, .loop
+    ADDIU t0, t0, 2 %increment ptr to items
+    LW t0, 000C (a0) %load pointer to script args
+    LW a1, 0000 (t0) %load Var to store to
+    JAL ~Func:set_variable
+    ADDU a2, v1, r0 %found items moved to a2
+    POP ra
+
+    JR RA
+    ORI v0, r0, 2
+}
+/%
+%Call when talking to Kolorado to see if he's holding onto his reward still
+#export:Function $KoloradoItem {
+    Call  SpeakToPlayer ( .NpcID:TayceT_00 00AA0004 00AA0001 00000000 0004001A ) % Here's the Cake!
+    %Check for item...
+    %Check to see if the player has room in their inventory... if they do, give them the life shroom
+    Call $checkTotalItemsInInventory( *Var0 )
+    %If item count is 9 or less...
+    If (*Var0 <= 9)
+        Call ShowGotItem   ( .Item:LifeShroom .False 00000002 )
+        Call AddItem ( .Item:LifeShroom 00000001 )
+        Set   *GF_MAC02_TayceT_HoldingCake  .False    
+    Else
+        %Otherwise play text saying they have too many things...maybe make a flag that will allow Mario to get the item from him later...
+        Call  SpeakToPlayer ( .Npc:Self 00B60009 00B60001 00000000 002F0084 ) %But Alas...
+        Set   *GF_MAC02_TayceT_HoldingCake  .True
+    EndIf
+Return
+
+}
+%/

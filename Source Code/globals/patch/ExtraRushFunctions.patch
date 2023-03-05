@@ -1,0 +1,174 @@
+%Extra Functions for Rush
+
+%Additional element tables for Rush to swap between
+#export:DefenseTable $FireRush
+{
+     .Element:Normal 00000000
+	.Element:Shock  00000000
+     .Element:Fire   00000063
+     .Element:Water  -1`
+     .Element:Quake  00000063
+	.Element:End
+}
+
+#export:DefenseTable $WaterRush
+{
+     .Element:Normal 00000000
+	.Element:Shock  -1`
+     .Element:Water  00000063
+     .Element:Quake  00000063
+	.Element:End
+}
+
+#export:DefenseTable $IceRush
+{
+     .Element:Normal 00000000
+	.Element:Shock  00000000
+     .Element:Fire  -1`
+     .Element:Ice   00000063
+     .Element:Quake  00000063
+	.Element:End
+}
+
+#export:DefenseTable $ShockRush
+{
+     .Element:Normal 00000000
+	.Element:Shock  00000063
+     .Element:Ice    -1`
+     .Element:Quake  00000063
+	.Element:End
+}
+
+%Gumdrop Attack function carried over from Spiny Surge
+#export:Function $Function_80238A6C
+{
+    0:  ADDIU     SP, SP, FFA8
+    4:  LAW       V1, 800DC14C
+    C:  LIF       F0, 5.0
+   14:  LI        A0, 8C
+   18:  SW        RA, 28 (SP)
+   1C:  SDC1      F28, 50 (SP)
+   20:  SDC1      F26, 48 (SP)
+   24:  SDC1      F24, 40 (SP)
+   28:  SDC1      F22, 38 (SP)
+   2C:  SDC1      F20, 30 (SP)
+   30:  LWC1      F24, 144 (V1)
+   34:  LBU       V0, 191 (V1)
+   38:  ADD.S     F24, F24, F0
+   3C:  LWC1      F22, 148 (V1)
+   40:  MTC1      V0, F0
+   44:  NOP
+   48:  CVT.S.W   F0, F0
+   4C:  ADD.S     F22, F22, F0
+   50:  LIF       F26, 20.0
+   58:  LWC1      F28, 14C (V1)
+   5C:  JAL       ~Func:rand_int
+   60:  ADD.S     F22, F22, F26
+   64:  ADDIU     V0, V0, A
+   68:  MTC1      V0, F20
+   6C:  NOP
+   70:  CVT.S.W   F20, F20
+   74:  JAL       ~Func:rand_int
+   78:  LI        A0, 50
+   7C:  CLEAR     A0
+   80:  ADDIU     V0, V0, A
+   84:  MTC1      V0, F0
+   88:  NOP
+   8C:  CVT.S.W   F0, F0
+   90:  SWC1      F0, 14 (SP)
+   94:  LIF       F0, 1.5
+   9C:  MFC1      A1, F24
+   A0:  MFC1      A3, F28
+   A4:  MFC1      A2, F22
+   A8:  LI        V0, 1E
+   AC:  SWC1      F20, 10 (SP)
+   B0:  SWC1      F26, 18 (SP)
+   B4:  SW        V0, 20 (SP)
+   B8:  JAL       ~Func:playFX_64
+   BC:  SWC1      F0, 1C (SP)
+   C0:  LW        RA, 28 (SP)
+   C4:  LDC1      F28, 50 (SP)
+   C8:  LDC1      F26, 48 (SP)
+   CC:  LDC1      F24, 40 (SP)
+   D0:  LDC1      F22, 38 (SP)
+   D4:  LDC1      F20, 30 (SP)
+   D8:  LI        V0, 2
+   DC:  JR        RA
+   E0:  ADDIU     SP, SP, 58
+}
+
+%Gumdrop Attack function carried over from Spiny Surge
+#export:Function $Function_80238B50
+{
+    0:  LAW       V0, 800DC14C
+    8:  LW        V0, 8 (V0)
+    C:  LI        V1, 1
+   10:  LBU       A1, 6 (V0)
+   14:  LW        A3, AC (A0)
+   18:  BEQ       A1, V1, .o5C
+   1C:  CLEAR     A2
+   20:  SLTI      V0, A1, 2
+   24:  BEQ       V0, R0, .o3C
+   28:  LI        V0, 2
+   2C:  BEQ       A1, R0, .o4C
+   30:  SLTI      V0, A3, 64
+   34:  BEQ       R0, R0, .oA8
+   38:  NOP
+        .o3C
+   3C:  BEQ       A1, V0, .o7C
+   40:  SLTI      V0, A3, 64
+   44:  BEQ       R0, R0, .oA8
+   48:  NOP
+        .o4C
+   4C:  BEQ       V0, R0, .oA4
+   50:  LI        A2, 2
+   54:  BEQ       R0, R0, .oA4
+   58:  LI        A2, 1
+        .o5C
+   5C:  SLTI      V0, A3, 47
+   60:  BNE       V0, R0, .oA4
+   64:  LI        A2, 1
+   68:  SLTI      V0, A3, 64
+   6C:  BEQ       V0, R0, .oA8
+   70:  LI        A2, 3
+   74:  BEQ       R0, R0, .oA8
+   78:  LI        A2, 2
+        .o7C
+   7C:  SLTI      V0, A3, 29
+   80:  BNE       V0, R0, .oA4
+   84:  LI        A2, 1
+   88:  SLTI      V0, A3, 47
+   8C:  BNE       V0, R0, .oA4
+   90:  LI        A2, 2
+   94:  SLTI      V0, A3, 64
+   98:  BEQ       V0, R0, .oA8
+   9C:  LI        A2, 4
+   A0:  LI        A2, 3
+        .oA4
+   A4:  SLTI      V0, A3, 64
+        .oA8
+   A8:  BNEL      V0, R0, .oB8
+   AC:  SW        R0, 84 (A0)
+   B0:  LI        V0, 1
+   B4:  SW        V0, 84 (A0)
+        .oB8
+   B8:  SW        A2, C0 (A0)
+   BC:  JR        RA
+   C0:  LI        V0, 2
+}
+
+/%
+%Deterimine what Element the attack should be returned as...
+#export:Function $ElementalDamage
+{
+    %Swap the current element based on the current existing one Cosmic->Fire->Water->Ice->Electric
+          %(Call the Element Variable, add 1 (swapping to 0 if it goes over 4)
+          Call $ScrApi_GetElementVariable ( *VarA )
+          AddF *VarA 1`
+          If *VarA > 4`
+          Set *VarA 0`
+          EndIf
+     %Set the element variable to it's new value
+     Call $ScrApi_SetElementVariable ( *VarA )
+}
+%/
