@@ -167,20 +167,31 @@
 #message:2F:300
 {
 	[Style Inspect]
-	Welcome to a gameplay[BR]
-	demo of Sweet Expedition.[BR]
+	Welcome to "Sweet Training"[Pause 10][BR]
+	This mod showcases abilities[BR]
+	made for or adapted into Sweet[BR]
+	Expedition in a simple package.[BR]
 	[Wait][Next]
-	Here you can try out some of[BR]
-	skills and abilities exclusive[BR]
-	to Sweet Expedition...[BR]
+	Items, partners, status, and[BR]
+	more may behave differently from[BR]
+	your normal Paper Mario quest...[BR]
 	[Wait][Next]
-	...by testing your meddle against[BR]
-	the Master and his pupils.[BR]
+	...so it's worth your time to[BR]
+	check the pause menu for more[BR]
+	details on partners and items.[BR]
+	Maybe even explore around a bit.[BR]
 	[Wait][Next]
-	Is it possible to beat every[BR]
-	battle?[Pause 10] Who knows?[BR]
+	When you're ready, check out[BR]
+	the dojo to test your meddle[BR]
+	against the Master and his pupils.[BR]
 	[Wait][Next]
-	Either way I hope you have fun.[BR]
+	You'll need mastery of the powers[BR]
+	of your new friends to truely[BR]
+	match up to the strength of[BR]
+	the dojo master.[BR]
+	[Wait][Next]
+	Best of luck, and I hope you[BR]
+	have fun.[BR]
 	[Pause 10] - JackitK[Wait][End]
 }
 % Credits message...
@@ -202,31 +213,6 @@
 	Including but not limited to...[BR]
 	Rain, Wrymouth, elDexter,[BR]
 	Shadeblade, and more.[BR]
-	[Wait][End]
-}
-
-% Victory Message (Normal mode)
-#message:2F:301
-{
-	[Style Inspect]
-	Congrats! You've beat every[BR]
-	battle this game mode has[BR]
-	to offer...[BR]
-	[Wait][Next]
-	...but did you know this isn't[BR]
-	the only game mode Sweet Training[BR]
-	has to offer?[BR]
-	[Wait][Next]
-	Give your file different name[BR]
-	for different types of challenges![BR]
-	[Wait][Next]
-	Start by taking this Candy Star[BR]
-	and search behind the item shop.[BR]
-	You may find a special surprise.[BR]
-	[Wait][Next]
-	Plus, talk to everyone in town.[BR]
-	Some of them may have even more[BR]
-	secrets for you.[BR]
 	[Wait][Next]
 	Thank you for playing and look[BR]
 	forward to more Sweet Expedition[BR]
@@ -240,6 +226,34 @@
 }
 
 % Victory Message (Normal mode)
+#message:2F:301
+{
+	[Style Inspect]
+	Congrats on become the new[BR]
+	master![BR]
+	[Wait][Next]
+	If that wasn't enough, give[BR]
+	your file a special name for[BR]
+	different types of challenges![BR]
+	[Wait][Next]
+	Here's a Candy Star as a reward.[BR]
+	They replace Star Pieces, and[BR]
+	can be traded for badges and[BR]
+	items in the main adventure.[BR]
+	[Wait][Next]
+	For now, I think there's[BR]
+	someone around town interested[BR]
+	in that Candy Star. Trade it[BR]
+	to them for a secret...[BR]
+	[Wait][Next]
+	As for file name codes, explore[BR]
+	around town and you're sure[BR]
+	to find at least a couple[BR]
+	to play around with.[BR]
+	[Wait][End]
+}
+
+% Victory Message (Hard mode)
 #message:2F:33E
 {
 	[Style Inspect]
@@ -453,26 +467,83 @@
 	Have you heard of a land called[BR]
 	Glace Island?[Pause 10][BR]
 	I hear some amazing things about[BR]
-	the tea on that island...[BR]
+	the tea on that island.[BR]
 	[Wait][Next]
-	Really? Your friends are from [BR]
-	Glace Island!?[Pause 10][BR]
-	Our meeting must of been fate![BR]
-	[Wait][Next]
-	I hear there's rare items on the[BR]
-	island that enchance tea in[BR]
-	various ways.[BR]
-	[Wait][Next]
-	If you know anyone who uses tea[BR]
-	in combat, you can even use these[BR]
-	items to change their attacks.[BR]
-	[Wait][Next]
-	In honor of our new friendship,[BR]
-	I'd like to give you some items...[BR]
+	In fact,[Pause 5] I've recently been[BR]
+	collecting special items that[BR]
+	enchance moves of those who[BR]
+	weild tea in combat...[BR]
 	[Wait][End]
 }
 
-%Introduction part 2
+% There's room for confusion exactly what "Tea Items" are, so I think I'll add a scene where Mario's partner spell it out.
+% A varient for Rush...
+#message:2F:353
+{
+	[Style Right]
+	Actually,[Pause 5] me and my friend Chai[BR]
+	come from there. She learn this[BR]
+	dope move called [SaveColor][Color:05]"Sleepy Tea"[RestoreColor][BR]
+	from her Tea Bending training.[BR]
+	[Wait][Next]
+	You think these [SaveColor][Color:05]"tea items"[BR]
+	would work with that move?[RestoreColor][BR]
+	[Wait][End]
+}
+
+% A varient for Chai...
+#message:2F:354
+{
+	[Style Right]
+	Umm...[Pause 10] that's actually where[BR]
+	I'm from. Me and my family spent[BR]
+	ages honing our Tea-Bending.[BR]
+	[Wait][Next]
+	Though, honestly I'm not that[BR]
+	great at it.[Pause 10] I've only know a[BR]
+	couple Tea-Bending skills[BR]
+	[SaveColor][Color:05]like "Sleepy Tea".[RestoreColor][BR]
+	[Wait][End]
+}
+
+% Add a varient for all other partners as a fail safe... just in case I decide to readd Goombario/Kooper in or someone gets someone in another way...
+#message:2F:355
+{
+	[Style Right]
+	Hey Mario![Pause 5] 
+	That's where Chai is from.[BR]
+	[Wait][Next]
+	You think her tea-bending[BR]
+	[SaveColor][Color:05]moves like "Sleepy Tea" is what[BR]
+	[SaveColor][Color:05]she's referring to?[RestoreColor][BR]
+	[Wait][End]
+}
+
+% Ginger T's follow-up to the partner message
+#message:2F:356
+{
+	[Style Right]
+	Sleepy Tea? That sounds exactly[BR]
+	like one of those Tea-bending[BR]
+	moves I've read up on! Our[BR]
+	meeting must of been fate![BR]
+	[Wait][Next]
+	I'd love to be closer friends[BR]
+	with someone who loves tea as[BR]
+	much as I do![BR]
+	[Wait][Next]
+	In honor of our new friendship,[BR]
+	I'd like to give you some items[BR]
+	to better perfect your [BR]
+	Tea Attack.[BR]
+	[Wait][Next]
+	As long as you're honed your[BR]
+	skills enough to use them, I don't[BR]
+	mind at all![BR]
+	[Wait][End]
+}
+
+% First Meeting if you haven't done Dojo training....
 #message:2F:31A
 {
 	[Style Right]
@@ -485,7 +556,6 @@
 	with a fellow tea fan! [HEART][BR]
 	[Wait][End]
 }
-
 
 #message:2F:31B
 {
@@ -889,7 +959,7 @@
 	the rage ever since they opened[BR]
 	up to tourism.[BR]
 	[Wait][Next]
-	Even Rust T. has gotten into it.[BR]
+	Even Russ T. has gotten into it.[BR]
 	I bet if you give him a visit,[BR]
 	he can tell you all about the[BR]
 	people and places of the island.[BR]
@@ -969,7 +1039,7 @@
 	I hear there is even an entire[BR]
 	fighting style dedicated to[BR]
 	mastering its use for mending[BR]
-	wonds and affecting the mind.[BR]
+	wounds and affecting the mind.[BR]
 	[Wait][Next]
 	I wonder what that sort of[BR]
 	tea tastes like?[BR]
@@ -1433,7 +1503,7 @@ Mario, [Pause 5][SaveColor][Color:07]you aren't the only one[RestoreColor][BR]
 #message:2F:40B
 {
 	[Style Inspect]
-	Final Desintation unlocked.[BR]
+	Final Destination unlocked.[BR]
 	aka itemless challenge mode.[BR]
 	[Wait][Next]
 	Mario will have no items and[BR]
@@ -1443,6 +1513,45 @@ Mario, [Pause 5][SaveColor][Color:07]you aren't the only one[RestoreColor][BR]
 	[Wait][Next]
 	This mode is not for the faint[BR]
 	of heart...[BR]
+	[Wait][End]
+}
+
+#message:2F:412
+{
+	[Style Inspect]
+	Superguard Mode unlocked.[BR]
+	[Wait][Next]
+	Mario can now "Superguard" via[BR]
+	pressing [B] with perfect timing.[BR]
+	[Wait][Next]
+	It's harder to do, but if pulled[BR]
+	off it'll negate all damage.[BR]
+	[Wait][End]
+}
+#message:2F:413
+{
+	[Style Inspect]
+	Superguard Plus Mode[BR]
+	unlocked...[BR]
+	[Wait][Next]
+	Mario can now use the[BR]
+	"Superguard" in Challenge Mode.[BR]
+	[Wait][End]
+}
+#message:2F:414
+{
+	[Style Inspect]
+	Brutal Superguard[BR]
+	Mode Unlocked.[BR]
+	[Wait][Next]
+	Superguard is available but[BR]
+	Mario and partners are down[BR]
+	to Super Rank with lower stats.[BR]
+	[Wait][Next]
+	The Master and friends may[BR]
+	even have a trick or two[BR]
+	not used even in a normal[BR]
+	Challenge Mode Run...[BR]
 	[Wait][End]
 }
 

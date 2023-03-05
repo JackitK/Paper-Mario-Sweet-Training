@@ -93,7 +93,7 @@ amount of HP every other turn.[END]
 Automatically heal Mario by[BR]
 3 HP every other turn...[BR]
 Healing happens at the end of[BR]
-Mario's turn.[BR]
+Mario's turn.[END]
 }
 
 % Sweeten Smash
@@ -121,7 +121,7 @@ damage to the foe.[END]
 % Recoil Throw
 #message:26:118
 {
-	Recoil Throw[End]
+Recoil Throw[End]
 }
 
 #message:25:118
@@ -263,8 +263,8 @@ regeneration.[END]
 
 #message:23:113
 {
-	A rare herb that makes a foe Stop[BR]
-	when used in tea...[End]
+	A rare herb that makes the next[BR]
+	use of Sleepy Tea cause Stop...[End]
 }
 
 #message:25:113
@@ -280,13 +280,13 @@ regeneration.[END]
 %Dizzy Sweet
 #message:23:114
 {
-	A sweet that can be added to tea[BR]
-	to make foes Dizzy.[End]
+	When this sweet is used, Sleepy[BR]
+	Tea causes Dizzy on next use.[End]
 }
 #message:24:114
 {
-	A sweet that can be added to[BR]
-	tea to make foes Dizzy.[End]
+	When this sweet is used, Sleepy[BR]
+	Tea causes Dizzy on next use.[End]
 }
 #message:25:114
 {
@@ -461,14 +461,14 @@ regeneration.[END]
 
 #message:23:00E
 {
-	A tonic that can be added to tea[BR]
-	to make foes Dizzy.[End]
+	When this sweet is used, Sleepy[BR]
+	Tea causes Dizzy on next use.[End]
 }
 
 #message:23:008
 {
-	It electrifies Mario and can be[BR]
-	added to tea to Paralyze foes.[End]
+	When used, Mario is filled with[BR]
+	static & Sleepy Tea Paralyzes.[End]
 }
 
 %Descriptions part 2
@@ -541,8 +541,8 @@ regeneration.[END]
 
 #message:24:008
 {
-	It electrifies Mario and can be[BR]
-	added to tea to Paralyze foes.[End]
+	When used, Mario is filled with[BR]
+	static & Sleepy Tea Paralyzes.[End]
 }
 
 %Descriptions part 3
@@ -654,7 +654,7 @@ regeneration.[END]
 {
 	This leaf electrifes Mario[BR]
 	and changes Sleepy Tea...[BR]
-	Making the next time it's used[BR] 
+	Making the next time it's used[BR]
 	Paralyze a foe instead of Sleep.[End]
 }
 

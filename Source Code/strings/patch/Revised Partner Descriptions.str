@@ -457,21 +457,3 @@
 	The toxins lingers on longer the[BR]
 	more successful the inputs.[End]
 }
-
-%Create a custom choice selection for choosing an element...
-#message:1E:050
-{
-	[Style Choice pos=90,60 size=140,75]
-	[StartChoice]
-	[Option 0][Color 0x23]Star[BR]
-	[Option 1][Color 0x20]Fire[BR]
-	[Option 2][Color 0x25]Ice[BR]
-	[Option 3][Color 0x0A]Electric[BR]
-	[EndChoice cancel=3][End]
-}
-
-%Try replacing Goombario's charge with text for "Flavor Swap"
-#message:1D:07D
-{
-	Rush is now [Var 0] flavored.[End]
-}
