@@ -1217,52 +1217,59 @@ Modified the Goombario Tattle patch to function as a way to change the elemental
     Call $ScrApi_GetElementVariable ( *VarA ) %returns value of $elementVariable to *VarA
     Switch *VarA
           Case == 00000000
-               %Determine if Rush is Star or Electric based on Actor Level
+               % Electric Element (Star if Super rank or lower)
                Call GetActorLevel ( .Actor:Partner *Var2 )
-               %If *VarD is 1 (aka 0 or greater) Run the electric action...
+               %If *Var2 is 1 (aka 0 or greater) Run the electric action...
                If *Var2 > 00000001
-                    %Otherwise, run the Thunder Element action....
-                    Call  SetDefenseTable   ( .Actor:Self 00000001 $ShockRush )
-                    Call	$Function_ThunderFX ( )
-                    Call  AddActorDecoration    ( .Actor:Self 00000001 00000000 .Decoration:GoldenFlames)
+                    Call  SetDefenseTable   ( .Actor:Self 00000001 $ShockRush ) % Change partner's defense? 
+                    Call	$Function_ThunderFX ( ) % Lighting effect copied from Dark Star
+                    Call  AddActorDecoration    ( .Actor:Self 00000001 00000000 .Decoration:GoldenFlames) % The "electric" glow
                     Wait 10`
-                    Call SetMessageString ( $electricCalled 0 )
+                    % Set the message to the "Electric Flavor set and display it"
+                    Call SetMessageString ( $electricCalled 0 ) 
                     Call  ShowMessageBox    ( 00000024 0000003C )
                     Wait 15`
-                    Call  RemoveActorDecoration ( .Actor:Self 00000001 00000000 )
+                    Call  RemoveActorDecoration ( .Actor:Self 00000001 00000000 ) % Remove electric glow
                Else
                     %Otherwise, run the Star Element action....
-                    Call  SetDefenseTable   ( .Actor:Self 00000001 $DefenseTable_80238FCC )
-                    Call  AddActorDecoration    ( .Actor:Self 00000001 00000001 .Decoration:RadialStarEmitter )
+                    Call  SetDefenseTable   ( .Actor:Self 00000001 $DefenseTable_80238FCC ) % Change partner's defense? 
+                    Call  AddActorDecoration    ( .Actor:Self 00000001 00000001 .Decoration:RadialStarEmitter ) % Sparkly star effect
                     Wait 10`
+                    % Set the message to the "Star Flavor set and display it"
                     Call SetMessageString ( $comsicCalled 0 )
                     Call  ShowMessageBox    ( 00000024 0000003C )
                     Wait 15`
-                    Call  RemoveActorDecoration ( .Actor:Self 00000001 00000001 )
+                    Call  RemoveActorDecoration ( .Actor:Self 00000001 00000001 ) % Remove Star Effect
                     Wait 10`
                EndIf
+          % Fire Element
           Case == 00000001
-               Call  SetDefenseTable   ( .Actor:Self 00000001 $FireRush )
-               Call  AddActorDecoration    ( .Actor:Self 00000000 00000000 .Decoration:RedFlames )
+               Call  SetDefenseTable   ( .Actor:Self 00000001 $FireRush ) % Change partner's defense? 
+               Call  AddActorDecoration    ( .Actor:Self 00000000 00000000 .Decoration:RedFlames ) % On fire effect
                Wait 10`
+               % Set the message to the "Fire Flavor set and display it"
                Call SetMessageString ( $fireCalled 0 )
                Call  ShowMessageBox    ( 00000024 0000003C )
                Wait 15`
-               Call  RemoveActorDecoration ( .Actor:Self 00000000 00000000 )
+               Call  RemoveActorDecoration ( .Actor:Self 00000000 00000000 ) % Remove fire Effect
                Wait 10`
           Case == 00000002
-               Call  SetDefenseTable   ( .Actor:Self 00000001 $IceRush )
+               Call  SetDefenseTable   ( .Actor:Self 00000001 $IceRush ) % Change partner's defense? 
+               % Play the snowflake effect and set a whirlwind dectoration on Rush...
                Call  PlayEffect    ( ~FX:EmitterVolume:Snowflakes *Var0 *Var1 *Var2 00000014 FFFFFFEC *Fixed[1.0] 00000005 0000001E 00000000 00000000 00000000 00000000 )
-               Call  AddActorDecoration    ( .Actor:Self 00000001 00000000 .Decoration:Whirlwind)
+               Call  AddActorDecoration    ( .Actor:Self 00000001 00000000 .Decoration:Whirlwind) % On whirlwind effect
                Wait 10`
+               % Set the message to the "Fire Flavor set and display it"
                Call SetMessageString ( $iceCalled 0 )
                Call  ShowMessageBox    ( 00000024 0000003C )
                Wait 15`
-               Call  RemoveActorDecoration ( .Actor:Self 00000001 00000000 )
+               Call  RemoveActorDecoration ( .Actor:Self 00000001 00000000 ) % Remove whirlwind Effect
+          % Failsafe code, this should never actually play but just in case nothing else get called...
           Default
                Call  ShowMessageAtScreenPos ( $stringTest 160`  40` ) %Display "Element Did not change" message
                Wait 10`
      EndSwitch
+          % Reset partner's turn so it doesn't get wasted.  See Global patch "Free Turn" for more detail.
           Call $FreeTurn ( )
     430:  Return
     438:  End
